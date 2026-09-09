@@ -177,10 +177,22 @@ export default function HomePage() {
               How MeridianCogent thinks about execution
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-ink">
-              The hardest part of a deal isn&apos;t agreeing it. It&apos;s
-              everything that has to happen after close — across organisations
-              that don&apos;t share systems, on a timeline set by the legal
-              calendar rather than the work.
+              The problem looks like this: your deal is tracked in spreadsheets, 
+              status emails, and handshake agreements — not because anyone wants 
+              it that way, but because nobody's built the alternative. Every change 
+              is invisible to someone who needs to know. Every dependency sits in 
+              someone's head. Every commitment is re-negotiated when it slips. 
+              
+              MeridianCogent replaces the spreadsheet with a control environment: 
+              one place where you define what needs to happen, who is accountable for 
+              it, and when it needs to be done. The difference is not in the feature 
+              count. It's in visibility — the moment something goes at-risk, everyone 
+              who needs to know finds out, and you have an audit trail of every 
+              commitment and every decision that led to it. 
+              
+              That sounds like project management. It's actually protection. Your
+               deal's value sits in the execution after close. Protecting that value 
+               means seeing it clearly.
             </p>
           </div>
 
