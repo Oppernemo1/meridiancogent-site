@@ -1,11 +1,13 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { earlyAccessSchema } from "@/lib/validation";
+import { confirmationEmail, internalNotification } from "@/lib/emails";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const CONTACT_EMAIL = "hello@meridiancogent.com";
+const DEFAULT_FROM = "MeridianCogent <noreply@meridiancogent.com>";
 
 function json(body: Record<string, unknown>, status: number) {
   return NextResponse.json(body, { status });
@@ -30,20 +32,22 @@ export async function POST(request: Request) {
   const email = parsed.data.email.toLowerCase();
   const source =
     typeof (payload as { source?: unknown }).source === "string"
-      ? ((payload as { source: string }).source.slice(0, 64))
+      ? (payload as { source: string }).source.slice(0, 64)
       : "unknown";
 
   // --- Config ---
   const apiKey = process.env.RESEND_API_KEY;
-  const audienceId = process.env.RESEND_AUDIENCE_ID;
-  const fromEmail =
-    process.env.RESEND_FROM_EMAIL || `MeridianCogent <${CONTACT_EMAIL}>`;
+  // Resend Segment the contact is added to. RESEND_AUDIENCE_ID is accepted as
+  // a fallback for older deployments.
+  const segmentId =
+    process.env.RESEND_SEGMENT_ID || process.env.RESEND_AUDIENCE_ID;
+  const fromEmail = process.env.RESEND_FROM_EMAIL || DEFAULT_FROM;
   const internalEmail =
     process.env.INTERNAL_NOTIFICATION_EMAIL || CONTACT_EMAIL;
 
-  if (!apiKey || !audienceId) {
+  if (!apiKey || !segmentId) {
     console.error(
-      "[early-access] Missing RESEND_API_KEY or RESEND_AUDIENCE_ID env var.",
+      "[early-access] Missing RESEND_API_KEY or RESEND_SEGMENT_ID env var.",
     );
     return json(
       { error: "Signups aren't available right now. Please try again later." },
@@ -53,11 +57,11 @@ export async function POST(request: Request) {
 
   const resend = new Resend(apiKey);
 
-  // --- 1. Add to Resend Audience ---
+  // --- 1. Add the contact to the Resend Segment ---
   try {
     const { error } = await resend.contacts.create({
       email,
-      audienceId,
+      audienceId: segmentId,
       unsubscribed: false,
     });
 
@@ -84,43 +88,24 @@ export async function POST(request: Request) {
     );
   }
 
-  // --- 2. Confirmation email to the signup (best-effort) ---
+  // --- 2. Branded confirmation email to the registrant (best-effort) ---
   try {
-    await resend.emails.send({
-      from: fromEmail,
-      to: email,
-      subject: "You're on the MeridianCogent early access list",
-      text: [
-        "You're on the list — we'll email you as we get closer to launch.",
-        "",
-        "MeridianCogent is a control environment for separation offices and",
-        "integration teams running M&A execution. It's still in development;",
-        "early access opens in phases, and we'll only email you when there's",
-        "something concrete to share.",
-        "",
-        "If you didn't sign up, you can ignore this email and you won't hear",
-        "from us again.",
-        "",
-        "— The MeridianCogent team",
-      ].join("\n"),
-    });
+    const { subject, html, text } = confirmationEmail();
+    await resend.emails.send({ from: fromEmail, to: email, subject, html, text });
   } catch (err) {
     console.error("[early-access] confirmation email failed:", err);
     // The signup itself succeeded; don't fail the request.
   }
 
-  // --- 3. Internal notification (best-effort) ---
+  // --- 3. Plain internal notification (best-effort) ---
   try {
+    const { subject, text } = internalNotification({ email, source });
     await resend.emails.send({
       from: fromEmail,
       to: internalEmail,
       replyTo: email,
-      subject: `New early access signup: ${email}`,
-      text: [
-        `Email: ${email}`,
-        `Source: ${source}`,
-        `Time: ${new Date().toISOString()}`,
-      ].join("\n"),
+      subject,
+      text,
     });
   } catch (err) {
     console.error("[early-access] internal notification failed:", err);

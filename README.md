@@ -36,8 +36,8 @@ Set these in Vercel (Project → Settings → Environment Variables) and in
 | Variable | Required | Purpose |
 | --- | --- | --- |
 | `RESEND_API_KEY` | yes | Resend API key. **Never commit this.** |
-| `RESEND_AUDIENCE_ID` | yes | Resend Audience the signup email is added to. |
-| `RESEND_FROM_EMAIL` | recommended | Verified sender, e.g. `MeridianCogent <hello@meridiancogent.com>`. Defaults to `hello@meridiancogent.com`. |
+| `RESEND_SEGMENT_ID` | yes | Resend Segment the contact is added to. (`RESEND_AUDIENCE_ID` is read as a fallback.) |
+| `RESEND_FROM_EMAIL` | recommended | Verified sender. Defaults to `MeridianCogent <noreply@meridiancogent.com>`. |
 | `INTERNAL_NOTIFICATION_EMAIL` | optional | Role address that gets a note on each signup. Defaults to `hello@meridiancogent.com`. |
 | `NEXT_PUBLIC_SITE_URL` | recommended | Canonical origin, no trailing slash. Defaults to `https://www.meridiancogent.com`. Drives canonical URLs, `sitemap.xml`, OG tags. |
 
