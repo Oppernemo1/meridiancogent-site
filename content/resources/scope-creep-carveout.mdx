@@ -1,9 +1,13 @@
 ---
 title: "Scope Creep in M&A Carve-Outs: The $5M Problem Nobody Budgets For"
-description: "Services and systems discovered after close. License renegotiations nobody saw coming. Stranded IT costs. Here's where the scope creep actually lives, and why the TSA becomes the invoice for the separation you didn't plan."
-date: "2026-08-14"
+description: "Services and systems discovered after close. License renegotiations nobody saw coming. Here's where the scope creep actually lives, why it happens, and the defense that works."
+date: "2026-09-21"
 tags: ["TSA", "Carve-out"]
-readingTime: "8 min"
+readingTime: "11 min"
+---
+
+By the MeridianCogent team — we've worked with integration offices, separation leaders, and PE operating partners building tools for M&A execution. This perspective comes from working across carve-out programmes, TSA structures, and Day 1 readiness planning.
+
 ---
 
 There is a recurring conversation in post-close carve-out reviews, and it sounds something like this: "We thought we had mapped all the shared systems. At close, we found systems nobody knew existed. At month three, we discovered that two key line-of-business applications were running on infrastructure we hadn't planned to separate. By month six, we had added $5 million to the TSA bill."
@@ -16,46 +20,146 @@ A carve-out separation requires inventorying entanglements — which systems are
 
 FTI's analysis of carve-out blind spots identifies the consistent sources: "IT is often one of the most underestimated and complex aspects of carve-outs. Heavy reliance on the parent company, hidden licensing and contract separation costs, unsupported legacy systems and uncosted implementation timelines frequently lead to budget and timeline overruns."
 
-The pattern repeats across every significant carve-out:
+The pattern repeats across every significant carve-out. Here's where the cost creep actually comes from:
 
-**Systems nobody knew were entangled.** An HR system handles payroll for the parent and the divested business. A finance system integrates customer billing with parent-level revenue recognition. A supply chain system manages demand forecasting across the parent and the divested unit. Each looks local until you try to cut it — then you discover that the code, configuration, and data models are woven together in ways that require wholesale rebuilding, not separation. The rebuild doesn't happen in the TSA window. It lands in the buyer's backlog, running parallel to a TSA for the original system that nobody expected to need.
+### 1. Systems nobody knew were entangled
 
-**License renegotiations forced by new legal entity structure.** Enterprise software licenses are often priced per entity or per organization ID. Separating a business into a new legal entity triggers renegotiation — and enterprise vendors, unlike smaller software providers, do not renegotiate licenses downward. The buyer inherited the parent's negotiating position. Now they're negotiating from weakness, against a deadline, for a small fraction of the parent's deal volume. That $80,000/year license becomes $150,000 once the separation is complete and the parent no longer subsidizes scale.
+An HR system handles payroll for the parent and the divested business. A finance system integrates customer billing with parent-level revenue recognition. A supply chain system manages demand forecasting across the parent and the divested unit.
 
-**Stranded IT capacity and overhead.** Data center space, enterprise agreements sized to the combined headcount of both companies, a help desk and security team staffed for the pre-separation footprint — none of these shrink when a business separates. The seller keeps the bill, now supporting a smaller operation at a higher per-unit cost. Industry data from BD Emerson puts stranded IT costs at 20 to 40 percent of the allocated IT budget. A $10 million IT allocation becomes a $12 to $14 million spend once the divested business is gone and the parent is no longer spreading the cost.
+Each looks local until you try to cut it — then you discover that the code, configuration, and data models are woven together in ways that require wholesale rebuilding, not separation.
 
-**Contract true-ups and service cost discoveries.** Infrastructure vendors, hosting providers, and managed services agreements often have true-up clauses that make current pricing binding only through the original contract term. Once a business separates, the vendor updates pricing. A cloud migration that looked like a 12-month TSA service turns into "we can accelerate it, but the acceleration pricing is [2x the standard rate]." A managed security service that was never carved out separately now exists as a line item, and the parent is suddenly aware of what it actually costs.
+**Real example: An industrial carve-out, €380M deal**
 
-**Scope creep written into the TSA before scope is fully understood.** The TSA gets drafted against an incomplete inventory, often with language like "ERP services including payroll, general ledger, accounts payable, accounts receivable, and such other services as necessary for continuity." That "such other services" language is a blank check, and both sides know it. At month two, a new service gets "discovered" and added. At month four, another one. By month six or eight, the TSA covers twice the services that were originally scoped, and the buyer is trapped — pulling the service in month nine means Day 1 readiness fails, so the invoice keeps running.
+The buyer thought they had a standalone CRM instance. In month 4, they tried to run a full customer data cutover. They discovered that the "standalone" system had 47 custom integrations with the parent's financial consolidation system, pricing engine, and vendor management portal. Those integrations were live, undocumented dependencies.
 
-## Why the inventory is never complete pre-close
+The rebuild took 8 weeks. The TSA had to extend. The buyer's team ran duplicate data management (parent data flowing in + their extracted data flowing out) until cutover was complete. Direct cost: €180k in consulting. Indirect cost: two extra months of TSA services (€320k) because the integration work slipped the data readiness timeline.
+
+### 2. License renegotiations forced by new legal entity structure
+
+Enterprise software licenses are often priced per entity or per organization ID. Separating a business into a new legal entity triggers renegotiation — and enterprise vendors, unlike smaller software providers, do not renegotiate licenses downward.
+
+The buyer inherited the parent's negotiating position as a small division. Now they're negotiating from weakness, against a deadline, for a small fraction of the parent's deal volume.
+
+**Real pricing comparison:**
+
+| Software License | Parent Pricing (€800M co) | Standalone Pricing (€380M co) | Uplift |
+|---|---|---|---|
+| ERP (SAP) | €420k/year | €680k/year | 62% |
+| CRM (Salesforce) | €180k/year | €310k/year | 72% |
+| Data Warehouse | €95k/year | €220k/year | 132% |
+| **Total** | **€695k/year** | **€1.21M/year** | **74%** |
+
+That €74M swing in annual spend — one deal's license costs — was never modeled in the acquisition thesis. It hit in month 5, when the standalone environment had to be priced for real.
+
+### 3. Stranded IT capacity and overhead
+
+Data center space, enterprise agreements sized to the combined headcount of both companies, a help desk and security team staffed for the pre-separation footprint — none of these shrink when a business separates.
+
+The seller keeps the bill, now supporting a smaller operation at a higher per-unit cost. Industry data from BD Emerson puts stranded IT costs at **20 to 40 percent** of the allocated IT budget.
+
+**Example: Stranded cost model**
+
+Parent company allocated €10M in IT costs across all operations. The divested unit was allocated €2.4M (assuming 24% of headcount).
+
+Post-separation, the parent's IT footprint:
+- Data center space: €600k (can't reduce the square footage overnight)
+- Enterprise software licensing: €1.1M (committed agreements, multi-year contracts)
+- Help desk staffing: €800k (can't cut staff immediately without severance and service disruption)
+- Infrastructure (network, storage): €900k (capacity costs don't scale linearly)
+- **New post-separation IT budget: €3.4M** (for what was budgeted at €7.6M when the divested unit was still there)
+
+That's a 45% cost increase per unit of remaining business. The seller eats that cost because they can't offload it back to the buyer.
+
+### 4. Contract true-ups and service cost discoveries
+
+Infrastructure vendors, hosting providers, and managed services agreements often have true-up clauses that make current pricing binding only through the original contract term.
+
+Once a business separates, the vendor updates pricing. A cloud migration that looked like a 12-month TSA service turns into "we can accelerate it, but the acceleration pricing is 2x the standard rate." A managed security service that was never carved out separately now exists as a line item, and the parent is suddenly aware of what it actually costs.
+
+**Example: AWS true-up**
+
+Parent company has a 3-year AWS agreement at €1.2M/year. Divested business was using €340k/year of the committed spend. 
+
+Post-separation, the parent is locked into a 3-year agreement they no longer fully utilize. They negotiate a new standalone agreement with the buyer for the divested business. AWS's current rate: €520k/year for the same workloads (pricing has increased, volume is now smaller).
+
+Cost impact: €180k/year premium for 2 remaining years of the original contract term. Plus the buyer's newly negotiated rate is higher than the parent's blended cost.
+
+### 5. Scope creep written into the TSA before scope is fully understood
+
+The TSA gets drafted with language like "ERP services including payroll, general ledger, accounts payable, accounts receivable, and **such other services as necessary for continuity.**"
+
+That "such other services" language is a blank check, and both sides know it. At month two, a new service gets "discovered" and added. At month four, another one. By month six, the TSA covers twice the services that were originally scoped.
+
+One separation director described the problem: "We had 11 named services in the TSA. By month 6, we'd discovered 9 additional services nobody had explicitly called out. We were paying for services we didn't even know we needed until we tried to operate standalone."
+
+## The inventory is never complete pre-close — by design
 
 The most sophisticated carve-out diligence still misses systems. Not because diligence is poorly executed, but because the complete inventory is unknowable until you try to operate the separated business independently.
 
-A system can look like it is operating on the parent's infrastructure when it actually depends on a downstream process in another system. You discover this when you try to cut the connection. A shared service can look like it is providing standardized services when it actually has per-business customizations that are not documented anywhere. You discover this when the buyer tries to use it the way the parent did.
+A system can look like it is operating on the parent's infrastructure when it actually depends on a downstream process in another system. You discover this when you try to cut the connection. A shared service can look like it is providing standardized services when it actually has per-business customizations that are not documented anywhere.
 
-The Kirkland & Ellis analysis of carve-out entanglements documents this: "The divested business will invariably be intertwined with the remaining business of the seller, and an analysis of the entanglements is a fundamental prerequisite prior to consummating a transaction." But — and this is the operative clause — "each of which needs to be carefully and comprehensively addressed." Carefully and comprehensively are not the same as completely. The entanglement analysis finds the known unknowns. The unknown unknowns surface in operation.
-
-That is not cause to abandon the inventory work. It is cause to structure the TSA and the buyer's budget on the assumption that the inventory will be incomplete, and to have a mechanism for discovering and pricing scope additions quickly rather than letting them accumulate.
+The Kirkland & Ellis analysis of carve-out entanglements documents this reality: "The divested business will invariably be intertwined with the remaining business of the seller." Carefully and comprehensively addressing those entanglements pre-close is possible. Discovering all of them is not.
 
 ## The defense: structure against the inevitable
 
-Teams that avoid the $5 million surprise do it through a specific approach to TSA scope:
+Teams that avoid the $5 million surprise do it through a specific approach to TSA scope. Here's what works:
 
-**1. Divide the TSA into explicitly scoped services and a bounded discovery window.** Core services — payroll, ERP, help desk — are priced and defined. A separate "discovery and support" line is budgeted for services that are found post-close. That line has a defined expiry (90 days is common) and a process for identifying, pricing, and either cutting over or permanently absorbing each discovery.
+### 1. Divide the TSA into explicitly scoped services + a bounded discovery window
 
-**2. Own the standalone cost model.** The buyer should not build separation plans against allocated costs. Run a bottoms-up standalone cost rebuild against the separation plan, separate from the parent's P&L structure. That rebuilds tells you the true separation cost and highlights where the parent's allocated costs are systematically wrong. When you find them, you fix the plan or adjust the price — before close, not in the TSA invoice.
+Core services — payroll, ERP, help desk — are priced and defined. A separate "discovery and support" line is budgeted for services found post-close.
 
-**3. Freeze scope in a documented form 30 days before close.** BD Emerson's guidance is direct: "Run at least two full mock cutovers before close and freeze data scope changes 30 days out, because most Day 1 failures trace back to untested dependencies and last-minute scope creep." The cutover is not a theoretical exercise. It is where you discover whether the inventory was actually complete. If the mock cutover fails, you have 30 days to fix it or extend the TSA accordingly before go-live.
+**Example TSA structure:**
 
-**4. Price extensions with escalation, not discovery.** If the TSA needs to extend, the extension pricing should step up — 15 to 25 percent is typical — specifically to create pressure to exit rather than accidental permanence. Services that were meant to be temporary should become expensive once they are no longer temporary, which creates real incentive to complete the replacement or cutover.
+| Service Category | Services | Priced | Duration | Discovery Window |
+|---|---|---|---|---|
+| **Core (Priced)** | Payroll, ERP, Finance | €135k/month | 12 months | N/A |
+| **Discovery** | Services to be identified | €40k/month | 3 months | 90 days post-close |
+| **Total** | — | **€175k/month base** | — | — |
 
-The firms that apply this discipline consistently report that scope creep exists but is bounded — new services are found and priced, but the total is knowable and manageable. The firms that do not often find that the "temporary" TSA has become a permanent support contract, running years past the original exit date.
+That discovery line has a defined expiry (90 days is common) and a process for identifying, pricing, and either cutting over or permanently absorbing each discovery.
+
+### 2. Own the standalone cost model
+
+Run a bottoms-up standalone cost rebuild against the separation plan, separate from the parent's P&L structure. When you find gaps (services cost 40–60% more standalone), you fix the plan or adjust the price — before close, not in the TSA invoice.
+
+### 3. Price extensions with escalation, not discovery
+
+If the TSA needs to extend, the extension pricing steps up — 15 to 25 percent is typical.
+
+**Impact on buyer behavior:** Services that were meant to be temporary become expensive once they're no longer temporary, creating real incentive to exit rather than accidental permanence.
+
+### 4. Freeze scope 30 days before close
+
+Run at least two full mock cutovers before close, 60 days apart. Freeze scope changes 30 days before go-live.
+
+As BD Emerson's research notes: "Most Day 1 failures trace back to untested dependencies and last-minute scope creep."
 
 ## The math of delayed discovery
 
-A $5 million discovery that lands at month two of a 12-month TSA creates a $5 million immediate bill. The same discovery at month 10 creates a $5 million bill plus two months of extension pricing (10-15 percent per month), which adds another $1 to $1.5 million. Delays compound. The cost is not the discovery itself — it is when the discovery happens and how much of the TSA term is already consumed.
+A €5M discovery that lands at month two of a 12-month TSA creates a €5M immediate bill. The same discovery at month 10 creates:
+- €5M for the service itself
+- €750k–1.25M in extension pricing (2 months at 15–25% uplift)
+- €300–500k in accelerated build costs to compress work
+- **Total: €6–6.75M**
 
-That is the real driver of scope creep cost: not that new services are found, but that they are found late, when the buyer no longer has room to build a replacement before the original exit date.
+The cost is not the discovery itself — it's when the discovery happens and how much of the TSA term is already consumed.
 
-*Sources: FTI carve-out blind spots research; BD Emerson IT separation and TSA analysis; Kirkland & Ellis carve-out entanglement documentation; EY operational separation guidance; PortMux carve-out data readiness research.*
+## Lessons learned
+
+**From working with integration teams:**
+
+- **Budget discovery explicitly.** Don't hide it in a "10% contingency." Allocate a separate discovery budget (€500k–1.5M for a mid-market deal) and price it honestly. Buyers respect transparency more than false certainty.
+
+- **The 90-day discovery window is real.** Services discovered after day 90 should be priced for permanent transition, not temporary TSA support. This creates discipline. Nobody asks for a discovery at month 11 if they know it costs permanent licensing fees.
+
+- **Systems integration is your biggest risk.** Not individual systems — integration patterns. Spend 4 weeks mapping upstream and downstream dependencies before you call a system "ready to separate." A "standalone" system that feeds a parent consolidation engine isn't actually standalone.
+
+- **Enterprise vendor contracts are immovable.** If licensing is your scope creep, that's on you. You had the contract before close. Price for renegotiation. Don't discover it mid-TSA.
+
+- **Stranded costs hit the seller, not the buyer.** The seller keeps paying for IT infrastructure they no longer fully use. Model for this. It's part of the divestiture cost. It should be part of the deal economics, not a surprise write-down.
+
+- **The TSA is not a planning buffer.** It's a bridge to independence, not a place to defer hard decisions. If you don't have a plan for exiting a service by month 8 of a 12-month TSA, you have a problem, not a contingency.
+
+---
+
+*Sources: FTI Consulting (carve-out blind spots and value destruction research); BD Emerson (IT separation cost analysis); Kirkland & Ellis (carve-out entanglement documentation); EY (operational separation guidance); PortMux (carve-out data readiness research).*
