@@ -1,103 +1,67 @@
 ---
 title: "The Real Cost of a Late TSA Exit"
-description: "TSA extensions rarely look expensive in the moment. Here's why they quietly erode deal value more than almost any other post-close risk — with real costs and examples."
-date: "2026-08-14"
+description: "TSA extensions rarely look expensive in the moment. Here's the exact escalation math behind why they quietly erode deal value more than almost any other post-close risk."
+date: "2026-08-26"
 tags: ["TSA", "Playbooks"]
 readingTime: "9 min"
 ---
 
-By the MeridianCogent team — we've worked with integration offices, separation leaders, and PE operating partners building tools for M&A execution. This perspective comes from working across carve-out programmes, TSA structures, and Day 1 readiness planning.
+By the MeridianCogent team — built from working with integration offices, separation leaders, and PE operating partners on M&A execution. This perspective is drawn from published carve-out and TSA research across the industry.
 
 ---
 
-TSA overruns almost never arrive as a single, obvious failure. They arrive as a stream of small, individually-defensible decisions — one more month on IT, a slightly delayed payroll cutover, a "we'll sort the last two services out next quarter" — each of which looks minor in isolation. The cost only becomes visible in aggregate, usually well after the point where it could have been prevented cheaply.
+TSA overruns almost never arrive as a single, obvious failure. They arrive as a stream of small, individually-defensible decisions — one more month on IT, a slightly delayed payroll cutover — each of which looks minor in isolation. The cost only becomes visible in aggregate.
 
-## Extension pricing is not neutral — it's exponential
+## The exact escalation math
 
-TSA pricing structures are typically set once, at signing, based on the assumption that the relationship is short-term by design. When a workstream runs past its original term, extensions rarely stay at the original rate.
+TSA pricing is typically set once, at signing, on the assumption the relationship is short-term. Once a workstream runs past its base term, most agreements step the price up on a defined schedule — not linearly, but in bands designed to make lingering progressively more painful:
 
-**Real pricing data from mid-market carve-outs (€250–500M):**
+| Period | Pricing Basis | Illustrative Rate |
+|---|---|---|
+| Base term (months 1–12) | Cost + fixed margin | Cost + 10% |
+| First extension (months 13–15) | Cost + escalated margin | Cost + 35–50% |
+| Second extension (months 16–18) | Cost + penalty margin | Cost + 75–100% |
+| Beyond month 18 | Cost + severe penalty margin | Cost + 100–150%+ |
 
-| Service | Base Monthly | Extension Premium | Month 13–15 Cost/Month | Month 16–18 Cost/Month |
-|---|---|---|---|---|
-| ERP Support | €35k | 15% | €40.2k | €46.2k |
-| IT Infrastructure | €48k | 18% | €56.6k | €66.8k |
-| Finance/Accounting | €22k | 20% | €26.4k | €31.7k |
-| Payroll/HR | €18k | 15% | €20.7k | €23.8k |
-| Help Desk | €12k | 15% | €13.8k | €15.9k |
-| **Monthly Total** | **€135k** | — | **€157.7k** | **€184.4k** |
+This structure is deliberate. A service still running 6 months past its base term should cost meaningfully more than double the original rate — otherwise there's no real incentive to finish the cutover.
 
-**What this means:** A 3-month TSA extension costs not €405k (€135k × 3), it costs roughly €523k due to escalation — a 29% hidden cost on top of the base extension.
+**What this looks like in euros**, using a €135k/month base TSA (ERP, IT infrastructure, finance, payroll, help desk combined):
 
-A 6-month extension costs €1.08M instead of €810k. That's a $270k premium just for being late.
+```
+Months 1–12 (base):        €135k/month  → €1.62M total
+Months 13–15 (extension):  ~€196k/month → €588k
+Months 16–18 (extension):  ~€250k/month → €750k
+---
+An 18-month TSA that should have closed at 12
+costs an additional €1.34M beyond the base term.
+```
+
+A 3-month extension doesn't cost 3× the base monthly rate. It costs closer to 4.3× once escalation is applied.
 
 ## The structural reason TSA terms are always too short
 
-Industry analysis of why TSAs consistently overrun points to a specific, repeatable failure pattern. The most common root cause: the TSA term was set against the legal closing calendar — what both sides needed the number to be in order to sign — rather than against the actual separation plan's realistic timeline.
-
-As one integration director at a PE-backed tech carve-out described it: "We knew at signing that 12 months wasn't enough. The IT team's plan said 16–18. But the deal needed a number, the seller wanted it shorter to reduce their liability, and the buyer wanted it shorter to look aggressive in the board presentation. So we signed 12. We all knew we were leaving months of work for the TSA window."
-
-That buy-side carve-out paid extensions for 4 additional months. At an average €160k/month, that was €640k that could have been built into the original deal price and negotiated away pre-signing.
+The most common root cause is that the TSA term was set against the legal closing calendar — what both sides needed the number to be in order to sign — rather than the actual separation plan's realistic timeline. It's a known gap at signing that both sides often accept anyway, because closing on time matters more in the room than the operational reality six months out.
 
 ## Carve-out complexity compounds the exposure
 
-Separation cost is also frequently underestimated at the outset. McKinsey's analysis of carve-out cost structures has found that standalone costs for services previously delivered at parent-company scale can run as much as 200 percent higher once replicated independently.
-
-**Example: Finance function separation**
-
-A $300M PE acquisition of a manufacturing business. The parent company's finance function (accounting, FP&A, tax compliance) was budgeted at €180k/year across the entire company. Allocated to the divested business: €24k/year.
-
-Actual standalone cost to replicate the function (separate entity accounting, separate tax filings, standalone FP&A, vendor management, audit coordination): €72k/year. 3x the allocation.
-
-The buyer didn't discover this until month 7 of the TSA, when they tried to build standalone. By then, they had 5 months left on the 12-month agreement. The finance team said "we can do the transition in 5 months, but it's going to be rushed and you'll need extensions on accounting services while we sort the subsidiary structure." Result: 3 additional months of TSA extensions at elevated pricing, plus accelerated build costs to compress a 7-month project into 2 months.
-
-Total cost overrun: €180k in TSA extensions + €120k in accelerated consulting. All because the standalone cost model wasn't built pre-signing.
+McKinsey's analysis of carve-out cost structures has found that standalone costs for services previously delivered at parent-company scale can run as much as 200 percent higher once replicated independently. A finance function allocated at €24k/year in the parent's books can cost €70k+ standalone once you actually build it — a gap that typically surfaces mid-TSA, right when there's no runway left to absorb it cleanly.
 
 ## The value destruction math
 
-Value impact at the fund level is measurable. Bain's longitudinal data on carve-out outcomes since 2012 shows an average MOIC of roughly 1.5x, with top-quartile execution delivering closer to 2.5x. That gap between average and top-quartile execution is, in large part, a story about how well the TSA period was managed.
-
-**Here's the calculation:**
-
-For a $400M enterprise value acquisition with a 2.0x MOIC target:
-- Entry: $400M
-- Exit value target: $800M
-- Implied value creation: $400M
-
-If TSA overruns, discovery costs, and extended transition services eat $25M (realistic for a complex carve-out), that's:
-- New exit value: $775M
-- New MOIC: 1.94x
-- Value destruction: 6 basis points
-
-In fund return terms, that's material. A 1.5x deal that should have been 2.0x doesn't make the LP target.
+Bain's longitudinal data on carve-out outcomes since 2012 shows an average MOIC of roughly 1.5x, with top-quartile execution closer to 2.5x. For a $400M acquisition targeting 2.0x, a realistic $25M in TSA overruns, discovery costs, and extended services drops the MOIC to 1.94x — a real dent in fund-level returns, not a rounding error.
 
 ## Why the fix usually isn't "negotiate a longer TSA"
 
-The instinctive response to overrun risk is to negotiate more time upfront. In practice, this often just delays the same problem: a longer TSA still lacks the defined exit criteria, service-level ownership, and acceptance testing that actually determine whether a service is transitioned or merely "still running."
+A longer TSA still lacks the defined exit criteria, ownership, and acceptance testing that determine whether a service is actually transitioned or just still running. What works instead: every service inside the TSA needs a named owner on both sides, a defined completion standard, a tracked exit date with real consequences, and live visibility into where each workstream stands. That discipline is exactly what separates the carve-outs that exit in 2–3 months post-readiness from the ones still running TSAs at month 18.
 
-What actually works: carve-out programmes that apply discipline to separation planning report dramatically compressed TSA timelines. Advisory analysis has documented exits completed in as little as 2 to 3 months post-close where the separation plan, rather than the legal calendar, drove the timeline from day one.
-
-The distinguishing factor isn't TSA duration. It's whether every service inside the TSA has:
-- A named owner (buyer side and seller side)
-- A defined completion standard (not "we'll know it when we see it")
-- A tracked exit date (with real consequences for missing it)
-- A live view of where each workstream actually stands
-
-That visibility costs almost nothing to build. The lack of it costs millions.
+For where the underlying scope gaps actually come from — the systems and services nobody priced in at signing — see [Scope Creep in M&A Carve-Outs](/resources/scope-creep-carveout). For the TSA structure itself, [What Is a Transition Service Agreement](/resources/what-is-a-tsa) covers the base mechanics.
 
 ## Lessons learned
 
-**From working with integration teams:**
-
-- **Extensions are not plan failures, they're pricing failures.** You didn't fail to exit the service — you just failed to price for the reality. Build a 20–30% contingency into the TSA cost model and call it what it is.
-
-- **Month 13 is exponentially more expensive than month 12.** Don't defer difficult decisions into the extension window. A hard call in month 11 (cut over with temporary workarounds, or extend now and lock in better pricing) is cheaper than discovering you need to extend in month 13.
-
-- **The buyer's runway matters more than the seller's mood.** If the buyer's team says they need 16 months, believe them. You can't negotiate a separation into 12 months. You can only negotiate the price for the reality.
-
-- **Stranded costs are invisible until the seller's P&L is separate.** That $10M IT budget? The seller is keeping it even after you leave, because the infrastructure doesn't shrink. Model for that explicitly in the deal economics.
-
-- **Service escalation should be aggressive, by design.** 15–25% uplift per month on extensions isn't punishment — it's the only mechanism that makes a temporary cost stay temporary. Without it, the service runs forever at a slightly higher price.
+- **Extensions are pricing failures, not plan failures.** You didn't fail to exit — you failed to price for the reality. Build 20–30% contingency into the TSA cost model from day one.
+- **Month 13 is exponentially more expensive than month 12.** A hard call in month 11 (cut over with temporary workarounds, or extend now and lock in known pricing) beats discovering you need to extend in month 13 with no leverage left.
+- **Stranded costs are invisible until the seller's P&L is separate.** Model for the fact that the seller's IT budget doesn't shrink just because the divested unit left.
+- **Escalation should be aggressive by design.** 15–25% uplift per month on extensions isn't punishment — it's the only mechanism that keeps a "temporary" cost temporary.
 
 ---
 

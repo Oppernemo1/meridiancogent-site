@@ -1,108 +1,76 @@
 ---
 title: "What Is a Transition Service Agreement (TSA)?"
 description: "A clear, practitioner-level explanation of TSAs — what they cover, how long they run, real cost data, and why they're one of the most consequential documents in any carve-out."
-date: "2026-09-09"
+date: "2026-09-04"
 tags: ["TSA"]
 readingTime: "10 min"
 ---
 
-By the MeridianCogent team — we've worked with integration offices, separation leaders, and PE operating partners building tools for M&A execution. This perspective comes from working across carve-out programmes, TSA structures, and Day 1 readiness planning.
+By the MeridianCogent team — built from working with integration offices, separation leaders, and PE operating partners on M&A execution. This perspective is drawn from published carve-out and TSA research across the industry.
 
 ---
 
 A Transition Service Agreement (TSA) is a contract signed alongside — but separate from — the main sale agreement in a divestiture or carve-out. Under it, the seller keeps providing specific operational services to the business being sold, for a defined period after the deal closes, while the buyer builds the capability to stand on its own.
 
-TSAs exist because a carved-out business almost never runs independently on day one. Its email system, ERP access, payroll processing, and IT help desk usually still sit inside the parent's infrastructure. A TSA effectively rents those services back to the new entity so the deal can close on the timeline the lawyers and financiers have agreed to, even though the operational separation isn't finished yet.
+## The TSA schedule: duration and markup penalties
 
-## What a TSA typically covers
+Before getting into the mechanics, here's the schedule structure that most carve-out TSAs are built on — duration by service, and what happens if you run past it.
 
-Most TSAs are built around a defined set of workstreams. Analysis of carve-out TSA structures across deals valued $100M+ consistently identifies eight recurring categories: IT systems and infrastructure, ERP and accounting, HR and payroll, customer support, procurement and supply chain, tax filing, treasury, and marketing or brand co-use.
-
-These workstreams don't wind down at the same pace. IT and infrastructure is almost always the longest-running — commonly 10–16 months on average — followed by ERP and accounting (8–12 months) and HR and payroll (6–10 months). Marketing co-use and treasury tend to close out fastest, often within 3 to 6 months.
-
-**Real example: A $380M industrial carve-out**
-
-A PE buyer acquired a manufacturing business unit from a publicly traded industrial conglomerate. The TSA structure looked like this:
-
-| Workstream | Duration | Base Cost | Extension Cost/Month |
+| Workstream | Typical Base Duration | Base Monthly Cost (mid-market) | Extension Markup (per month over base) |
 |---|---|---|---|
-| ERP (SAP) | 12 months | $420k | $48k (15% uplift) |
-| IT Infrastructure | 14 months | $680k | $85k (15% uplift) |
-| Payroll/HR | 10 months | $240k | $32k (20% uplift) |
-| Finance Support | 9 months | $180k | $25k (18% uplift) |
-| Supply Chain | 8 months | $120k | $18k (15% uplift) |
-| **Total Base** | — | **$1.64M** | — |
+| IT Infrastructure | 10–16 months | €40–55k | 15–20% |
+| ERP / Accounting | 8–12 months | €30–45k | 15–18% |
+| HR / Payroll | 6–10 months | €15–22k | 15–20% |
+| Customer Support | 6–9 months | €10–18k | 12–15% |
+| Procurement / Supply Chain | 5–8 months | €12–20k | 15% |
+| Tax Filing | 4–8 months | €8–15k | 18–20% |
+| Treasury | 3–6 months | €6–10k | 15% |
+| Marketing / Brand Co-use | 3–6 months | €4–8k | 10–12% |
 
-The buyer's plan was to exit ERP by month 12. They missed by 3 months (data migration complexity). The extension cost them an additional $144k in ERP fees alone — plus spillover costs in finance support and infrastructure that also extended.
-
-This scenario plays out in roughly 40% of carve-outs we've tracked: planned 12-month TSA becomes a 15-month reality, with extension pricing adding 15–20% to the monthly bill.
+The markup isn't arbitrary. It exists specifically to keep the arrangement temporary — a service still running at month 14 of a 12-month term should cost enough more that both sides have a real incentive to finish the cutover rather than let it drift.
 
 ## Why TSAs are harder to manage than they look
 
 On paper, a TSA is simple: the seller helps out until the buyer is ready. In practice, it's one of the most quietly consequential documents in the deal because it contains four structural failure modes.
 
-**1. The term is set against the legal calendar, not the separation plan.**
+**1. The term is set against the legal calendar, not the separation plan.** A 12-month TSA gets signed because both sides needed a number by signing — even when the real separation plan says 16–18 months.
 
-A 12-month TSA gets signed because both sides needed a number by signing. But the actual IT separation program is an 18-month effort. This creates a known gap from day one. As one separation director told us: "We knew the numbers didn't match the plan. We signed it anyway because the deal needed to close. It cost us $2.8M in extensions and workarounds."
+**2. Scope is discovered after close.** Without a full inventory of entangled systems built before signing, new services get "found" mid-TSA and priced at extension rates. Common examples: co-mingled SaaS licenses purchased under a single parent-level contract with no line-of-business split, and shared Active Directory domains where user identity, permissions, and security groups are entangled across both companies at a level no org chart shows.
 
-**2. Scope is discovered after close.**
+**3. The buyer under-resources its replacement build.** While the seller is still delivering the service, urgency doesn't feel real until the clock runs out.
 
-Without a full inventory of entangled systems and dependencies built before signing, new services get "found" mid-TSA — and bought back at extension pricing (15–25% premium per month). A service scoped at $50k/month suddenly becomes a discovered $50k line item, but now at $58–62k/month because it's an extension, not base.
-
-**3. The buyer under-resources its replacement build.**
-
-While the service is still being delivered by the seller, the urgency to stand up a replacement doesn't feel real — until the clock runs out. As Bain's M&A research notes: "Over-reliance on sell-side TSAs can create a false sense of security."
-
-**4. There's no acceptance test for "done."**
-
-Without a defined standard for when a service is considered fully transitioned, there's no clean way to prove completion. The invoice keeps running. One PE operating partner described it: "We had a help desk service running for 22 months because nobody had defined what 'independent IT support' actually meant. We just kept using theirs because it was easier than deciding."
+**4. There's no acceptance test for "done."** Without a defined completion standard, there's no clean way to prove a service is transitioned, and the invoice keeps running.
 
 ## Real TSA cost model
 
-Here's what a typical mid-market carve-out (€250–500M value) actually costs:
+For a mid-market carve-out (€250–500M value):
 
 ```
 Base TSA Period (12 months):    €1.8–2.4M
-Extended 3 months (avg):         €0.3–0.5M (with uplift)
+Extended 3 months (avg):         €0.3–0.5M (with markup)
 Discovered services (avg):       €0.4–0.8M
 ---
 Total actual cost:               €2.5–3.7M
 (Estimated: 1–1.8% of deal value)
 ```
 
-For a $400M deal, that's $4–7M in TSA costs — often underestimated by 30–50% in original price models.
-
 ## The stakes are larger than they appear
 
-Buy-side carve-outs aren't a niche transaction type. McKinsey's analysis of deals above $100 million between 2018 and 2023 found they account for roughly 28 percent of all M&A transactions. And Deloitte's 2026 M&A research suggests that 70 to 90 percent of large deals now include some form of carve-out or divestiture component.
-
-Yet roughly a third of carve-out deals fail to create the value originally underwritten at signing — and TSA mismanagement is a recurring factor. Bain's 2025 survey of M&A practitioners found that after cultural differences and process/technology issues, negotiating and managing TSAs was among the top three challenges cited in carve-out integrations.
+McKinsey's analysis of deals above $100 million between 2018 and 2023 found buy-side carve-outs account for roughly 28 percent of all M&A transactions. Deloitte's 2026 M&A research suggests 70 to 90 percent of large deals now include some form of carve-out or divestiture component. Roughly a third of carve-out deals fail to create the value originally underwritten at signing — and TSA mismanagement is a recurring factor. Bain's 2025 survey of M&A practitioners found negotiating and managing TSAs among the top three challenges cited in carve-out integrations.
 
 ## What "getting it right" actually requires
 
-The agreements that hold up share a few traits: every service is explicitly named rather than described in general terms, priced transparently, assigned an accountable owner on both the buyer's and seller's side, measured against a defined service standard, and given a real exit date rather than an open-ended one.
-
-**The discipline that works:**
-
-1. **Split the TSA into named services + a discovery window.** Core services are priced and locked. A separate 90-day discovery period handles services found post-close, with defined pricing and an expiry.
-
-2. **Own the standalone cost model.** Don't build against allocated costs. Run a bottoms-up rebuild of what services actually cost when standalone (often 40–60% higher than parent allocations).
-
-3. **Price extensions with escalation.** Extensions cost 15–25% more per month, by design. This creates real pressure to exit rather than quiet permanence.
-
-4. **Run a mock cutover before close.** You discover what you actually missed — and you still have time to fix it or plan for it, rather than discovering it at go-live.
+1. **Split the TSA into named services + a discovery window.** Core services are priced and locked; a separate 90-day discovery period handles services found post-close.
+2. **Own the standalone cost model.** Run a bottoms-up rebuild of what services actually cost standalone — often 40–60% higher than parent allocations.
+3. **Price extensions with escalation.** Extensions cost 15–25% more per month, by design.
+4. **Run a mock cutover before close.** See our breakdown of [what Day 1 readiness actually requires](/resources/what-day-1-ready-actually-means-in-a-carve-out).
 
 ## Lessons learned
 
-**From working with integration teams:**
-
-- **The TSA you sign is not the TSA you pay for.** Budget for discovery. A realistic TSA estimate includes 20–30% contingency for discovered services and extensions.
-
-- **Priced at cost + percent is a setup.** When you see "cost plus 10%," that's euphemism for "we have no idea what this costs." Push back and get actual numbers.
-
-- **Eighteen months is rarely twelve.** If the separation plan says 18 months, the TSA should say 18–20 months. Signing a 12-month agreement against an 18-month plan guarantees extension negotiations from a weak position.
-
-- **The owner matters more than the contract.** A TSA with a named owner on both sides who is measured on the exit date runs cleaner than a perfectly written agreement nobody is accountable for.
+- **The TSA you sign is not the TSA you pay for.** Budget 20–30% contingency for discovered services and extensions — see our full breakdown of [where scope creep hides and what it costs](/resources/scope-creep-carveout).
+- **Priced at cost + percent is a setup.** "Cost plus 10%" often means "we don't actually know what this costs." Push for real numbers.
+- **The owner matters more than the contract.** A TSA with a named accountable owner on both sides, measured against the exit date, runs cleaner than a perfectly written agreement nobody owns.
+- For the full mechanics of what a late exit actually costs month by month, see [The Real Cost of a Late TSA Exit](/resources/the-real-cost-of-a-late-tsa-exit).
 
 ---
 

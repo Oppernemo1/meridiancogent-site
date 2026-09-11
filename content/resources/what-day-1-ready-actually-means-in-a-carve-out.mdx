@@ -1,108 +1,79 @@
 ---
 title: "What 'Day 1 Ready' Actually Means in a Carve-Out"
-description: "Day 1 readiness is one of the most frequently claimed and least rigorously tested milestones in a carve-out. Here's a stricter definition, with a real readiness framework and the cost of getting it wrong."
-date: "2026-09-02"
+description: "Day 1 readiness is one of the most frequently claimed and least rigorously tested milestones in a carve-out. Here's a stricter definition, a minimum-viable-readiness framework, and the cost of getting it wrong."
+date: "2026-08-14"
 tags: ["Carve-out"]
 readingTime: "11 min"
 ---
 
-By the MeridianCogent team — we've worked with integration offices, separation leaders, and PE operating partners building tools for M&A execution. This perspective comes from working across carve-out programmes, TSA structures, and Day 1 readiness planning.
+By the MeridianCogent team — built from working with integration offices, separation leaders, and PE operating partners on M&A execution. This perspective is drawn from published carve-out and separation research across the industry.
 
 ---
 
-"Day 1 ready" is one of the most confidently used phrases in a carve-out — and one of the least consistently defined. Different functions in the same deal often mean different things by it: IT means systems are accessible, finance means books can technically be produced, HR means people are paid. None of those, individually or together, actually confirm the new entity can operate as a standalone business the moment the deal closes.
+"Day 1 ready" is one of the most confidently used phrases in a carve-out — and one of the least consistently defined. IT means systems are accessible, finance means books can technically be produced, HR means people are paid. None of those, individually or together, actually confirm the new entity can operate as a standalone business the moment the deal closes.
 
-## A stricter, more useful definition
+## The Day 1 Minimum Viable Readiness framework
 
-A tighter working definition: **Day 1 readiness means the divested entity can transact, close its books, and serve customers using only its own systems and data, from the legal close date forward** — not a partial state, not a best-effort approximation, and not something patched together with informal workarounds against the parent's systems.
+The confusion usually comes from treating "Day 1 ready" and "fully separated" as the same target. They're not. A useful framework splits them:
 
-A practical acceptance test that cuts through the ambiguity: can the new entity produce a clean trial balance, generate an accurate customer invoice, and fulfill an order end-to-end, using only its own systems? If any of those three fail in a pre-close rehearsal, the entity is not Day 1 ready — regardless of how complete the infrastructure looks on a status slide.
+| | **Day 1 Survival Requirements** (must work at close) | **Day 100 Target State** (can still be in progress) |
+|---|---|---|
+| **Finance** | Can produce a standalone trial balance; can pay vendors and employees | Fully automated close process; standalone FP&A reporting |
+| **Revenue** | Can invoice customers and receive payment | Optimized billing system, full CRM migration |
+| **People** | Payroll runs correctly; benefits are not interrupted | Standalone HRIS, fully migrated org structure |
+| **IT** | Core systems accessible; security/access controls in place | All applications on standalone infrastructure |
+| **Operations** | Can fulfill existing customer orders | Optimized supply chain, renegotiated vendor terms |
 
-## The readiness framework that actually works
+Day 1 readiness means passing every item in the left column, using only standalone systems and processes — not "mostly working" and not "working with a TSA-supported workaround that isn't documented anywhere." The right column is legitimately still in progress at close; that's what the TSA period is for.
 
-Rather than a vague "ready / not ready" status, use this maturity model:
+## The three most common functional failures on Day 1
 
-| Dimension | Level 1: Planning | Level 2: Executing | Level 3: Testing | Level 4: Locked |
-|---|---|---|---|---|
-| **Systems** | Target systems identified | Systems provisioned, config underway | Full mock cutover passed | No changes post-lock |
-| **Data** | Source system mapped | Data extraction built | Full data validation done | Data frozen, locked |
-| **Processes** | To-be process defined | Process guides written | Process run end-to-end | Live rehearsal passed |
-| **Governance** | Roles assigned | Daily standups active | Escalation log maintained | Zero open decisions |
-| **Readiness gate** | Month 3–4 | Month 6–8 | Month 10–11 | Month 11–12 (freeze) |
+Across carve-outs, the same three failure points show up more than any others:
 
-**Real example: A €320M industrial carve-out**
+1. **Payroll** — tax withholding, benefits enrollment, or multi-country payroll processing depends on parent-level configuration that wasn't fully replicated standalone.
+2. **ERP access** — the new entity has system access but not correctly scoped permissions, cost centers, or approval workflows, so transactions can technically post but don't route correctly.
+3. **Customer invoicing** — the billing system generates invoices, but pricing rules, tax logic, or customer credit terms are still tied to parent-level master data that wasn't cleanly separated.
 
-A PE buyer acquired a manufacturing business from a Fortune 500 conglomerate. The readiness plan:
+Any one of these failing on Day 1 doesn't just create an operational headache — it creates a TSA dependency for something that was supposed to be independent from the start.
 
-- **Month 1–3 (Planning):** Systems identified (SAP for ERP, Salesforce for CRM, legacy billing system), data sources mapped, process gaps identified
-- **Month 4–6 (Executing):** SAP instance provisioned, customer master data extracted, new billing system configured, org structure set up
-- **Month 7–9 (Testing):** Full end-to-end trial run: customer orders placed, invoices generated, payments recorded, monthly close completed using only standalone systems
-- **Month 10–11 (Locked):** Scope frozen, data locked, systems hardened, go-live plan finalized
+## The acceptance test
 
-The business was genuinely Day 1 ready because they'd run the entire operation as a standalone for 60 days in the lab. When close arrived, they flipped the switch. No surprises.
+Rather than a status report that says "on track," use a concrete test: can the new entity produce a clean trial balance, generate an accurate customer invoice, and fulfill an order end-to-end, using only its own systems? If any of those three fail in a pre-close rehearsal, the entity is not Day 1 ready.
 
-Contrast: another carve-out in the same portfolio said they were "ready" at month 8, had never run a full mock close, and discovered at go-live that their tax reporting process couldn't run standalone (it depended on parent-level consolidations they'd never extracted). They lived on a TSA for tax support for 8 additional months.
+## Why the gap persists
 
-## Why the gap between "looks ready" and "is ready" is where failures hide
+Carve-outs are mainstream, not an edge case — Deloitte's 2026 research puts carve-outs at 70–90% of large deals, and McKinsey found buy-side carve-outs at roughly 28% of deals over $100M between 2018–2023. Yet roughly a third of carve-out deals fail to create the value underwritten at signing. FTI's research is blunt about why: "Standard financial and operational due diligence often misses structural entanglements... These blind spots frequently surface post-close and erode value if not identified upfront."
 
-Carve-out complexity, especially in multi-country or entangled businesses, means readiness gaps are almost always hidden until you try to operate independently. A system looks functional. Data looks migrated. Then you try to close the books and discover that customer credit limits are tied to parent company master records. Or that product cost allocation logic lives in a formula in a spreadsheet nobody documented. Or that the tax return process assumes a consolidated entity structure.
+## The cost of discovering this late
 
-FTI's carve-out due diligence research documents this plainly: "Standard financial and operational due diligence often misses structural entanglements such as underestimated IT separation costs, poorly defined transitional service agreements, and deferred people-related liabilities. These blind spots frequently surface post-close and erode value if not identified upfront."
-
-What makes this worse: discovering these gaps post-close is exponentially more expensive. A process that doesn't work in the lab can be rearchitected on a timeline. A process that doesn't work post-close requires TSA extensions and firefighting while running live.
-
-## The cost of failing Day 1 readiness
-
-**Data readiness workstreams for a mid-market carve-out typically run:**
-- Duration: 4–9 months
-- Cost: €500k–3M depending on system complexity and number of applications
-- Extended TSA cost (per month of delay): €100k–250k
-
-**Real numbers:** If data readiness isn't finished by close and carries into month 3 post-close, the cost math looks like:
+Data readiness workstreams for a mid-market carve-out typically run 4–9 months and cost €500k–3M. If readiness isn't finished by close and carries 3 months post-close:
 
 ```
-Original data readiness cost:        €1.2M (4 months, €300k/month)
-Extended TSA (3 additional months):  €450k (€150k/month × 3)
-Accelerated build costs (crunch):   €200k
+Original data readiness cost:        €1.2M
+Extended TSA (3 months):             €450k
+Accelerated build costs (crunch):    €200k
 Post-close firefighting:             €150k
 ---
-Total actual cost:                   €2.0M
-(Original estimate was €1.2M — 67% overrun)
+Total actual cost:                   €2.0M (67% over original estimate)
 ```
-
-And that's just direct cost. The indirect cost is higher: finance teams running duplicate processes (parent + standalone) until cutover is complete; compliance risk on financial reporting; customer-facing disruptions if billing systems don't work cleanly.
 
 ## Building readiness into the pre-close timeline
 
-The carve-outs that hold up under scrutiny treat Day 1 readiness as a pre-close discipline, tested well before signing rather than assembled reactively afterward. The mechanism is consistent across successful deals:
+1. **Run two full mock cutover rehearsals**, 60 days apart, with the second a complete dry-run of go-live.
+2. **Freeze scope changes** in the final 30 days before close.
+3. **Own the standalone cost model** — build the real bottoms-up cost, not the parent allocation.
+4. **Test the three non-negotiables**: closing books, invoicing customers, running payroll — standalone, end to end.
 
-**1. Run full mock cutover rehearsals before close** — two rehearsals minimum, 60 days apart. The second one should be a complete dry-run of go-live, including finance team closing the books, IT team managing cutover, HR running a pay cycle, and operations fulfilling orders.
-
-**2. Freeze scope changes in the final weeks before close** — most Day 1 failures trace back to dependencies that were never tested end-to-end, combined with last-minute scope creep introduced right before go-live. As one integration director told us: "We kept discovering new requirements in week 11. By week 12, we'd built them in but hadn't tested them. That's how we ended up on a TSA for our own systems."
-
-**3. Own the standalone cost model** — don't build readiness plans against allocated costs. Run a bottoms-up rebuild: what does it actually cost to run this function standalone? Often 40–60% higher than parent allocations. When you find that gap, you fix the plan or adjust the deal — before close, not after.
-
-**4. Test the three non-negotiables:**
-- **Can the business close its books?** Full P&L and balance sheet, with no parent-level entries, using only standalone systems
-- **Can the business invoice customers?** Orders placed, products shipped, invoices generated and sent, payments received — all in standalone systems
-- **Can the business run payroll?** Employee data, tax withholding, benefits administration, all using standalone systems
-
-If any of those three fail in a rehearsal, you're not Day 1 ready.
+For how this fits into the broader separation calendar and when to actually start this work, see [The Separation Readiness Paradox](/resources/separation-timing-paradox).
 
 ## Lessons learned
 
-**From working with integration teams:**
-
-- **"Looks ready" and "is ready" are different states.** A system that's 85% configured is not 85% ready. It's not ready until you've run the entire business through it. Invest in mock rehearsals. The cost of a 60-day lab run is €50–100k. The cost of discovering you need it post-close is €500k+.
-
-- **Data readiness is 60% of the work, not 20%.** Every integration plan says "data readiness is critical." Most still underestimate it. Your data separation timeline should be your critical path, not an afterthought. If your IT team says 6 months and your data team says 10, believe the data team.
-
-- **Standalone cost ≠ allocated cost.** That €50k annual allocation for a shared function? It's €100k standalone, maybe more. If you plan against the allocation, you're planning to fail. Build the real model and cost the gap.
-
-- **The freeze date is the discipline.** 30 days before close, all discovery stops. No new requirements, no scope changes. If you find something, you either cut it or extend the TSA. But you don't build and deploy it for the first time at go-live.
-
-- **Day 1 readiness is not the finish line.** Bain's research notes: "Getting to Day 1 and getting real value from the carve-out are not the same milestone." Day 1 is when the business starts. Month 3 is when you know if the separation actually worked.
+- **"Looks ready" and "is ready" are different states.** A system 85% configured is not 85% ready — it's not ready until you've run the entire business through it.
+- **Data readiness is 60% of the work, not 20%.** If your IT team says 6 months and your data team says 10, believe the data team.
+- **Standalone cost ≠ allocated cost.** Build the real model before you plan against the allocation.
+- **The freeze date is the discipline.** 30 days before close, discovery stops — anything found gets cut or pushed to the TSA, not built and deployed untested at go-live.
+- **Day 1 is not the finish line.** Getting to Day 1 and getting real value from the carve-out are different milestones.
 
 ---
 
-*Sources: McKinsey & Company (carve-out research); Bain & Company (carve-out outcomes and Day 1 execution); FTI Consulting (carve-out due diligence blind spots); EY (operational separation guidance); PortMux (carve-out data readiness analysis and case studies).*
+*Sources: McKinsey & Company (carve-out research); Bain & Company (carve-out outcomes and Day 1 execution); FTI Consulting (carve-out due diligence blind spots); EY (operational separation guidance); PortMux (carve-out data readiness analysis).*
