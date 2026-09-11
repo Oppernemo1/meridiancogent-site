@@ -11,7 +11,7 @@ import {
   getPostSlugs,
   getRelatedPosts,
 } from "@/lib/posts";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
 
@@ -69,12 +69,23 @@ export default function ArticlePage({
 
   const articleJsonLd = {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "TechArticle",
     headline: frontmatter.title,
-    description: frontmatter.description,
+    author: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${SITE_URL}/logo-mark.png`,
+      },
+    },
     datePublished: frontmatter.date,
-    author: { "@type": "Organization", name: SITE_NAME },
-    publisher: { "@type": "Organization", name: SITE_NAME },
   };
 
   return (
