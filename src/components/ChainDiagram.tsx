@@ -5,7 +5,7 @@ const fontFamilySans = "ui-sans-serif, -apple-system, sans-serif";
 
 export type ChainNode = {
   title: ReactNode;
-  description: string;
+  description?: string;
 };
 
 /**
@@ -14,8 +14,17 @@ export type ChainNode = {
  * descriptions are real HTML text so they read, wrap and link normally.
  * Desktop shows a left-to-right connector; mobile stacks nodes vertically
  * rather than shrinking the desktop layout.
+ *
+ * `compact` renders labels only (no per-node description) — the condensed
+ * form used on the homepage, versus the fuller version on /platform.
  */
-export function ChainDiagram({ nodes }: { nodes: ChainNode[] }) {
+export function ChainDiagram({
+  nodes,
+  compact = false,
+}: {
+  nodes: ChainNode[];
+  compact?: boolean;
+}) {
   const titleId = useId();
   const descId = useId();
 
@@ -98,9 +107,11 @@ export function ChainDiagram({ nodes }: { nodes: ChainNode[] }) {
           {nodes.map((node, i) => (
             <div key={i}>
               <h3 className="font-serif text-h4 text-white">{node.title}</h3>
-              <p className="mt-2 text-small leading-relaxed text-on-navy-secondary">
-                {node.description}
-              </p>
+              {!compact && node.description && (
+                <p className="mt-2 text-small leading-relaxed text-on-navy-secondary">
+                  {node.description}
+                </p>
+              )}
             </div>
           ))}
         </div>
@@ -112,11 +123,11 @@ export function ChainDiagram({ nodes }: { nodes: ChainNode[] }) {
         <div className="relative">
           <div
             aria-hidden="true"
-            className="absolute bottom-6 left-[23px] top-6 w-px bg-ice/40"
+            className={`absolute left-[23px] w-px bg-ice/40 ${compact ? "top-6 bottom-6" : "top-6 bottom-6"}`}
           />
-          <div className="space-y-10">
+          <div className={compact ? "space-y-6" : "space-y-10"}>
             {nodes.map((node, i) => (
-              <div key={i} className="relative flex gap-5">
+              <div key={i} className="relative flex items-center gap-5">
                 <svg
                   width={48}
                   height={48}
@@ -145,11 +156,13 @@ export function ChainDiagram({ nodes }: { nodes: ChainNode[] }) {
                     {i + 1}
                   </text>
                 </svg>
-                <div className="pt-1">
+                <div className={compact ? "" : "pt-1"}>
                   <h3 className="font-serif text-h4 text-white">{node.title}</h3>
-                  <p className="mt-2 text-small leading-relaxed text-on-navy-secondary">
-                    {node.description}
-                  </p>
+                  {!compact && node.description && (
+                    <p className="mt-2 text-small leading-relaxed text-on-navy-secondary">
+                      {node.description}
+                    </p>
+                  )}
                 </div>
               </div>
             ))}
