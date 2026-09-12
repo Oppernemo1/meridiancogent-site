@@ -14,7 +14,6 @@ export const TOPIC_TAGS = ["TSA", "Integration", "Carve-out", "Playbooks"] as co
 export type TopicTag = (typeof TOPIC_TAGS)[number];
 
 export const NAV_LINKS = [
-  { label: "Product", href: "/#approach" },
   { label: "Platform", href: "/platform" },
   { label: "Principles", href: "/principles" },
   { label: "Resources", href: "/resources" },

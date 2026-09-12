@@ -44,63 +44,69 @@ const EXPECTATIONS = [
 
 export default function EarlyAccessPage() {
   return (
-    <div className="py-10 md:py-14">
-      <Container>
-        <div className="relative overflow-hidden bg-navy px-6 py-14 text-on-navy-primary md:px-14 md:py-20">
-          <BackgroundLines
-            tone="ice"
-            className="pointer-events-none absolute inset-0 h-full w-full opacity-70"
-          />
-          <div className="relative max-w-2xl">
-            <h1 className="font-serif text-display-sm text-on-navy-primary md:text-display">
+    <>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
+        <Container className="relative py-section md:py-section-lg">
+          <div className="max-w-2xl">
+            <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
               Early access
             </h1>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               MeridianCogent is a control environment for separation offices and
               integration teams. It&apos;s still being built. Early access is how
               we stay in touch with the people we&apos;re building it for.
             </p>
             <div className="mt-8 max-w-lg">
-              <p className="text-small font-medium text-ice">
+              <p className="text-small font-medium text-navy">
                 In development. Join the early access list for updates.
               </p>
               <div className="mt-3">
-                <EarlyAccessForm theme="dark" source="early-access-page" />
+                <EarlyAccessForm source="early-access-page" />
               </div>
             </div>
           </div>
-        </div>
+        </Container>
+      </section>
 
-        <div className="mx-auto mt-10 max-w-measure md:mt-14">
-          <h2 className="font-serif text-h2-sm text-navy md:text-h2">
-            What to expect
-          </h2>
-          <dl className="mt-4 grid gap-x-10 gap-y-10 sm:grid-cols-2">
-            {EXPECTATIONS.map((item) => (
-              <div key={item.heading}>
-                <div className="h-px w-10 bg-navy" />
-                <dt className="mt-3 font-serif text-h4 text-navy">
-                  {item.heading}
-                </dt>
-                <dd className="mt-2 text-small leading-relaxed text-muted">
-                  {item.body}
-                </dd>
-              </div>
-            ))}
-          </dl>
-
-          <p className="mt-14 text-small text-muted">
-            Questions about early access? Email{" "}
-            <a
-              href="mailto:hello@meridiancogent.com"
-              className="text-navy underline underline-offset-4 hover:text-muted"
+      {/* What to expect */}
+      <section aria-labelledby="expect-heading" className="py-section md:py-section-lg">
+        <Container>
+          <div className="mx-auto max-w-measure">
+            <h2
+              id="expect-heading"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
-              hello@meridiancogent.com
-            </a>
-            .
-          </p>
-        </div>
-      </Container>
-    </div>
+              What to expect
+            </h2>
+            <dl className="mt-heading-gap grid gap-x-10 gap-y-10 sm:grid-cols-2">
+              {EXPECTATIONS.map((item) => (
+                <div key={item.heading}>
+                  <div className="h-px w-10 bg-navy" />
+                  <dt className="mt-3 font-serif text-h4 text-navy">
+                    {item.heading}
+                  </dt>
+                  <dd className="mt-2 text-small leading-relaxed text-muted">
+                    {item.body}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <p className="mt-14 text-small text-muted">
+              Questions about early access? Email{" "}
+              <a
+                href="mailto:hello@meridiancogent.com"
+                className="text-navy underline underline-offset-4 hover:text-muted"
+              >
+                hello@meridiancogent.com
+              </a>
+              .
+            </p>
+          </div>
+        </Container>
+      </section>
+    </>
   );
 }

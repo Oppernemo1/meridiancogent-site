@@ -443,26 +443,23 @@ export default function PlatformPage() {
       </section>
 
       {/* Early access */}
-      <section
-        aria-labelledby="early-access-platform"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="early-access-platform" className="py-section md:py-section-lg">
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-platform"
-                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+                className="font-serif text-h2-sm text-navy md:text-h2"
               >
                 Early access
               </h2>
-              <p className="mt-5 text-body leading-relaxed text-on-navy-secondary">
+              <p className="mt-5 text-body leading-relaxed text-muted">
                 MeridianCogent is in development. Join the list for updates
                 as we open access.
               </p>
             </div>
-            <div className="border border-white/15 bg-white/5 p-6 md:p-8">
-              <EarlyAccessForm theme="dark" source="platform-page" />
+            <div className="border border-hairline bg-white p-6 md:p-8">
+              <EarlyAccessForm source="platform-page" />
             </div>
           </div>
         </Container>

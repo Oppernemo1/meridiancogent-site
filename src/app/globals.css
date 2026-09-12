@@ -10,6 +10,17 @@
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    /* Keeps anchor-jump targets (and scrollIntoView) clear of the sticky
+       header. Mobile header can reach ~75px when the nav wraps to a second
+       line; desktop header is a fixed 81px (md:h-20 + border). Both get a
+       ~30px buffer on top. */
+    scroll-padding-top: 6.5rem;
+  }
+
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 7rem;
+    }
   }
 
   body {

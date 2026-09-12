@@ -316,12 +316,15 @@ export default function HomePage() {
       </section>
 
       {/* Resources preview */}
-      <section aria-labelledby="resources-preview" className="py-section md:py-section-lg">
+      <section
+        aria-labelledby="resources-preview"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
+      >
         <Container>
           <RevealOnScroll>
             <h2
               id="resources-preview"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               From the resources
             </h2>
@@ -333,7 +336,7 @@ export default function HomePage() {
             <p className="mt-8 text-small">
               <Link
                 href="/resources"
-                className="font-medium text-navy underline underline-offset-4 hover:text-muted"
+                className="font-medium text-ice underline underline-offset-4 hover:text-on-navy-primary"
               >
                 All resources
               </Link>
@@ -343,26 +346,23 @@ export default function HomePage() {
       </section>
 
       {/* Early access */}
-      <section
-        aria-labelledby="early-access-home"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="early-access-home" className="py-section md:py-section-lg">
         <Container>
           <RevealOnScroll className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-home"
-                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+                className="font-serif text-h2-sm text-navy md:text-h2"
               >
                 Early access
               </h2>
-              <p className="mt-5 text-body leading-relaxed text-on-navy-secondary">
+              <p className="mt-5 text-body leading-relaxed text-muted">
                 MeridianCogent is in development. Join the list for updates
                 as we open access.
               </p>
             </div>
-            <div className="border border-white/15 bg-white/5 p-6 md:p-8">
-              <EarlyAccessForm theme="dark" source="homepage-early-access" />
+            <div className="border border-hairline bg-white p-6 md:p-8">
+              <EarlyAccessForm source="homepage-early-access" />
             </div>
           </RevealOnScroll>
         </Container>

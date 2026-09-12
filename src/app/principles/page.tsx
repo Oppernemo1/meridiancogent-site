@@ -64,29 +64,32 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Opening */}
-      <div className="pb-section md:pb-section-lg">
+      <section
+        aria-label="Introduction"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
+      >
         <Container>
           <div className="max-w-measure">
-            <p className="text-body-lg leading-relaxed text-ink">
+            <p className="text-body-lg leading-relaxed text-on-navy-secondary">
               Every piece of M&amp;A software eventually faces the same
               commercial pressure: a customer asks a question the system
               cannot honestly answer, and answering it anyway would be easy,
               impressive, and wrong.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               Produce a risk score. Estimate what is left to spend. Tell them
               what the notice period is in Germany. Each of these is a small
               step, each is individually defensible, and each moves the
               platform from recording what people decided to asserting things
               it has no basis to assert.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               The constraints below are how that pressure is refused. They
               are design positions, not gaps waiting to be filled.
             </p>
           </div>
         </Container>
-      </div>
+      </section>
 
       {/* Legal */}
       <section aria-labelledby="legal-heading" className="py-section md:py-section-lg">
@@ -132,49 +135,49 @@ export default function PrinciplesPage() {
       {/* Arithmetic */}
       <section
         aria-labelledby="arithmetic-heading"
-        className="py-section md:py-section-lg"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
               id="arithmetic-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               It will not calculate what it has no basis to calculate
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Some numbers look like arithmetic but are not.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               A risk register that multiplies likelihood by impact produces a
               score. High multiplied by medium is not a quantity. The
               platform records both dimensions and shows them together; it
               never derives a score from them, and never ranks risks by one.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               A cost-to-complete figure derived from burn rate is a forecast,
               not a measurement. Where a cost-to-complete exists here, a
               person entered it, and it is recorded as their estimate with
               their name and the date attached.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               An annual run rate and a one-time cost are different
               quantities. They are never summed.{" "}
               <Link
                 href="/platform"
-                className="text-navy underline underline-offset-4 hover:text-muted"
+                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
               >
                 A synergy figure and an integration cost are independently
                 reported and shown side by side — never netted into a single
                 number that implies a precision nobody has.
               </Link>
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               A difference between a budget and an actual is only a variance
               if a phased budget exists. Otherwise it is remaining budget,
               and it is labelled that way.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               These distinctions sound pedantic until a board pack built on
               them turns out to be wrong.
             </p>
@@ -223,28 +226,31 @@ export default function PrinciplesPage() {
       </section>
 
       {/* History */}
-      <section aria-labelledby="history-heading" className="py-section md:py-section-lg">
+      <section
+        aria-labelledby="history-heading"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
+      >
         <Container>
           <div className="max-w-measure">
             <h2
               id="history-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               It will not quietly overwrite the past
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Corrections are made by superseding a record, never by editing
               one. The original remains visible, with who entered it and
               when.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               When a figure is formally adopted, the platform snapshots
               exactly what was adopted at that moment. If the underlying
               figure later changes, the adoption is marked stale — it does
               not silently update to match. The decision that was actually
               made, on the information actually available, survives.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               This matters most in the situation nobody plans for: eighteen
               months later, when someone asks why a commitment was made, and
               the honest answer depends on what was known at the time.
@@ -349,26 +355,23 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Early access */}
-      <section
-        aria-labelledby="early-access-principles"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="early-access-principles" className="py-section md:py-section-lg">
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-principles"
-                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+                className="font-serif text-h2-sm text-navy md:text-h2"
               >
                 Early access
               </h2>
-              <p className="mt-5 text-body leading-relaxed text-on-navy-secondary">
+              <p className="mt-5 text-body leading-relaxed text-muted">
                 MeridianCogent is in development. Join the list for updates
                 as we open access.
               </p>
             </div>
-            <div className="border border-white/15 bg-white/5 p-6 md:p-8">
-              <EarlyAccessForm theme="dark" source="principles-page" />
+            <div className="border border-hairline bg-white p-6 md:p-8">
+              <EarlyAccessForm source="principles-page" />
             </div>
           </div>
         </Container>

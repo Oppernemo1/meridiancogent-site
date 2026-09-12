@@ -128,7 +128,7 @@ export default function ArticlePage({
             ))}
           </div>
 
-          <h1 className="mt-4 font-serif text-h2-sm leading-[1.15] text-navy md:text-h2">
+          <h1 className="mt-4 font-serif text-display-sm leading-[1.15] text-navy md:text-display">
             {frontmatter.title}
           </h1>
 
@@ -154,7 +154,7 @@ export default function ArticlePage({
 
         {related.length > 0 && (
           <div className="mx-auto mt-12 max-w-measure border-t border-black/10 pt-10">
-            <h2 className="font-serif text-h4 text-navy">Related articles</h2>
+            <h2 className="font-serif text-prose-h2 text-navy">Related articles</h2>
             <ul className="mt-heading-gap space-y-6">
               {related.map((item) => (
                 <li key={item.slug}>

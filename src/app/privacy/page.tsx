@@ -24,7 +24,7 @@ export default function PrivacyPage() {
     <div className="py-10 md:py-14">
       <Container>
         <div className="prose prose-meridian mx-auto">
-          <h1>Privacy Policy</h1>
+          <h1 className="text-display-sm md:text-display">Privacy Policy</h1>
           <p className="lead">
             <em>Last updated: {LAST_UPDATED}.</em> MeridianCogent is an
             early-stage company and this website is a pre-launch marketing site.
