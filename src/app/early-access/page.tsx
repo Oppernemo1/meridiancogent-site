@@ -44,15 +44,15 @@ const EXPECTATIONS = [
 
 export default function EarlyAccessPage() {
   return (
-    <div className="py-20 md:py-28">
+    <div className="py-10 md:py-14">
       <Container>
-        <div className="relative overflow-hidden bg-navy px-6 py-14 text-white md:px-14 md:py-20">
+        <div className="relative overflow-hidden bg-navy px-6 py-14 text-on-navy-primary md:px-14 md:py-20">
           <BackgroundLines
             tone="ice"
             className="pointer-events-none absolute inset-0 h-full w-full opacity-70"
           />
           <div className="relative max-w-2xl">
-            <h1 className="font-serif text-display-sm text-white md:text-display">
+            <h1 className="font-serif text-display-sm text-on-navy-primary md:text-display">
               Early access
             </h1>
             <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
@@ -71,11 +71,11 @@ export default function EarlyAccessPage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-20 max-w-measure md:mt-28">
+        <div className="mx-auto mt-10 max-w-measure md:mt-14">
           <h2 className="font-serif text-h2-sm text-navy md:text-h2">
             What to expect
           </h2>
-          <dl className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2">
+          <dl className="mt-4 grid gap-x-10 gap-y-10 sm:grid-cols-2">
             {EXPECTATIONS.map((item) => (
               <div key={item.heading}>
                 <div className="h-px w-10 bg-navy" />

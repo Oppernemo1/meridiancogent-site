@@ -64,16 +64,16 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
-        <Container className="relative py-20 md:py-32">
+        <Container className="relative py-section md:py-section-lg">
           <div className="max-w-3xl">
             <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
-              Know in March that the September exit will not happen.
+              The exit date nobody checked is the one that slips.
             </h1>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               MeridianCogent is an execution platform for M&amp;A
-              separations, carve-outs and integrations. It models what a
-              transitional service actually depends on — so the date that
-              will slip is visible months before the invoice arrives.
+              separations, carve-outs and integrations. It models what every
+              transitional service actually depends on — so a date that will
+              not hold is visible months before the invoice arrives.
             </p>
 
             <div className="mt-10 max-w-xl">
@@ -89,7 +89,7 @@ export default function HomePage() {
       </section>
 
       {/* The problem */}
-      <section aria-labelledby="problem-heading" className="py-20 md:py-32">
+      <section aria-labelledby="problem-heading" className="py-section md:py-section-lg">
         <Container>
           <RevealOnScroll className="max-w-measure">
             <h2
@@ -99,7 +99,7 @@ export default function HomePage() {
               The plan is not the problem. The plan not holding is the
               problem.
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Every separation has a plan, and every plan has dates on it.
               What most programmes cannot tell you is which of those dates
               are still real.
@@ -123,18 +123,18 @@ export default function HomePage() {
       <section
         id="approach"
         aria-labelledby="chain-heading"
-        className="scroll-mt-24 bg-navy py-20 text-white md:py-32"
+        className="scroll-mt-24 bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <RevealOnScroll>
             <div className="max-w-measure">
               <h2
                 id="chain-heading"
-                className="font-serif text-h2-sm text-white md:text-h2"
+                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
               >
                 Dependencies, modelled rather than assumed
               </h2>
-              <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+              <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
                 MeridianCogent models the chain that actually governs a
                 separation: what the business runs on, what has to be
                 untangled, which transitional services cannot end until that
@@ -152,7 +152,7 @@ export default function HomePage() {
             <p className="mt-6 text-small">
               <Link
                 href="/platform"
-                className="font-medium text-ice underline underline-offset-4 hover:text-white"
+                className="font-medium text-ice underline underline-offset-4 hover:text-on-navy-primary"
               >
                 How the platform works
               </Link>
@@ -164,7 +164,7 @@ export default function HomePage() {
       {/* Scenarios */}
       <section
         aria-labelledby="scenarios-heading"
-        className="py-20 md:py-32"
+        className="py-section md:py-section-lg"
       >
         <Container>
           <RevealOnScroll className="max-w-measure">
@@ -174,7 +174,7 @@ export default function HomePage() {
             >
               Move one date. See what it costs.
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Knowing a service exits in September is useful. Knowing what a
               two-week slip on a single cutover does to that date — and to
               the invoice that follows it — is the question a CFO actually
@@ -196,17 +196,17 @@ export default function HomePage() {
       {/* Gates */}
       <section
         aria-labelledby="gates-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <RevealOnScroll className="max-w-measure">
             <h2
               id="gates-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               Gates that actually block
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Most platforms have gates that record disapproval. The gate
               turns red, and the work continues anyway, because nothing in
               the system can stop it.
@@ -222,7 +222,7 @@ export default function HomePage() {
       </section>
 
       {/* Trust */}
-      <section aria-labelledby="trust-heading" className="py-20 md:py-32">
+      <section aria-labelledby="trust-heading" className="py-section md:py-section-lg">
         <Container>
           <RevealOnScroll className="max-w-measure">
             <h2
@@ -231,7 +231,7 @@ export default function HomePage() {
             >
               Every number has a named human behind it
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               MeridianCogent does not tell you what a jurisdiction requires,
               does not score your risks, and does not estimate what is left
               to spend. Every material figure is entered by a customer or
@@ -264,17 +264,17 @@ export default function HomePage() {
       {/* Confidentiality */}
       <section
         aria-labelledby="confidentiality-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <RevealOnScroll className="max-w-measure">
             <h2
               id="confidentiality-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               Built for deals that are not public
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Access is scoped to the programme, not the organisation.
               Advisors and vendors hold time-bounded, logged access to only
               what they need. Programmes can run under code names, exports
@@ -291,7 +291,7 @@ export default function HomePage() {
       </section>
 
       {/* Who it is for */}
-      <section aria-labelledby="who-heading" className="py-20 md:py-32">
+      <section aria-labelledby="who-heading" className="py-section md:py-section-lg">
         <Container>
           <RevealOnScroll className="max-w-measure">
             <h2
@@ -300,7 +300,7 @@ export default function HomePage() {
             >
               Who it is for
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Separation offices preparing a business for divestiture.
               Integration and PMI teams running the programme after close.
               Corporate development managing several transactions at once.
@@ -316,7 +316,7 @@ export default function HomePage() {
       </section>
 
       {/* Resources preview */}
-      <section aria-labelledby="resources-preview" className="py-20 md:py-32">
+      <section aria-labelledby="resources-preview" className="py-section md:py-section-lg">
         <Container>
           <RevealOnScroll>
             <h2
@@ -345,14 +345,14 @@ export default function HomePage() {
       {/* Early access */}
       <section
         aria-labelledby="early-access-home"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <RevealOnScroll className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-home"
-                className="font-serif text-h2-sm text-white md:text-h2"
+                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
               >
                 Early access
               </h2>

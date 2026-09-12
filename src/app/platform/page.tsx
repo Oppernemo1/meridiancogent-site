@@ -49,7 +49,7 @@ const CHAIN_NODES: ChainNode[] = [
     title: (
       <Link
         href="/resources/what-day-1-ready-actually-means-in-a-carve-out"
-        className="text-ice underline underline-offset-4 hover:text-white"
+        className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
       >
         Day 1 readiness
       </Link>
@@ -140,12 +140,12 @@ export default function PlatformPage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
-        <Container className="relative py-20 md:py-32">
+        <Container className="relative py-section md:py-section-lg">
           <div className="max-w-3xl">
             <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
               The execution layer for separations and integrations
             </h1>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               MeridianCogent models how a carve-out actually works — what a
               business depends on, what has to be untangled, in what order,
               and what it costs when that slips. Currently in development.
@@ -157,17 +157,17 @@ export default function PlatformPage() {
       {/* The chain */}
       <section
         aria-labelledby="chain-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
               id="chain-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               Most tools track tasks. This one tracks consequence.
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               A separation is not a list of work. It is a chain of
               dependencies where each link determines the next, and where
               the cost of a missed link compounds rather than accumulates.
@@ -194,7 +194,7 @@ export default function PlatformPage() {
       </section>
 
       {/* Gates */}
-      <section aria-labelledby="gates-heading" className="py-20 md:py-32">
+      <section aria-labelledby="gates-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -203,7 +203,7 @@ export default function PlatformPage() {
             >
               Gates that actually block
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Most platforms have gates that record disapproval. A gate is
               marked red, and the work continues anyway, because nothing in
               the system can stop it.
@@ -226,17 +226,17 @@ export default function PlatformPage() {
       {/* The record */}
       <section
         aria-labelledby="record-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
               id="record-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               Every number has a named human behind it
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               The platform does not source legal requirements, costs,
               valuations or jurisdictional rules. Every material figure is
               entered by a customer or their advisor, and formally adopted by
@@ -257,7 +257,7 @@ export default function PlatformPage() {
             <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               <Link
                 href="/principles"
-                className="text-ice underline underline-offset-4 hover:text-white"
+                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
               >
                 This constraint is deliberate and it is not negotiable.
               </Link>{" "}
@@ -270,7 +270,7 @@ export default function PlatformPage() {
       </section>
 
       {/* TSA */}
-      <section aria-labelledby="tsa-heading" className="py-20 md:py-32">
+      <section aria-labelledby="tsa-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -279,7 +279,7 @@ export default function PlatformPage() {
             >
               Transitional services, modelled as exposure
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               A{" "}
               <Link
                 href="/resources/what-is-a-tsa"
@@ -316,17 +316,17 @@ export default function PlatformPage() {
       {/* Scenarios */}
       <section
         aria-labelledby="scenarios-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
               id="scenarios-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               What happens if this slips?
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               It is one thing to know a transitional service exits in
               September. It is another to know what a two-week delay on a
               single cutover does to that date — and to the invoice that
@@ -347,7 +347,7 @@ export default function PlatformPage() {
       </section>
 
       {/* Money */}
-      <section aria-labelledby="money-heading" className="py-20 md:py-32">
+      <section aria-labelledby="money-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -356,7 +356,7 @@ export default function PlatformPage() {
             >
               Numbers that mean what they say
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               A synergy ledger that lets one row mean an annual run rate and
               the next mean a cumulative figure, then adds them together,
               produces an authoritative total that is simply wrong.
@@ -375,17 +375,17 @@ export default function PlatformPage() {
       {/* Confidentiality */}
       <section
         aria-labelledby="confidentiality-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
               id="confidentiality-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               Built for deals that are not public
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Access is scoped to the programme, not the organisation — being
               an employee of the customer does not grant visibility of a
               deal. Advisors and vendors hold time-bounded, logged access to
@@ -408,7 +408,7 @@ export default function PlatformPage() {
       </section>
 
       {/* Scope */}
-      <section aria-labelledby="scope-heading" className="py-20 md:py-32">
+      <section aria-labelledby="scope-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -417,7 +417,7 @@ export default function PlatformPage() {
             >
               What else the platform covers
             </h2>
-            <p className="mt-6 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Alongside the execution chain, MeridianCogent is being built to
               hold the artifacts every transaction actually runs on:
             </p>
@@ -445,14 +445,14 @@ export default function PlatformPage() {
       {/* Early access */}
       <section
         aria-labelledby="early-access-platform"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-platform"
-                className="font-serif text-h2-sm text-white md:text-h2"
+                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
               >
                 Early access
               </h2>

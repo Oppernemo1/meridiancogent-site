@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { SITE_NAME } from "@/lib/site";
+import { colors } from "@/lib/tokens";
 
 export const alt =
   "MeridianCogent — M&A execution, without the spreadsheet chaos";
@@ -16,7 +17,7 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#1E2761",
+          background: colors.navy,
           padding: "72px",
           fontFamily: "sans-serif",
           position: "relative",
@@ -31,7 +32,7 @@ export default function OpengraphImage() {
           <path
             d="M-20 300 L200 150 L360 230 L560 70 L760 210 L960 90 L1220 200"
             fill="none"
-            stroke="#CADCFC"
+            stroke={colors.ice}
             strokeOpacity="0.28"
             strokeWidth="6"
             strokeLinecap="round"
@@ -41,17 +42,17 @@ export default function OpengraphImage() {
 
         <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
           <svg width="56" height="56" viewBox="0 0 200 200">
-            <rect width="200" height="200" rx="40" fill="#CADCFC" />
+            <rect width="200" height="200" rx="40" fill={colors.ice} />
             <path
               d="M40 140 L80 78 L100 118 L120 58 L160 140"
               fill="none"
-              stroke="#1E2761"
+              stroke={colors.navy}
               strokeWidth="14"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-          <span style={{ color: "#FFFFFF", fontSize: 34, fontWeight: 600 }}>
+          <span style={{ color: colors.onNavy.primary, fontSize: 34, fontWeight: 600 }}>
             {SITE_NAME}
           </span>
         </div>
@@ -59,7 +60,7 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
           <span
             style={{
-              color: "#FFFFFF",
+              color: colors.onNavy.primary,
               fontSize: 68,
               fontWeight: 700,
               lineHeight: 1.1,
@@ -68,7 +69,7 @@ export default function OpengraphImage() {
           >
             M&A execution, without the spreadsheet chaos.
           </span>
-          <span style={{ color: "#CADCFC", fontSize: 28 }}>
+          <span style={{ color: colors.ice, fontSize: 28 }}>
             A control environment for separation and integration teams.
           </span>
         </div>

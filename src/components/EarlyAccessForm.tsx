@@ -72,11 +72,11 @@ export function EarlyAccessForm({
   const inputBase =
     "w-full border px-4 py-3 text-body outline-none transition-colors focus:ring-2 focus:ring-offset-2";
   const inputTheme = dark
-    ? "border-white/20 bg-white/10 text-white placeholder:text-white/50 focus:border-ice focus:ring-ice/60 focus:ring-offset-navy"
+    ? "border-white/20 bg-white/10 text-on-navy-primary placeholder:text-white/50 focus:border-ice focus:ring-ice/60 focus:ring-offset-navy"
     : "border-black/15 bg-white text-ink placeholder:text-muted/70 focus:border-navy focus:ring-navy/30 focus:ring-offset-white";
   const buttonTheme = dark
     ? "bg-ice text-navy hover:bg-white"
-    : "bg-navy text-white hover:bg-navy/90";
+    : "bg-navy text-on-navy-primary hover:bg-navy/90";
 
   return (
     <form

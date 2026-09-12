@@ -27,7 +27,7 @@ export default function ResourcesPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="py-20 md:py-28">
+    <div className="py-10 md:py-14">
       <Container>
         <header className="max-w-measure">
           <h1 className="font-serif text-display-sm text-navy md:text-display">

@@ -32,7 +32,7 @@ export function ResourceIndex({ posts }: { posts: PostMeta[] }) {
               aria-pressed={isActive}
               className={`border px-4 py-1.5 text-small font-medium transition-colors ${
                 isActive
-                  ? "border-navy bg-navy text-white"
+                  ? "border-navy bg-navy text-on-navy-primary"
                   : "border-black/15 bg-white text-muted hover:border-navy/40 hover:text-navy"
               }`}
             >

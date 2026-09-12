@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { getPostBySlug, getPostSlugs } from "@/lib/posts";
 import { SITE_NAME } from "@/lib/site";
+import { colors } from "@/lib/tokens";
 
 export const alt = "MeridianCogent Resources";
 export const size = { width: 1200, height: 630 };
@@ -34,7 +35,7 @@ export default function ArticleOgImage({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#1E2761",
+          background: colors.navy,
           padding: "72px",
           fontFamily: "sans-serif",
           position: "relative",
@@ -49,7 +50,7 @@ export default function ArticleOgImage({
           <path
             d="M-20 260 L220 130 L400 200 L600 60 L820 180 L1000 80 L1220 170"
             fill="none"
-            stroke="#CADCFC"
+            stroke={colors.ice}
             strokeOpacity="0.25"
             strokeWidth="6"
             strokeLinecap="round"
@@ -59,17 +60,17 @@ export default function ArticleOgImage({
 
         <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
           <svg width="48" height="48" viewBox="0 0 200 200">
-            <rect width="200" height="200" rx="40" fill="#CADCFC" />
+            <rect width="200" height="200" rx="40" fill={colors.ice} />
             <path
               d="M40 140 L80 78 L100 118 L120 58 L160 140"
               fill="none"
-              stroke="#1E2761"
+              stroke={colors.navy}
               strokeWidth="14"
               strokeLinecap="round"
               strokeLinejoin="round"
             />
           </svg>
-          <span style={{ color: "#FFFFFF", fontSize: 28, fontWeight: 600 }}>
+          <span style={{ color: colors.onNavy.primary, fontSize: 28, fontWeight: 600 }}>
             {SITE_NAME} · Resources
           </span>
         </div>
@@ -78,7 +79,7 @@ export default function ArticleOgImage({
           {tags.length > 0 && (
             <span
               style={{
-                color: "#CADCFC",
+                color: colors.ice,
                 fontSize: 24,
                 textTransform: "uppercase",
                 letterSpacing: 2,
@@ -89,7 +90,7 @@ export default function ArticleOgImage({
           )}
           <span
             style={{
-              color: "#FFFFFF",
+              color: colors.onNavy.primary,
               fontSize: title.length > 60 ? 54 : 64,
               fontWeight: 700,
               lineHeight: 1.15,

@@ -17,7 +17,7 @@ const SOCIAL_PLACEHOLDERS = ["LinkedIn", "X", "RSS"];
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 overflow-hidden bg-navy text-white">
+    <footer className="relative mt-32 overflow-hidden bg-navy text-on-navy-primary">
       <BackgroundLines
         tone="ice"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full opacity-60"
@@ -25,10 +25,10 @@ export function Footer() {
       <Container className="relative py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <div>
-            <h2 className="font-serif text-h3 text-white md:text-h2-sm">
+            <h2 className="font-serif text-h3 text-on-navy-primary md:text-h2-sm">
               Get updates as we open access.
             </h2>
-            <p className="mt-3 max-w-md text-body leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap max-w-md text-body leading-relaxed text-on-navy-secondary">
               In development. Join the early access list for updates.
             </p>
             <div className="mt-6 max-w-md">

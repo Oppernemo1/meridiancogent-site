@@ -100,7 +100,7 @@ export default function ArticlePage({
   };
 
   return (
-    <article className="py-20 md:py-28">
+    <article className="py-10 md:py-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -153,9 +153,9 @@ export default function ArticlePage({
         </div>
 
         {related.length > 0 && (
-          <div className="mx-auto mt-24 max-w-measure border-t border-black/10 pt-10">
+          <div className="mx-auto mt-12 max-w-measure border-t border-black/10 pt-10">
             <h2 className="font-serif text-h4 text-navy">Related articles</h2>
-            <ul className="mt-6 space-y-6">
+            <ul className="mt-heading-gap space-y-6">
               {related.map((item) => (
                 <li key={item.slug}>
                   <Link

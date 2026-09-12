@@ -10,6 +10,9 @@ export const colors = {
   ice: "#CADCFC",
   ink: "#2C2C2A",
   muted: "#5F5E5A",
+  // Light neutral hairline/border grey — shared between the prose table
+  // and card borders (tailwind.config.ts) and the email template.
+  hairline: "#e6e6e3",
   // Solid (non-opacity) text colours for use on the navy ground. Computed to
   // meet WCAG AA (4.5:1) against #1E2761 without relying on alpha blending,
   // which is hard to audit at a glance.
@@ -19,12 +22,22 @@ export const colors = {
     muted: "#A9AFD6", // ~6.3:1 — least-emphasis text on navy (e.g. disabled labels)
   },
   // Reserved product-UI status colours — not used decoratively on the
-  // marketing site.
+  // marketing site. Only add a colour here once an actual UI state needs it.
   status: {
     green: "#2C6E49",
-    amber: "#B7791F",
     red: "#9B2C2C",
   },
+} as const;
+
+/**
+ * Colours used only in the plain-HTML email templates (src/lib/emails.ts),
+ * which render in mail clients rather than through Tailwind/the browser.
+ * Kept separate from `colors` so the Tailwind-facing palette above only
+ * ever contains values something in the UI actually uses.
+ */
+export const emailColors = {
+  pageBg: "#F4F4F2",
+  mutedLink: "#a9b6e0",
 } as const;
 
 export const fontFamily = {
@@ -64,19 +77,32 @@ export const fontSize: Record<string, [string, { lineHeight: string; letterSpaci
   body: ["1rem", { lineHeight: "1.65" }], // 16px — meta, secondary copy
   small: ["0.875rem", { lineHeight: "1.5" }], // 14px
   micro: ["0.75rem", { lineHeight: "1.4" }], // 12px — labels/tags
+  // Long-form prose headings (article/legal pages) sit deliberately smaller
+  // than the marketing-page h2/h3 scale above, so they get their own steps.
+  proseH2: ["1.75rem", { lineHeight: "1.3" }], // 28px
+  proseH3: ["1.375rem", { lineHeight: "1.35" }], // 22px
 };
 
 /**
- * Section vertical rhythm, in rem, [mobile, desktop]. Applied as
- * `py-[mobile] md:py-[desktop]` in section wrappers.
+ * Section vertical rhythm, in rem, [mobile, desktop]. Wired into Tailwind
+ * as the `section`/`section-lg` spacing keys (see tailwind.config.ts) and
+ * applied as `py-section md:py-section-lg` in section wrappers — a single
+ * source of truth so the rhythm changes everywhere at once, not per page.
  */
 export const sectionSpacing = {
-  base: ["4.5rem", "8rem"],
-  large: ["5rem", "10rem"], // hero, footer, and other high-emphasis sections
+  base: ["2.5rem", "4rem"], // ~half the original 4.5rem/8rem: sections
+  // should read as one document, not isolated islands.
 } as const;
+
+/**
+ * Gap between a section heading and its first paragraph, in rem. Wired into
+ * Tailwind as the `heading-gap` spacing key — applied as `mt-heading-gap`.
+ */
+export const headingGap = "0.75rem";
 
 /** Layout widths. */
 export const layout = {
   contentWidth: "1100px", // wide sections (grids, two-column layouts)
   proseWidth: "700px", // long-form article/legal-copy measure
+  diagramCaption: "200px", // ChainDiagram node description line length
 } as const;

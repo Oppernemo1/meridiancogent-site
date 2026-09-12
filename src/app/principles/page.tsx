@@ -48,13 +48,13 @@ export default function PrinciplesPage() {
       />
 
       {/* Hero */}
-      <section className="py-20 md:py-32">
+      <section className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-3xl">
             <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
               What this platform will not do
             </h1>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Most software is sold on what it can tell you. This page is
               about what MeridianCogent deliberately refuses to tell you, and
               why those refusals are the most useful thing about it.
@@ -64,7 +64,7 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Opening */}
-      <div className="pb-20 md:pb-32">
+      <div className="pb-section md:pb-section-lg">
         <Container>
           <div className="max-w-measure">
             <p className="text-body-lg leading-relaxed text-ink">
@@ -89,7 +89,7 @@ export default function PrinciplesPage() {
       </div>
 
       {/* Legal */}
-      <section aria-labelledby="legal-heading" className="py-20 md:py-32">
+      <section aria-labelledby="legal-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -98,7 +98,7 @@ export default function PrinciplesPage() {
             >
               It will not tell you what the law requires
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               MeridianCogent does not maintain a corpus of jurisdictional
               rules. It does not tell you what a consultation requires, what
               notice period applies, what a regulator will want, or what your
@@ -132,7 +132,7 @@ export default function PrinciplesPage() {
       {/* Arithmetic */}
       <section
         aria-labelledby="arithmetic-heading"
-        className="py-20 md:py-32"
+        className="py-section md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
@@ -142,7 +142,7 @@ export default function PrinciplesPage() {
             >
               It will not calculate what it has no basis to calculate
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Some numbers look like arithmetic but are not.
             </p>
             <p className="mt-5 text-body-lg leading-relaxed text-ink">
@@ -183,7 +183,7 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Inference */}
-      <section aria-labelledby="inference-heading" className="py-20 md:py-32">
+      <section aria-labelledby="inference-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -192,7 +192,7 @@ export default function PrinciplesPage() {
             >
               It will not infer what a person should decide
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               When a perimeter item is entered, the platform does not suggest
               whether it transfers or is retained. When a contract is
               entered, it does not infer whether it needs novation,
@@ -223,7 +223,7 @@ export default function PrinciplesPage() {
       </section>
 
       {/* History */}
-      <section aria-labelledby="history-heading" className="py-20 md:py-32">
+      <section aria-labelledby="history-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -232,7 +232,7 @@ export default function PrinciplesPage() {
             >
               It will not quietly overwrite the past
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Corrections are made by superseding a record, never by editing
               one. The original remains visible, with who entered it and
               when.
@@ -254,7 +254,7 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Absence */}
-      <section aria-labelledby="absence-heading" className="py-20 md:py-32">
+      <section aria-labelledby="absence-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -263,7 +263,7 @@ export default function PrinciplesPage() {
             >
               It will not show you a number it does not have
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Benchmarks require comparable programmes. Until there are
               enough of them, there is no benchmark, and the platform will
               not manufacture one from a thin sample and present it as market
@@ -281,17 +281,17 @@ export default function PrinciplesPage() {
       {/* What this costs you */}
       <section
         aria-labelledby="costs-heading"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
               id="costs-heading"
-              className="font-serif text-h2-sm text-white md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               What this costs you
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               These constraints are not free, and it would be dishonest to
               present them as pure benefit.
             </p>
@@ -319,7 +319,7 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Direct questions */}
-      <section aria-labelledby="direct-heading" className="py-20 md:py-32">
+      <section aria-labelledby="direct-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
@@ -328,7 +328,7 @@ export default function PrinciplesPage() {
             >
               One deliberate exception
             </h2>
-            <p className="mt-8 text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               There is a difference between a forecast the platform
               volunteers and a counterfactual you explicitly ask for.
             </p>
@@ -351,14 +351,14 @@ export default function PrinciplesPage() {
       {/* Early access */}
       <section
         aria-labelledby="early-access-principles"
-        className="bg-navy py-20 text-white md:py-32"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-principles"
-                className="font-serif text-h2-sm text-white md:text-h2"
+                className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
               >
                 Early access
               </h2>

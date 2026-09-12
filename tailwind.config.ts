@@ -1,5 +1,12 @@
 import type { Config } from "tailwindcss";
-import { colors, fontFamily, fontSize, layout } from "./src/lib/tokens";
+import {
+  colors,
+  fontFamily,
+  fontSize,
+  headingGap,
+  layout,
+  sectionSpacing,
+} from "./src/lib/tokens";
 
 const config: Config = {
   content: [
@@ -13,6 +20,7 @@ const config: Config = {
         ice: colors.ice,
         ink: colors.ink,
         muted: colors.muted,
+        hairline: colors.hairline,
         "on-navy": colors.onNavy,
         status: colors.status,
       },
@@ -31,10 +39,18 @@ const config: Config = {
         body: fontSize.body,
         small: fontSize.small,
         micro: fontSize.micro,
+        "prose-h2": fontSize.proseH2,
+        "prose-h3": fontSize.proseH3,
       },
       maxWidth: {
         content: layout.contentWidth,
         measure: layout.proseWidth,
+        "diagram-caption": layout.diagramCaption,
+      },
+      spacing: {
+        section: sectionSpacing.base[0],
+        "section-lg": sectionSpacing.base[1],
+        "heading-gap": headingGap,
       },
       typography: () => ({
         meridian: {
@@ -46,22 +62,22 @@ const config: Config = {
             "--tw-prose-bold": colors.ink,
             "--tw-prose-counters": colors.muted,
             "--tw-prose-bullets": colors.ice,
-            "--tw-prose-hr": "#e6e6e3",
+            "--tw-prose-hr": colors.hairline,
             "--tw-prose-quotes": colors.ink,
             "--tw-prose-quote-borders": colors.ice,
             "--tw-prose-captions": colors.muted,
             "--tw-prose-th-borders": colors.navy,
-            "--tw-prose-td-borders": "#e6e6e3",
+            "--tw-prose-td-borders": colors.hairline,
             maxWidth: layout.proseWidth,
-            fontSize: "1.125rem",
+            fontSize: fontSize.bodyLg[0],
             lineHeight: "1.7",
             "h1, h2, h3, h4": {
               fontFamily: fontFamily.serif.join(", "),
               fontWeight: "600",
               letterSpacing: "-0.01em",
             },
-            h2: { fontSize: "1.75rem", marginTop: "2.75em", marginBottom: "0.8em" },
-            h3: { fontSize: "1.375rem", marginTop: "2em", marginBottom: "0.7em" },
+            h2: { fontSize: fontSize.proseH2[0], marginTop: "1.6em", marginBottom: "0.5em" },
+            h3: { fontSize: fontSize.proseH3[0], marginTop: "1.4em", marginBottom: "0.45em" },
             p: { marginTop: "1.4em", marginBottom: "1.4em" },
             a: { textDecoration: "underline", textUnderlineOffset: "3px", textDecorationThickness: "1px" },
             "a:hover": { color: colors.muted },
@@ -81,7 +97,7 @@ const config: Config = {
               fontWeight: "600",
               letterSpacing: "0.02em",
               textTransform: "uppercase",
-              fontSize: "0.75rem",
+              fontSize: fontSize.micro[0],
               color: colors.muted,
               paddingBottom: "0.6em",
             },

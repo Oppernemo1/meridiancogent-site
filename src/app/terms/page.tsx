@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function TermsPage() {
   return (
-    <div className="py-20 md:py-28">
+    <div className="py-10 md:py-14">
       <Container>
         <div className="prose prose-meridian mx-auto">
           <h1>Terms of Use</h1>

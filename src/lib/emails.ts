@@ -1,10 +1,16 @@
 import { SITE_URL } from "./site";
+import { colors, emailColors } from "./tokens";
 
-const NAVY = "#1E2761";
-const ICE = "#CADCFC";
-const INK = "#2C2C2A";
-const MUTED = "#5F5E5A";
-const PAGE_BG = "#F4F4F2";
+// Sourced from tokens.ts rather than redeclared — mail clients need the
+// literal hex values inlined below, but the values themselves come from one
+// place.
+const NAVY = colors.navy;
+const ICE = colors.ice;
+const INK = colors.ink;
+const MUTED = colors.muted;
+const BORDER = colors.hairline;
+const PAGE_BG = emailColors.pageBg;
+const MUTED_LINK = emailColors.mutedLink;
 const CONTACT_EMAIL = "hello@meridiancogent.com";
 
 const SERIF = "Georgia, 'Times New Roman', Times, serif";
@@ -42,7 +48,7 @@ ${preheader}
 <tr>
 <td align="center" style="padding:24px 12px;">
 
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; border:1px solid #e6e6e3;">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px; max-width:600px; background-color:#ffffff; border-radius:12px; overflow:hidden; border:1px solid ${BORDER};">
 
 <!-- Header -->
 <tr>
@@ -136,7 +142,7 @@ again.
 <p style="margin:0 0 8px 0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${ICE};">
 MeridianCogent &mdash; M&amp;A execution, without the spreadsheet chaos.
 </p>
-<p style="margin:0; font-family:${SANS}; font-size:12px; line-height:1.6; color:#a9b6e0;">
+<p style="margin:0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${MUTED_LINK};">
 <a href="${SITE_URL}/privacy" target="_blank" style="color:${ICE}; text-decoration:underline;">Privacy</a>
 &nbsp;&bull;&nbsp;
 <a href="mailto:${CONTACT_EMAIL}" style="color:${ICE}; text-decoration:underline;">${CONTACT_EMAIL}</a>

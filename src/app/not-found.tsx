@@ -4,7 +4,7 @@ import { LineGraphMotif } from "@/components/LineGraphMotif";
 
 export default function NotFound() {
   return (
-    <div className="py-24 md:py-32">
+    <div className="py-12 md:py-16">
       <Container>
         <div className="mx-auto max-w-xl text-center">
           <LineGraphMotif
@@ -26,7 +26,7 @@ export default function NotFound() {
           <div className="mt-10 flex items-center justify-center gap-4">
             <Link
               href="/"
-              className="bg-navy px-5 py-3 text-body font-semibold text-white transition-colors hover:bg-navy/90"
+              className="bg-navy px-5 py-3 text-body font-semibold text-on-navy-primary transition-colors hover:bg-navy/90"
             >
               Back to home
             </Link>

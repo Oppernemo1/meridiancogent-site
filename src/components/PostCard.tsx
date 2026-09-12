@@ -42,7 +42,7 @@ export function PostCard({ post }: { post: PostMeta }) {
             {post.title}
           </Link>
         </h3>
-        <p className="mt-3 flex-1 text-small leading-relaxed text-muted">
+        <p className="mt-heading-gap flex-1 text-small leading-relaxed text-muted">
           {post.description}
         </p>
         <p className="mt-5 text-micro text-muted">
