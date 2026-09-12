@@ -26,18 +26,18 @@ export default function ResourcesPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="py-16 md:py-24">
+    <div className="py-20 md:py-28">
       <Container>
-        <header className="max-w-2xl">
-          <h1 className="font-serif text-4xl text-navy md:text-5xl">
+        <header className="max-w-measure">
+          <h1 className="font-serif text-display-sm text-navy md:text-display">
             Resources
           </h1>
-          <p className="mt-4 text-lg leading-relaxed text-muted">
+          <p className="mt-5 text-body-lg leading-relaxed text-muted">
             {DESCRIPTION}
           </p>
         </header>
 
-        <div className="mt-12">
+        <div className="mt-16">
           <ResourceIndex posts={posts} />
         </div>
       </Container>

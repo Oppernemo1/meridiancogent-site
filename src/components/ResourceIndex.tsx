@@ -30,7 +30,7 @@ export function ResourceIndex({ posts }: { posts: PostMeta[] }) {
               type="button"
               onClick={() => setActive(tag)}
               aria-pressed={isActive}
-              className={`rounded-full border px-4 py-1.5 text-sm font-medium transition-colors ${
+              className={`border px-4 py-1.5 text-small font-medium transition-colors ${
                 isActive
                   ? "border-navy bg-navy text-white"
                   : "border-black/15 bg-white text-muted hover:border-navy/40 hover:text-navy"
@@ -42,13 +42,13 @@ export function ResourceIndex({ posts }: { posts: PostMeta[] }) {
         })}
       </div>
 
-      <p className="mt-4 text-sm text-muted" aria-live="polite">
+      <p className="mt-4 text-small text-muted" aria-live="polite">
         {visible.length} {visible.length === 1 ? "article" : "articles"}
         {active !== "All" ? ` in ${active}` : ""}
       </p>
 
       {visible.length > 0 ? (
-        <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {visible.map((post) => (
             <PostCard key={post.slug} post={post} />
           ))}

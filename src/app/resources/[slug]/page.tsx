@@ -1,3 +1,4 @@
+import type { ComponentPropsWithoutRef } from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -12,6 +13,16 @@ import {
   getRelatedPosts,
 } from "@/lib/posts";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
+
+// Wraps rendered markdown tables in a scrollable box so wide financial
+// tables scroll horizontally on narrow viewports rather than overflowing.
+const mdxComponents = {
+  table: (props: ComponentPropsWithoutRef<"table">) => (
+    <div className="table-scroll">
+      <table {...props} />
+    </div>
+  ),
+};
 
 export const dynamicParams = false;
 
@@ -89,7 +100,7 @@ export default function ArticlePage({
   };
 
   return (
-    <article className="py-16 md:py-24">
+    <article className="py-20 md:py-28">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
@@ -97,7 +108,7 @@ export default function ArticlePage({
 
       <Container>
         <div className="mx-auto max-w-measure">
-          <p className="text-sm text-muted">
+          <p className="text-small text-muted">
             <Link
               href="/resources"
               className="underline underline-offset-4 hover:text-navy"
@@ -106,22 +117,22 @@ export default function ArticlePage({
             </Link>
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-2">
+          <div className="mt-6 flex flex-wrap gap-3">
             {frontmatter.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full bg-ice/40 px-2.5 py-0.5 text-xs font-medium text-navy"
+                className="text-micro font-medium uppercase tracking-wide text-navy"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h1 className="mt-4 font-serif text-3xl leading-tight text-navy md:text-[2.6rem] md:leading-[1.15]">
+          <h1 className="mt-4 font-serif text-h2-sm leading-[1.15] text-navy md:text-h2">
             {frontmatter.title}
           </h1>
 
-          <p className="mt-4 text-sm text-muted">
+          <p className="mt-4 text-small text-muted">
             {formatDate(frontmatter.date)} · {readingTime} read
           </p>
 
@@ -133,16 +144,17 @@ export default function ArticlePage({
           />
         </div>
 
-        <div className="prose prose-meridian mx-auto mt-10 prose-headings:font-serif">
+        <div className="prose prose-meridian mx-auto mt-12">
           <MDXRemote
             source={content}
+            components={mdxComponents}
             options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
           />
         </div>
 
         {related.length > 0 && (
-          <div className="mx-auto mt-20 max-w-measure border-t border-black/10 pt-10">
-            <h2 className="font-serif text-xl text-navy">Related articles</h2>
+          <div className="mx-auto mt-24 max-w-measure border-t border-black/10 pt-10">
+            <h2 className="font-serif text-h4 text-navy">Related articles</h2>
             <ul className="mt-6 space-y-6">
               {related.map((item) => (
                 <li key={item.slug}>
@@ -150,10 +162,10 @@ export default function ArticlePage({
                     href={`/resources/${item.slug}`}
                     className="group block"
                   >
-                    <span className="font-serif text-lg text-navy underline-offset-4 group-hover:underline">
+                    <span className="font-serif text-h4 text-navy underline-offset-4 group-hover:underline">
                       {item.title}
                     </span>
-                    <span className="mt-1 block text-sm text-muted">
+                    <span className="mt-1 block text-small text-muted">
                       {formatDate(item.date)} · {item.tags.join(", ")}
                     </span>
                   </Link>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { PostCard } from "@/components/PostCard";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 import {
   BackgroundLines,
   LineGraphMotif,
@@ -94,29 +95,29 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="relative overflow-hidden border-b border-black/5">
+      <section className="relative overflow-hidden">
         <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
-        <Container className="relative py-20 md:py-28">
+        <Container className="relative py-20 md:py-32">
           <div className="max-w-3xl">
-            <h1 className="text-balance font-serif text-4xl leading-[1.1] text-navy sm:text-5xl md:text-6xl">
+            <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
               M&amp;A execution, without the spreadsheet chaos.
             </h1>
 
-            <div className="mt-8 space-y-4 text-lg leading-relaxed text-ink">
+            <div className="mt-8 space-y-5 text-body-lg leading-relaxed text-ink">
               <p>
                 A deal closes on the legal calendar, not the separation plan.
                 Your TSAs run 12 to 36 months. Your Day 1 readiness sits on
                 spreadsheets scattered across four organisations. And the cost
                 of getting it wrong compounds monthly.
               </p>
-              <p className="text-[17px] text-muted">
+              <p className="text-body text-muted">
                 MeridianCogent is a control environment for the people running
                 the hardest part of the deal — the part that happens after
                 close. Separation offices and integration teams use it to track
                 obligations, manage TSAs, measure Day 1 readiness, and hold
                 themselves to the commitments they&apos;ve made.
               </p>
-              <p className="text-[17px] text-muted">
+              <p className="text-body text-muted">
                 It&apos;s built for people who know that &ldquo;in progress&rdquo;
                 is not a state, that dependencies matter more than features, and
                 that the decision record is as valuable as the deal itself.
@@ -124,7 +125,7 @@ export default function HomePage() {
             </div>
 
             <div className="mt-10 max-w-xl">
-              <p className="text-sm font-medium text-navy">
+              <p className="text-small font-medium text-navy">
                 In development. Join the early access list for updates.
               </p>
               <div className="mt-3">
@@ -136,29 +137,38 @@ export default function HomePage() {
       </section>
 
       {/* Who this is for */}
-      <section aria-labelledby="who" className="py-20 md:py-28">
-        <Container>
-          <h2 id="who" className="font-serif text-3xl text-navy md:text-4xl">
-            Who this is for
-          </h2>
-          <div className="mt-12 grid gap-x-10 gap-y-14 sm:grid-cols-2">
-            {PERSONAS.map((persona) => (
-              <div key={persona.heading} className="flex flex-col">
-                <LineGraphMotif
-                  variant={persona.motif}
-                  tone="navy"
-                  strokeWidth={4}
-                  className="h-14 w-28"
-                />
-                <h3 className="mt-5 font-serif text-xl text-navy">
-                  {persona.heading}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                  {persona.body}
-                </p>
-              </div>
-            ))}
-          </div>
+      <section
+        aria-labelledby="who"
+        className="relative overflow-hidden bg-navy py-20 text-white md:py-32"
+      >
+        <BackgroundLines
+          tone="ice"
+          className="pointer-events-none absolute inset-0 h-full w-full opacity-40"
+        />
+        <Container className="relative">
+          <RevealOnScroll>
+            <h2 id="who" className="font-serif text-h2-sm text-white md:text-h2">
+              Who this is for
+            </h2>
+            <div className="mt-14 grid gap-x-10 gap-y-14 sm:grid-cols-2">
+              {PERSONAS.map((persona) => (
+                <div key={persona.heading} className="flex flex-col">
+                  <LineGraphMotif
+                    variant={persona.motif}
+                    tone="ice"
+                    strokeWidth={4}
+                    className="h-14 w-28"
+                  />
+                  <h3 className="mt-5 font-serif text-h3 text-white">
+                    {persona.heading}
+                  </h3>
+                  <p className="mt-3 text-body leading-relaxed text-on-navy-secondary">
+                    {persona.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </RevealOnScroll>
         </Container>
       </section>
 
@@ -166,117 +176,125 @@ export default function HomePage() {
       <section
         id="approach"
         aria-labelledby="approach-heading"
-        className="scroll-mt-24 border-y border-black/5 bg-ice/20 py-20 md:py-28"
+        className="scroll-mt-24 py-20 md:py-32"
       >
         <Container>
-          <div className="max-w-3xl">
-            <h2
-              id="approach-heading"
-              className="font-serif text-3xl text-navy md:text-4xl"
-            >
-              How MeridianCogent thinks about execution
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-ink">
-              The problem looks like this: your deal is tracked in spreadsheets, 
-              status emails, and handshake agreements — not because anyone wants 
-              it that way, but because nobody's built the alternative. Every change 
-              is invisible to someone who needs to know. Every dependency sits in 
-              someone's head. Every commitment is re-negotiated when it slips. 
-              
-              MeridianCogent replaces the spreadsheet with a control environment: 
-              one place where you define what needs to happen, who is accountable for 
-              it, and when it needs to be done. The difference is not in the feature 
-              count. It's in visibility — the moment something goes at-risk, everyone 
-              who needs to know finds out, and you have an audit trail of every 
-              commitment and every decision that led to it. 
-              
-              That sounds like project management. It's actually protection. Your
-               deal's value sits in the execution after close. Protecting that value 
-               means seeing it clearly.
+          <RevealOnScroll>
+            <div className="max-w-measure">
+              <h2
+                id="approach-heading"
+                className="font-serif text-h2-sm text-navy md:text-h2"
+              >
+                How MeridianCogent thinks about execution
+              </h2>
+              <p className="mt-6 text-body-lg leading-relaxed text-ink">
+                The problem looks like this: your deal is tracked in spreadsheets,
+                status emails, and handshake agreements — not because anyone wants
+                it that way, but because nobody&apos;s built the alternative. Every
+                change is invisible to someone who needs to know. Every dependency
+                sits in someone&apos;s head. Every commitment is re-negotiated when
+                it slips.
+              </p>
+              <p className="mt-5 text-body-lg leading-relaxed text-ink">
+                MeridianCogent replaces the spreadsheet with a control
+                environment: one place where you define what needs to happen, who
+                is accountable for it, and when it needs to be done. The
+                difference is not in the feature count. It&apos;s in visibility —
+                the moment something goes at-risk, everyone who needs to know
+                finds out, and you have an audit trail of every commitment and
+                every decision that led to it.
+              </p>
+              <p className="mt-5 text-body-lg leading-relaxed text-ink">
+                That sounds like project management. It&apos;s actually
+                protection. Your deal&apos;s value sits in the execution after
+                close. Protecting that value means seeing it clearly.
+              </p>
+            </div>
+
+            <div className="mt-16 grid gap-10 md:grid-cols-3">
+              {APPROACH.map((item) => (
+                <div key={item.heading}>
+                  <div className="h-px w-12 bg-navy" />
+                  <h3 className="mt-4 font-serif text-h4 text-navy">
+                    {item.heading}
+                  </h3>
+                  <p className="mt-3 text-small leading-relaxed text-muted">
+                    {item.body}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-16 max-w-measure text-body-lg leading-relaxed text-ink">
+              MeridianCogent is the category of tool that treats execution as the
+              deliverable: one source of truth for obligations and readiness, held
+              to the commitments that were actually made.
             </p>
-          </div>
-
-          <div className="mt-12 grid gap-10 md:grid-cols-3">
-            {APPROACH.map((item) => (
-              <div key={item.heading}>
-                <div className="h-px w-12 bg-navy" />
-                <h3 className="mt-4 font-serif text-lg text-navy">
-                  {item.heading}
-                </h3>
-                <p className="mt-3 text-[15px] leading-relaxed text-muted">
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <p className="mt-12 max-w-3xl text-lg leading-relaxed text-ink">
-            MeridianCogent is the category of tool that treats execution as the
-            deliverable: one source of truth for obligations and readiness, held
-            to the commitments that were actually made.
-          </p>
+          </RevealOnScroll>
         </Container>
       </section>
 
       {/* Early access */}
-      <section aria-labelledby="early-access-home" className="py-20 md:py-28">
+      <section
+        aria-labelledby="early-access-home"
+        className="bg-navy py-20 text-white md:py-32"
+      >
         <Container>
-          <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
+          <RevealOnScroll className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
               <h2
                 id="early-access-home"
-                className="font-serif text-3xl text-navy md:text-4xl"
+                className="font-serif text-h2-sm text-white md:text-h2"
               >
                 Get updates as we open access.
               </h2>
-              <p className="mt-5 text-[17px] leading-relaxed text-muted">
+              <p className="mt-5 text-body leading-relaxed text-on-navy-secondary">
                 We&apos;re building for the integration and separation teams
                 running deals right now. Early access opens in phases —
                 diagnostics first, then the full platform. If you&apos;re
                 running a carve-out or integration, we&apos;d like to hear from
                 you.
               </p>
-              <p className="mt-4 text-sm">
+              <p className="mt-4 text-small">
                 <Link
                   href="/early-access"
-                  className="font-medium text-navy underline underline-offset-4 hover:text-muted"
+                  className="font-medium text-ice underline underline-offset-4 hover:text-white"
                 >
                   What early access means
                 </Link>
               </p>
             </div>
-            <div className="rounded-lg border border-black/10 bg-white p-6 md:p-8">
-              <EarlyAccessForm source="homepage-early-access" />
+            <div className="border border-white/15 bg-white/5 p-6 md:p-8">
+              <EarlyAccessForm theme="dark" source="homepage-early-access" />
             </div>
-          </div>
+          </RevealOnScroll>
         </Container>
       </section>
 
       {/* Resources preview */}
-      <section
-        aria-labelledby="resources-preview"
-        className="border-t border-black/5 py-20 md:py-28"
-      >
+      <section aria-labelledby="resources-preview" className="py-20 md:py-32">
         <Container>
-          <div className="flex items-end justify-between gap-6">
-            <h2
-              id="resources-preview"
-              className="font-serif text-3xl text-navy md:text-4xl"
-            >
-              Resources
-            </h2>
-            <Link
-              href="/resources"
-              className="shrink-0 text-sm font-medium text-navy underline underline-offset-4 hover:text-muted"
-            >
-              All articles
-            </Link>
-          </div>
-          <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {posts.map((post) => (
-              <PostCard key={post.slug} post={post} />
-            ))}
-          </div>
+          <RevealOnScroll>
+            <div className="flex items-end justify-between gap-6">
+              <h2
+                id="resources-preview"
+                className="font-serif text-h2-sm text-navy md:text-h2"
+              >
+                Resources
+              </h2>
+              <Link
+                href="/resources"
+                className="shrink-0 text-small font-medium text-navy underline underline-offset-4 hover:text-muted"
+              >
+                All articles
+              </Link>
+            </div>
+            <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {posts.map((post) => (
+                <PostCard key={post.slug} post={post} />
+              ))}
+            </div>
+          </RevealOnScroll>
         </Container>
       </section>
     </>

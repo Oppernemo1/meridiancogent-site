@@ -14,7 +14,16 @@
 
   body {
     @apply bg-white font-sans text-ink antialiased;
+    font-size: 1rem;
+    line-height: 1.65;
     text-rendering: optimizeLegibility;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 1.125rem;
+      line-height: 1.7;
+    }
   }
 
   h1,
@@ -35,10 +44,29 @@
   a {
     text-underline-offset: 3px;
   }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+/* Wraps prose tables so wide financial tables scroll horizontally within
+   their own box on narrow viewports, instead of overflowing the page or
+   getting clipped. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }

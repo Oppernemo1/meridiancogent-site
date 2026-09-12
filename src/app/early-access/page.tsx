@@ -44,24 +44,24 @@ const EXPECTATIONS = [
 
 export default function EarlyAccessPage() {
   return (
-    <div className="py-16 md:py-24">
+    <div className="py-20 md:py-28">
       <Container>
-        <div className="relative overflow-hidden rounded-xl border border-black/10 bg-navy px-6 py-14 text-white md:px-14 md:py-20">
+        <div className="relative overflow-hidden bg-navy px-6 py-14 text-white md:px-14 md:py-20">
           <BackgroundLines
             tone="ice"
             className="pointer-events-none absolute inset-0 h-full w-full opacity-70"
           />
           <div className="relative max-w-2xl">
-            <h1 className="font-serif text-4xl text-white md:text-5xl">
+            <h1 className="font-serif text-display-sm text-white md:text-display">
               Early access
             </h1>
-            <p className="mt-5 text-lg leading-relaxed text-ice/90">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               MeridianCogent is a control environment for separation offices and
               integration teams. It&apos;s still being built. Early access is how
               we stay in touch with the people we&apos;re building it for.
             </p>
             <div className="mt-8 max-w-lg">
-              <p className="text-sm font-medium text-ice">
+              <p className="text-small font-medium text-ice">
                 In development. Join the early access list for updates.
               </p>
               <div className="mt-3">
@@ -71,25 +71,25 @@ export default function EarlyAccessPage() {
           </div>
         </div>
 
-        <div className="mx-auto mt-16 max-w-3xl">
-          <h2 className="font-serif text-2xl text-navy md:text-3xl">
+        <div className="mx-auto mt-20 max-w-measure md:mt-28">
+          <h2 className="font-serif text-h2-sm text-navy md:text-h2">
             What to expect
           </h2>
-          <dl className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2">
+          <dl className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2">
             {EXPECTATIONS.map((item) => (
               <div key={item.heading}>
                 <div className="h-px w-10 bg-navy" />
-                <dt className="mt-3 font-serif text-lg text-navy">
+                <dt className="mt-3 font-serif text-h4 text-navy">
                   {item.heading}
                 </dt>
-                <dd className="mt-2 text-[15px] leading-relaxed text-muted">
+                <dd className="mt-2 text-small leading-relaxed text-muted">
                   {item.body}
                 </dd>
               </div>
             ))}
           </dl>
 
-          <p className="mt-12 text-sm text-muted">
+          <p className="mt-14 text-small text-muted">
             Questions about early access? Email{" "}
             <a
               href="mailto:hello@meridiancogent.com"

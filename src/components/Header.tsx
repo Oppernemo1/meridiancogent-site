@@ -4,7 +4,7 @@ import { NAV_LINKS } from "@/lib/site";
 
 export function Header() {
   return (
-    <header className="border-b border-black/5 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/75 sticky top-0 z-40">
+    <header className="sticky top-0 z-40 border-b border-black/10 bg-white">
       <Container className="flex h-16 items-center justify-between md:h-20">
         <Link href="/" className="flex items-center" aria-label="MeridianCogent — home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -17,7 +17,7 @@ export function Header() {
           />
         </Link>
         <nav aria-label="Primary">
-          <ul className="flex items-center gap-5 text-sm md:gap-8 md:text-[15px]">
+          <ul className="flex items-center gap-5 text-small md:gap-8 md:text-body">
             {NAV_LINKS.map((link) => (
               <li key={link.href}>
                 <Link

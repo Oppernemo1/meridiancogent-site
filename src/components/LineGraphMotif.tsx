@@ -1,4 +1,5 @@
 import { type CSSProperties } from "react";
+import { colors } from "@/lib/tokens";
 
 export type MotifVariant =
   | "deal"
@@ -35,7 +36,7 @@ export function LineGraphMotif({
   style?: CSSProperties;
   strokeWidth?: number;
 }) {
-  const stroke = tone === "ice" ? "#CADCFC" : "#1E2761";
+  const stroke = tone === "ice" ? colors.ice : colors.navy;
   const opacity = tone === "faint" ? 0.14 : 1;
 
   return (
@@ -80,7 +81,7 @@ export function BackgroundLines({
   className?: string;
   tone?: "faint" | "ice";
 }) {
-  const stroke = tone === "ice" ? "#CADCFC" : "#1E2761";
+  const stroke = tone === "ice" ? colors.ice : colors.navy;
   const opacity = tone === "ice" ? 0.22 : 0.06;
   return (
     <svg

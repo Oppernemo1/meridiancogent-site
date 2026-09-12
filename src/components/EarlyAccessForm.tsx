@@ -70,7 +70,7 @@ export function EarlyAccessForm({
   }
 
   const inputBase =
-    "w-full rounded-md border px-4 py-3 text-[15px] outline-none transition-colors focus:ring-2 focus:ring-offset-2";
+    "w-full border px-4 py-3 text-body outline-none transition-colors focus:ring-2 focus:ring-offset-2";
   const inputTheme = dark
     ? "border-white/20 bg-white/10 text-white placeholder:text-white/50 focus:border-ice focus:ring-ice/60 focus:ring-offset-navy"
     : "border-black/15 bg-white text-ink placeholder:text-muted/70 focus:border-navy focus:ring-navy/30 focus:ring-offset-white";
@@ -109,7 +109,7 @@ export function EarlyAccessForm({
         <button
           type="submit"
           disabled={status === "submitting"}
-          className={`shrink-0 rounded-md px-5 py-3 text-[15px] font-semibold transition-colors disabled:opacity-60 ${buttonTheme}`}
+          className={`shrink-0 px-5 py-3 text-body font-semibold transition-colors disabled:opacity-60 ${buttonTheme}`}
         >
           {status === "submitting" ? "Sending…" : buttonLabel}
         </button>
@@ -119,7 +119,7 @@ export function EarlyAccessForm({
         id={`${id}-status`}
         role="status"
         aria-live="polite"
-        className={`mt-2 min-h-[1.25rem] text-sm ${
+        className={`mt-2 min-h-[1.25rem] text-small ${
           status === "error"
             ? dark
               ? "text-ice"

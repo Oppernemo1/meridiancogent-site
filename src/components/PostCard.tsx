@@ -13,13 +13,13 @@ export function PostCard({ post }: { post: PostMeta }) {
   const motif = TAG_TO_MOTIF[post.tags[0]] ?? "deal";
 
   return (
-    <article className="group relative flex h-full flex-col rounded-lg border border-black/10 bg-white transition-colors hover:border-navy/30">
+    <article className="group relative flex h-full flex-col border border-black/10 bg-white transition-colors hover:border-navy/40">
       <div className="flex items-center justify-between border-b border-black/5 px-6 pt-6">
         <div className="flex flex-wrap gap-2">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-ice/40 px-2.5 py-0.5 text-xs font-medium text-navy"
+              className="text-micro font-medium uppercase tracking-wide text-navy"
             >
               {tag}
             </span>
@@ -34,7 +34,7 @@ export function PostCard({ post }: { post: PostMeta }) {
       </div>
 
       <div className="flex flex-1 flex-col px-6 py-5">
-        <h3 className="font-serif text-xl leading-snug text-navy">
+        <h3 className="font-serif text-h4 leading-snug text-navy">
           <Link
             href={`/resources/${post.slug}`}
             className="after:absolute after:inset-0"
@@ -42,10 +42,10 @@ export function PostCard({ post }: { post: PostMeta }) {
             {post.title}
           </Link>
         </h3>
-        <p className="mt-3 flex-1 text-[15px] leading-relaxed text-muted">
+        <p className="mt-3 flex-1 text-small leading-relaxed text-muted">
           {post.description}
         </p>
-        <p className="mt-5 text-xs text-muted">
+        <p className="mt-5 text-micro text-muted">
           {formatDate(post.date)}
           {post.readingTime ? ` · ${post.readingTime} read` : ""}
         </p>
