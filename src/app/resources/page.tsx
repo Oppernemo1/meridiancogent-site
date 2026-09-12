@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { ResourceIndex } from "@/components/ResourceIndex";
 import { getAllPosts } from "@/lib/posts";
@@ -34,6 +35,14 @@ export default function ResourcesPage() {
           </h1>
           <p className="mt-5 text-body-lg leading-relaxed text-muted">
             {DESCRIPTION}
+          </p>
+          <p className="mt-4 text-small">
+            <Link
+              href="/platform"
+              className="font-medium text-navy underline underline-offset-4 hover:text-muted"
+            >
+              See how the platform itself is built
+            </Link>
           </p>
         </header>
 
