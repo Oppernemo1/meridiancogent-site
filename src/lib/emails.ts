@@ -27,9 +27,9 @@ export function confirmationEmail(): {
   html: string;
   text: string;
 } {
-  const subject = "You're on the list — early access updates coming";
+  const subject = "You’re on the list — early access updates coming";
   const preheader =
-    "Thanks for joining MeridianCogent early access. Here's what to expect.";
+    "Thanks for joining MeridianCogent early access. Here’s what to expect.";
 
   const html = `<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -73,12 +73,12 @@ ${preheader}
 <tr>
 <td style="padding:36px 32px 28px 32px;">
 <h1 style="margin:0 0 16px 0; font-family:${SERIF}; font-size:26px; line-height:1.25; color:${NAVY}; font-weight:normal;">
-You're on the list.
+You’re on the list.
 </h1>
 
 <p style="margin:0 0 18px 0; font-family:${SANS}; font-size:15px; line-height:1.7; color:${INK};">
-Thanks for signing up for MeridianCogent early access. We'll email you as we
-get closer to launch.
+Thanks for joining the MeridianCogent early access list. Here is what that
+means.
 </p>
 
 <p style="margin:0 0 12px 0; font-family:${SANS}; font-size:15px; line-height:1.7; color:${INK};">
@@ -88,45 +88,45 @@ A few things worth setting expectations on:
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px 0;">
 <tr>
 <td style="padding:0 0 10px 0; font-family:${SANS}; font-size:15px; line-height:1.6; color:${INK};">
-<span style="color:${NAVY}; font-weight:bold;">It's in development.</span>
-The product isn't generally available yet. Access opens in phases &mdash;
-diagnostics first, then the full platform.
-</td>
-</tr>
-<tr>
-<td style="padding:0 0 10px 0; font-family:${SANS}; font-size:15px; line-height:1.6; color:${INK};">
 <span style="color:${NAVY}; font-weight:bold;">Updates come by email.</span>
 Occasional notes as the product takes shape and as access widens &mdash; no
-newsletter cadence.
+newsletter cadence, no drip sequence.
 </td>
 </tr>
 <tr>
 <td style="padding:0; font-family:${SANS}; font-size:15px; line-height:1.6; color:${INK};">
 <span style="color:${NAVY}; font-weight:bold;">No launch date is promised.</span>
-When there's something concrete to show you or to give you access to, you'll
-hear from us.
+Access opens in phases, starting with diagnostics. When there is something
+concrete to show you, you will hear from us.
 </td>
 </tr>
 </table>
 
-<p style="margin:0 0 24px 0; font-family:${SANS}; font-size:15px; line-height:1.7; color:${INK};">
-While you wait, our resources cover the practical side of TSAs, carve-out
-separation, and Day 1 readiness:
+<p style="margin:0 0 16px 0; font-family:${SANS}; font-size:15px; line-height:1.7; color:${INK};">
+In the meantime:
 </p>
 
 <!-- Button -->
-<table role="presentation" cellpadding="0" cellspacing="0" border="0">
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px 0;">
 <tr>
 <td style="border-radius:6px; background-color:${NAVY};">
-<a href="${SITE_URL}/resources" target="_blank" style="display:inline-block; padding:12px 22px; font-family:${SANS}; font-size:14px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:6px;">
-Explore the resources &rarr;
+<a href="${SITE_URL}/platform" target="_blank" style="display:inline-block; padding:12px 22px; font-family:${SANS}; font-size:14px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:6px;">
+See how the platform works &rarr;
 </a>
 </td>
 </tr>
 </table>
 
+<p style="margin:0 0 8px 0; font-family:${SANS}; font-size:14px; line-height:1.6;">
+<a href="${SITE_URL}/principles" target="_blank" style="color:${NAVY}; text-decoration:underline;">What the platform will not assert</a>
+</p>
+
+<p style="margin:0 0 24px 0; font-family:${SANS}; font-size:14px; line-height:1.6;">
+<a href="${SITE_URL}/resources" target="_blank" style="color:${NAVY}; text-decoration:underline;">Practitioner writing on TSAs and carve-out separation</a>
+</p>
+
 <p style="margin:26px 0 0 0; font-family:${SANS}; font-size:14px; line-height:1.7; color:${MUTED};">
-If you didn't sign up, you can ignore this email and you won't hear from us
+If you didn’t sign up, you can ignore this email and you won’t hear from us
 again.
 </p>
 
@@ -140,7 +140,7 @@ again.
 <tr>
 <td style="background-color:${NAVY}; padding:24px 32px;">
 <p style="margin:0 0 8px 0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${ICE};">
-MeridianCogent &mdash; M&amp;A execution, without the spreadsheet chaos.
+MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integrations.
 </p>
 <p style="margin:0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${MUTED_LINK};">
 <a href="${SITE_URL}/privacy" target="_blank" style="color:${ICE}; text-decoration:underline;">Privacy</a>
@@ -159,19 +159,21 @@ MeridianCogent &mdash; M&amp;A execution, without the spreadsheet chaos.
 </html>`;
 
   const text = [
-    "You're on the list.",
+    "You’re on the list.",
     "",
-    "Thanks for signing up for MeridianCogent early access. We'll email you as we get closer to launch.",
+    "Thanks for joining the MeridianCogent early access list. Here is what that means.",
     "",
     "A few things worth setting expectations on:",
     "",
-    "- It's in development. The product isn't generally available yet. Access opens in phases - diagnostics first, then the full platform.",
-    "- Updates come by email. Occasional notes as the product takes shape and as access widens - no newsletter cadence.",
-    "- No launch date is promised. When there's something concrete to show you or to give you access to, you'll hear from us.",
+    "- Updates come by email. Occasional notes as the product takes shape and as access widens - no newsletter cadence, no drip sequence.",
+    "- No launch date is promised. Access opens in phases, starting with diagnostics. When there is something concrete to show you, you will hear from us.",
     "",
-    `While you wait, our resources cover the practical side of TSAs, carve-out separation, and Day 1 readiness: ${SITE_URL}/resources`,
+    "In the meantime:",
+    `- See how the platform works: ${SITE_URL}/platform`,
+    `- What the platform will not assert: ${SITE_URL}/principles`,
+    `- Practitioner writing on TSAs and carve-out separation: ${SITE_URL}/resources`,
     "",
-    "If you didn't sign up, you can ignore this email and you won't hear from us again.",
+    "If you didn’t sign up, you can ignore this email and you won’t hear from us again.",
     "",
     "- The MeridianCogent team",
     "",
