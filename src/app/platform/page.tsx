@@ -388,8 +388,14 @@ export default function PlatformPage() {
             <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Access is scoped to the programme, not the organisation — being
               an employee of the customer does not grant visibility of a
-              deal. Advisors and vendors hold time-bounded, logged access to
-              only what they need.
+              deal. Advisors and vendors hold{" "}
+              <Link
+                href="/security"
+                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
+              >
+                time-bounded, logged access
+              </Link>{" "}
+              to only what they need.
             </p>
             <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               Programmes can run under code names. Exports are watermarked to

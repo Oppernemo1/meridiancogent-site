@@ -67,9 +67,9 @@ export const fontFamily = {
  * mechanism, to keep the scale easy to reason about.
  */
 export const fontSize: Record<string, [string, { lineHeight: string; letterSpacing?: string }]> = {
-  display: ["3.75rem", { lineHeight: "1.1", letterSpacing: "-0.015em" }], // 60px — h1 desktop
-  displaySm: ["2.25rem", { lineHeight: "1.15", letterSpacing: "-0.01em" }], // 36px — h1 mobile
-  h2: ["2.5rem", { lineHeight: "1.15", letterSpacing: "-0.01em" }], // 40px desktop
+  display: ["2.75rem", { lineHeight: "1.15", letterSpacing: "-0.015em" }], // 44px — h1 desktop
+  displaySm: ["1.65rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }], // 26.4px — h1 mobile
+  h2: ["1.875rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }], // 30px desktop
   h2Sm: ["1.875rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }], // 30px mobile
   h3: ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.005em" }], // 24px
   h4: ["1.125rem", { lineHeight: "1.4" }], // 18px
@@ -98,7 +98,7 @@ export const sectionSpacing = {
  * Gap between a section heading and its first paragraph, in rem. Wired into
  * Tailwind as the `heading-gap` spacing key — applied as `mt-heading-gap`.
  */
-export const headingGap = "0.75rem";
+export const headingGap = "0.5rem";
 
 /** Layout widths. */
 export const layout = {

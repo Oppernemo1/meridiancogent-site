@@ -16,6 +16,7 @@ export type TopicTag = (typeof TOPIC_TAGS)[number];
 export const NAV_LINKS = [
   { label: "Platform", href: "/platform" },
   { label: "Principles", href: "/principles" },
+  { label: "Security", href: "/security" },
   { label: "Resources", href: "/resources" },
   { label: "Early Access", href: "/early-access" },
 ];

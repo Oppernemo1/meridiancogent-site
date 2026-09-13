@@ -25,10 +25,6 @@ export const metadata: Metadata = {
 
 const EXPECTATIONS = [
   {
-    heading: "It's in development",
-    body: "MeridianCogent isn't generally available yet. The product is being built with a small group of separation and integration teams, and access opens in phases — diagnostics first, then the full platform.",
-  },
-  {
     heading: "Updates come by email",
     body: "If you join the list, you'll get occasional updates as the product takes shape and as access widens. That's it — no newsletter cadence, no drip sequence.",
   },
@@ -37,8 +33,8 @@ const EXPECTATIONS = [
     body: "We're not going to give you a quarter and miss it. When there's something concrete to show you or to give you access to, you'll hear from us.",
   },
   {
-    heading: "One email, unsubscribe anytime",
-    body: "We ask for an email address and nothing else. You can leave the list at any point, and we won't share the address outside MeridianCogent.",
+    heading: "One email address, nothing else",
+    body: "We ask for an email address and nothing else. No company, no role, no phone number.",
   },
 ];
 
@@ -80,7 +76,7 @@ export default function EarlyAccessPage() {
             >
               What to expect
             </h2>
-            <dl className="mt-heading-gap grid gap-x-10 gap-y-10 sm:grid-cols-2">
+            <dl className="mt-heading-gap grid gap-x-10 gap-y-10 md:grid-cols-3">
               {EXPECTATIONS.map((item) => (
                 <div key={item.heading}>
                   <div className="h-px w-10 bg-navy" />
