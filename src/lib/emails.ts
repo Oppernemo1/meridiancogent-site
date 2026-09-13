@@ -1,5 +1,6 @@
 import { SITE_URL } from "./site";
 import { colors, emailColors } from "./tokens";
+import { unsubscribeUrl } from "./unsubscribe";
 
 // Sourced from tokens.ts rather than redeclared — mail clients need the
 // literal hex values inlined below, but the values themselves come from one
@@ -22,14 +23,16 @@ const SANS = "Helvetica, Arial, sans-serif";
  * mobile. Web-safe fonts only (Georgia serif headings, Arial/Helvetica body)
  * to match the site's typographic system.
  */
-export function confirmationEmail(): {
+export function confirmationEmail(email: string): {
   subject: string;
   html: string;
   text: string;
+  unsubscribeUrl: string;
 } {
   const subject = "You’re on the list — early access updates coming";
   const preheader =
     "Thanks for joining MeridianCogent early access. Here’s what to expect.";
+  const unsubscribe = unsubscribeUrl(email);
 
   const html = `<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
@@ -146,6 +149,8 @@ MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integra
 <a href="${SITE_URL}/privacy" target="_blank" style="color:${ICE}; text-decoration:underline;">Privacy</a>
 &nbsp;&bull;&nbsp;
 <a href="mailto:${CONTACT_EMAIL}" style="color:${ICE}; text-decoration:underline;">${CONTACT_EMAIL}</a>
+&nbsp;&bull;&nbsp;
+<a href="${unsubscribe}" target="_blank" style="color:${ICE}; text-decoration:underline;">Unsubscribe</a>
 </p>
 </td>
 </tr>
@@ -179,9 +184,10 @@ MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integra
     "",
     `Privacy: ${SITE_URL}/privacy`,
     `Contact: ${CONTACT_EMAIL}`,
+    `Unsubscribe: ${unsubscribe}`,
   ].join("\n");
 
-  return { subject, html, text };
+  return { subject, html, text, unsubscribeUrl: unsubscribe };
 }
 
 /** Plain-text internal notification sent to the role address on each signup. */

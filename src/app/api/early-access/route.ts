@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { earlyAccessSchema } from "@/lib/validation";
 import { confirmationEmail, internalNotification } from "@/lib/emails";
+import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -14,6 +15,14 @@ function json(body: Record<string, unknown>, status: number) {
 }
 
 export async function POST(request: Request) {
+  // --- Rate limit (per IP, before anything else costs a Resend call) ---
+  if (isRateLimited(`early-access:${getClientIp(request)}`)) {
+    return json(
+      { error: "Too many requests. Please try again later." },
+      429,
+    );
+  }
+
   // --- Parse body ---
   let payload: unknown;
   try {
@@ -57,19 +66,42 @@ export async function POST(request: Request) {
 
   const resend = new Resend(apiKey);
 
-  // --- 1. Add the contact to the Resend Segment ---
+  // --- 1. Check whether this contact already exists in the Segment ---
+  // Resend's create endpoint's behaviour on a duplicate email isn't
+  // documented, so we check explicitly rather than rely on it. A repeat
+  // signup gets the same success response but no second confirmation email.
+  let isNewContact = true;
   try {
-    const { error } = await resend.contacts.create({
-      email,
+    const { data, error } = await resend.contacts.get({
       audienceId: segmentId,
-      unsubscribed: false,
+      email,
     });
-
-    if (error) {
-      const alreadyExists = /already|exist/i.test(
-        `${error.name} ${error.message}`,
+    if (data) {
+      isNewContact = false;
+    } else if (error && error.name !== "not_found") {
+      console.error("[early-access] contacts.get error:", error);
+      return json(
+        { error: "We couldn't add you to the list. Please try again in a moment." },
+        502,
       );
-      if (!alreadyExists) {
+    }
+  } catch (err) {
+    console.error("[early-access] contacts.get threw:", err);
+    return json(
+      { error: "We couldn't add you to the list. Please try again in a moment." },
+      502,
+    );
+  }
+
+  if (isNewContact) {
+    // --- 2. Add the contact to the Resend Segment ---
+    try {
+      const { error } = await resend.contacts.create({
+        email,
+        audienceId: segmentId,
+        unsubscribed: false,
+      });
+      if (error) {
         console.error("[early-access] contacts.create error:", error);
         return json(
           {
@@ -79,36 +111,47 @@ export async function POST(request: Request) {
           502,
         );
       }
+    } catch (err) {
+      console.error("[early-access] contacts.create threw:", err);
+      return json(
+        { error: "We couldn't add you to the list. Please try again in a moment." },
+        502,
+      );
     }
-  } catch (err) {
-    console.error("[early-access] contacts.create threw:", err);
-    return json(
-      { error: "We couldn't add you to the list. Please try again in a moment." },
-      502,
-    );
-  }
 
-  // --- 2. Branded confirmation email to the registrant (best-effort) ---
-  try {
-    const { subject, html, text } = confirmationEmail();
-    await resend.emails.send({ from: fromEmail, to: email, subject, html, text });
-  } catch (err) {
-    console.error("[early-access] confirmation email failed:", err);
-    // The signup itself succeeded; don't fail the request.
-  }
+    // --- 3. Branded confirmation email to the registrant (best-effort) ---
+    try {
+      const { subject, html, text, unsubscribeUrl: listUnsubscribe } =
+        confirmationEmail(email);
+      await resend.emails.send({
+        from: fromEmail,
+        to: email,
+        subject,
+        html,
+        text,
+        headers: {
+          "List-Unsubscribe": `<${listUnsubscribe}>`,
+          "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+        },
+      });
+    } catch (err) {
+      console.error("[early-access] confirmation email failed:", err);
+      // The signup itself succeeded; don't fail the request.
+    }
 
-  // --- 3. Plain internal notification (best-effort) ---
-  try {
-    const { subject, text } = internalNotification({ email, source });
-    await resend.emails.send({
-      from: fromEmail,
-      to: internalEmail,
-      replyTo: email,
-      subject,
-      text,
-    });
-  } catch (err) {
-    console.error("[early-access] internal notification failed:", err);
+    // --- 4. Plain internal notification (best-effort) ---
+    try {
+      const { subject, text } = internalNotification({ email, source });
+      await resend.emails.send({
+        from: fromEmail,
+        to: internalEmail,
+        replyTo: email,
+        subject,
+        text,
+      });
+    } catch (err) {
+      console.error("[early-access] internal notification failed:", err);
+    }
   }
 
   return json({ ok: true }, 200);

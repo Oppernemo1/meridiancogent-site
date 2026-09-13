@@ -36,6 +36,10 @@ const EXPECTATIONS = [
     heading: "One email address, nothing else",
     body: "We ask for an email address and nothing else. No company, no role, no phone number.",
   },
+  {
+    heading: "Unsubscribe anytime",
+    body: "Every email has a one-click unsubscribe link. Use it and you're off the list immediately — no confirmation step, no waiting.",
+  },
 ];
 
 export default function EarlyAccessPage() {
@@ -76,7 +80,7 @@ export default function EarlyAccessPage() {
             >
               What to expect
             </h2>
-            <dl className="mt-heading-gap grid gap-x-10 gap-y-10 md:grid-cols-3">
+            <dl className="mt-heading-gap grid gap-x-10 gap-y-10 sm:grid-cols-2">
               {EXPECTATIONS.map((item) => (
                 <div key={item.heading}>
                   <div className="h-px w-10 bg-navy" />
