@@ -7,8 +7,12 @@
 
 export const colors = {
   graphite: "#2B2F3A", // primary — dark grounds, headings, ink-on-paper emphasis
-  accent: "#E8743B", // signal orange — fills, the logo mark, rules/strokes, small labels on dark grounds
-  accentDark: "#C4562A", // orange text on a light ground — links, section labels, emphasis (the bright accent fails AA as body text)
+  // Three accent stops — #E8743B alone fails 4.5:1 AA as text against both
+  // paper and graphite, so text uses get their own darkened/lightened stop
+  // per ground. Never use `accent` itself for text.
+  accent: "#E8743B", // signal orange — fills, the logo mark, rules/strokes/borders. Never text.
+  accentDark: "#B04A22", // orange text on a light ground — links, section labels, emphasis. 5.23:1 on paper.
+  accentLight: "#F08A55", // orange text on the graphite ground — panel labels/values, footer links. 5.39:1 on graphite.
   ink: "#2A2C31", // body text on paper
   muted: "#63676F", // secondary text on paper
   hairline: "#E3E4E7", // border colour — shared between the prose table, card borders (tailwind.config.ts) and the email template

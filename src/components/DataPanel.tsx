@@ -15,7 +15,7 @@ export function DataPanel({
 }) {
   return (
     <div className="w-full rounded-lg bg-graphite p-5">
-      <p className="text-label font-semibold uppercase text-accent">{label}</p>
+      <p className="text-label font-semibold uppercase text-accent-light">{label}</p>
       <dl className="mt-4 divide-y divide-white/[0.18]">
         {rows.map((row) => (
           <div
@@ -23,7 +23,7 @@ export function DataPanel({
             className="flex items-baseline justify-between gap-4 py-2.5 first:pt-0 last:pb-0"
           >
             <dt className="text-small text-on-dark-primary">{row.label}</dt>
-            <dd className="text-right text-small font-medium text-accent">
+            <dd className="text-right text-small font-medium text-accent-light">
               {row.value}
             </dd>
           </div>

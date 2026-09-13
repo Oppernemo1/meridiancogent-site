@@ -8,6 +8,7 @@ import { unsubscribeUrl } from "./unsubscribe";
 const GRAPHITE = colors.graphite;
 const ACCENT = colors.accent;
 const ACCENT_DARK = colors.accentDark;
+const ACCENT_LIGHT = colors.accentLight;
 const INK = colors.ink;
 const MUTED = colors.muted;
 const BORDER = colors.hairline;
@@ -147,11 +148,11 @@ again.
 MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integrations.
 </p>
 <p style="margin:0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${ON_DARK_SECONDARY};">
-<a href="${SITE_URL}/privacy" target="_blank" style="color:${ACCENT}; text-decoration:underline;">Privacy</a>
+<a href="${SITE_URL}/privacy" target="_blank" style="color:${ACCENT_LIGHT}; text-decoration:underline;">Privacy</a>
 &nbsp;&bull;&nbsp;
-<a href="mailto:${CONTACT_EMAIL}" style="color:${ACCENT}; text-decoration:underline;">${CONTACT_EMAIL}</a>
+<a href="mailto:${CONTACT_EMAIL}" style="color:${ACCENT_LIGHT}; text-decoration:underline;">${CONTACT_EMAIL}</a>
 &nbsp;&bull;&nbsp;
-<a href="${unsubscribe}" target="_blank" style="color:${ACCENT}; text-decoration:underline;">Unsubscribe</a>
+<a href="${unsubscribe}" target="_blank" style="color:${ACCENT_LIGHT}; text-decoration:underline;">Unsubscribe</a>
 </p>
 </td>
 </tr>

@@ -28,6 +28,7 @@ const config: Config = {
         accent: {
           DEFAULT: colors.accent,
           dark: colors.accentDark,
+          light: colors.accentLight,
         },
         ink: colors.ink,
         muted: colors.muted,

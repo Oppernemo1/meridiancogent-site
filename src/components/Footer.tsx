@@ -46,7 +46,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-on-dark-secondary transition-colors hover:text-accent"
+                      className="text-on-dark-secondary transition-colors hover:text-accent-light"
                     >
                       {link.label}
                     </Link>
@@ -78,7 +78,7 @@ export function Footer() {
           <p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-on-dark-secondary underline underline-offset-4 hover:text-accent"
+              className="text-on-dark-secondary underline underline-offset-4 hover:text-accent-light"
             >
               {CONTACT_EMAIL}
             </a>
