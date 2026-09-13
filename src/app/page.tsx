@@ -81,13 +81,13 @@ export default function HomePage() {
         <Container className="relative py-section md:py-section-lg">
           <div className="max-w-3xl">
             <h1 className="text-balance text-h1-sm md:text-h1">
-              The exit date nobody checked is the one that slips.
+              Somewhere in your separation plan is a task that decides
+              whether September holds.
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
-              MeridianCogent is an execution platform for M&amp;A
-              separations, carve-outs and integrations. It models what every
-              transitional service actually depends on — so a date that will
-              not hold is visible months before the invoice arrives.
+              Nobody knows which one it is. MeridianCogent models what every
+              transitional service actually depends on — so the date that
+              will not hold is visible in March, not September.
             </p>
 
             <div className="mt-10 max-w-xl">
