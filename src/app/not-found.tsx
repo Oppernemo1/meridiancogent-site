@@ -16,23 +16,23 @@ export default function NotFound() {
           <p className="mt-6 text-small font-semibold uppercase tracking-wider text-muted">
             404
           </p>
-          <h1 className="mt-2 font-serif text-display-sm text-navy md:text-display">
+          <h1 className="mt-2 text-h1-sm md:text-h1">
             This page isn&apos;t here.
           </h1>
-          <p className="mt-4 text-body leading-relaxed text-muted">
+          <p className="mt-4 text-body-sm leading-relaxed text-muted md:text-body">
             The link may be out of date, or the page may have moved. From here
             you can head back to the homepage or browse the resources.
           </p>
           <div className="mt-10 flex items-center justify-center gap-4">
             <Link
               href="/"
-              className="bg-navy px-5 py-3 text-body font-semibold text-on-navy-primary transition-colors hover:bg-navy/90"
+              className="bg-graphite px-5 py-3 text-body font-semibold text-on-dark-primary transition-colors hover:bg-graphite/90"
             >
               Back to home
             </Link>
             <Link
               href="/resources"
-              className="text-body font-medium text-navy underline underline-offset-4 hover:text-muted"
+              className="text-body font-medium text-accent-dark underline underline-offset-4 hover:text-muted"
             >
               Browse resources
             </Link>

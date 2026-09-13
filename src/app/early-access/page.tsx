@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
+import { Section } from "@/components/Section";
+import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { SITE_NAME } from "@/lib/site";
 
@@ -42,6 +44,8 @@ const EXPECTATIONS = [
   },
 ];
 
+const SECTIONS = [{ id: "expect", label: "What to expect" }];
+
 export default function EarlyAccessPage() {
   return (
     <>
@@ -50,16 +54,16 @@ export default function EarlyAccessPage() {
         <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
         <Container className="relative py-section md:py-section-lg">
           <div className="max-w-2xl">
-            <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
+            <h1 className="text-balance text-h1-sm md:text-h1">
               Early access
             </h1>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent is a control environment for separation offices and
               integration teams. It&apos;s still being built. Early access is how
               we stay in touch with the people we&apos;re building it for.
             </p>
             <div className="mt-8 max-w-lg">
-              <p className="text-small font-medium text-navy">
+              <p className="text-small font-medium text-graphite">
                 In development. Join the early access list for updates.
               </p>
               <div className="mt-3">
@@ -70,43 +74,35 @@ export default function EarlyAccessPage() {
         </Container>
       </section>
 
-      {/* What to expect */}
-      <section aria-labelledby="expect-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="mx-auto max-w-measure">
-            <h2
-              id="expect-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              What to expect
-            </h2>
-            <dl className="mt-heading-gap grid gap-x-10 gap-y-10 sm:grid-cols-2">
-              {EXPECTATIONS.map((item) => (
-                <div key={item.heading}>
-                  <div className="h-px w-10 bg-navy" />
-                  <dt className="mt-3 font-serif text-h4 text-navy">
-                    {item.heading}
-                  </dt>
-                  <dd className="mt-2 text-small leading-relaxed text-muted">
-                    {item.body}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+      <SidebarLayout sections={SECTIONS}>
+        {/* What to expect */}
+        <Section id="expect" label="What to expect" heading="What to expect" divider={false} wide>
+          <dl className="grid gap-x-10 gap-y-10 sm:grid-cols-2">
+            {EXPECTATIONS.map((item) => (
+              <div key={item.heading}>
+                <div className="h-px w-10 bg-graphite" />
+                <dt className="mt-3 text-h3 text-graphite">
+                  {item.heading}
+                </dt>
+                <dd className="mt-2 text-small leading-relaxed text-muted">
+                  {item.body}
+                </dd>
+              </div>
+            ))}
+          </dl>
 
-            <p className="mt-14 text-small text-muted">
-              Questions about early access? Email{" "}
-              <a
-                href="mailto:hello@meridiancogent.com"
-                className="text-navy underline underline-offset-4 hover:text-muted"
-              >
-                hello@meridiancogent.com
-              </a>
-              .
-            </p>
-          </div>
-        </Container>
-      </section>
+          <p className="text-small text-muted">
+            Questions about early access? Email{" "}
+            <a
+              href="mailto:hello@meridiancogent.com"
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
+            >
+              hello@meridiancogent.com
+            </a>
+            .
+          </p>
+        </Section>
+      </SidebarLayout>
     </>
   );
 }

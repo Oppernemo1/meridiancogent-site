@@ -111,7 +111,7 @@ export default function ArticlePage({
           <p className="text-small text-muted">
             <Link
               href="/resources"
-              className="underline underline-offset-4 hover:text-navy"
+              className="underline underline-offset-4 hover:text-graphite"
             >
               Resources
             </Link>
@@ -121,14 +121,14 @@ export default function ArticlePage({
             {frontmatter.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-micro font-medium uppercase tracking-wide text-navy"
+                className="text-label font-medium uppercase text-accent-dark"
               >
                 {tag}
               </span>
             ))}
           </div>
 
-          <h1 className="mt-4 font-serif text-display-sm leading-[1.15] text-navy md:text-display">
+          <h1 className="mt-4 text-h1-sm md:text-h1">
             {frontmatter.title}
           </h1>
 
@@ -144,7 +144,7 @@ export default function ArticlePage({
           />
         </div>
 
-        <div className="prose prose-meridian mx-auto mt-12">
+        <div className="prose prose-meridian md:prose-meridian-lg mx-auto mt-12">
           <MDXRemote
             source={content}
             components={mdxComponents}
@@ -154,7 +154,7 @@ export default function ArticlePage({
 
         {related.length > 0 && (
           <div className="mx-auto mt-12 max-w-measure border-t border-black/10 pt-10">
-            <h2 className="font-serif text-prose-h2 text-navy">Related articles</h2>
+            <h2 className="text-h2-sm md:text-h2">Related articles</h2>
             <ul className="mt-heading-gap space-y-6">
               {related.map((item) => (
                 <li key={item.slug}>
@@ -162,7 +162,7 @@ export default function ArticlePage({
                     href={`/resources/${item.slug}`}
                     className="group block"
                   >
-                    <span className="font-serif text-h4 text-navy underline-offset-4 group-hover:underline">
+                    <span className="text-h3 text-graphite underline-offset-4 group-hover:underline">
                       {item.title}
                     </span>
                     <span className="mt-1 block text-small text-muted">

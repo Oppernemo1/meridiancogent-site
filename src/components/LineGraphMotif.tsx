@@ -25,18 +25,18 @@ const PATHS: Record<string, string> = {
 
 export function LineGraphMotif({
   variant,
-  tone = "ice",
+  tone = "accent",
   className,
   style,
   strokeWidth = 4,
 }: {
   variant: MotifVariant;
-  tone?: "ice" | "navy" | "faint";
+  tone?: "accent" | "graphite" | "faint";
   className?: string;
   style?: CSSProperties;
   strokeWidth?: number;
 }) {
-  const stroke = tone === "ice" ? colors.ice : colors.navy;
+  const stroke = tone === "accent" ? colors.accent : colors.graphite;
   const opacity = tone === "faint" ? 0.14 : 1;
 
   return (
@@ -79,10 +79,10 @@ export function BackgroundLines({
   tone = "faint",
 }: {
   className?: string;
-  tone?: "faint" | "ice";
+  tone?: "faint" | "accent";
 }) {
-  const stroke = tone === "ice" ? colors.ice : colors.navy;
-  const opacity = tone === "ice" ? 0.22 : 0.06;
+  const stroke = tone === "accent" ? colors.accent : colors.graphite;
+  const opacity = tone === "accent" ? 0.22 : 0.06;
   return (
     <svg
       viewBox="0 0 1200 400"

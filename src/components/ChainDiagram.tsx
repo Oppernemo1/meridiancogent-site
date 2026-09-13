@@ -60,7 +60,7 @@ export function ChainDiagram({
               markerHeight="5"
               orient="auto-start-reverse"
             >
-              <path d="M0,0 L10,5 L0,10 Z" fill={colors.ice} fillOpacity={0.6} />
+              <path d="M0,0 L10,5 L0,10 Z" fill={colors.accent} fillOpacity={0.8} />
             </marker>
           </defs>
           {Array.from({ length: count - 1 }).map((_, i) => {
@@ -73,24 +73,24 @@ export function ChainDiagram({
                 y1={16}
                 x2={x2}
                 y2={16}
-                stroke={colors.ice}
-                strokeOpacity={0.5}
+                stroke={colors.accent}
+                strokeOpacity={0.7}
                 strokeWidth={1.5}
                 markerEnd="url(#chain-arrow)"
               />
             );
           })}
           {nodes.map((_, i) => (
-            <circle key={i} cx={nodeX(i)} cy={16} r={5} fill={colors.ice} />
+            <circle key={i} cx={nodeX(i)} cy={16} r={5} fill={colors.accent} />
           ))}
         </svg>
 
         <div className="mt-5 grid grid-cols-5">
           {nodes.map((node, i) => (
             <div key={i} className="text-center">
-              <h3 className="font-serif text-h4 text-on-navy-primary">{node.title}</h3>
+              <h3 className="text-h3 text-graphite">{node.title}</h3>
               {!compact && node.description && (
-                <p className="mx-auto mt-2 max-w-diagram-caption text-small leading-relaxed text-on-navy-secondary">
+                <p className="mx-auto mt-2 max-w-diagram-caption text-small leading-relaxed text-muted">
                   {node.description}
                 </p>
               )}
@@ -105,7 +105,7 @@ export function ChainDiagram({
         <div className="relative">
           <div
             aria-hidden="true"
-            className="absolute bottom-4 left-[7px] top-4 w-px bg-ice/40"
+            className="absolute bottom-4 left-[7px] top-4 w-px bg-accent/40"
           />
           <div className={compact ? "space-y-5" : "space-y-8"}>
             {nodes.map((node, i) => (
@@ -117,12 +117,12 @@ export function ChainDiagram({
                   className="relative z-10 shrink-0"
                   aria-hidden="true"
                 >
-                  <circle cx={8} cy={8} r={5} fill={colors.ice} />
+                  <circle cx={8} cy={8} r={5} fill={colors.accent} />
                 </svg>
                 <div>
-                  <h3 className="font-serif text-h4 text-on-navy-primary">{node.title}</h3>
+                  <h3 className="text-h3 text-graphite">{node.title}</h3>
                   {!compact && node.description && (
-                    <p className="mt-2 text-small leading-relaxed text-on-navy-secondary">
+                    <p className="mt-2 text-small leading-relaxed text-muted">
                       {node.description}
                     </p>
                   )}

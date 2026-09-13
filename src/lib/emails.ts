@@ -5,13 +5,14 @@ import { unsubscribeUrl } from "./unsubscribe";
 // Sourced from tokens.ts rather than redeclared — mail clients need the
 // literal hex values inlined below, but the values themselves come from one
 // place.
-const NAVY = colors.navy;
-const ICE = colors.ice;
+const GRAPHITE = colors.graphite;
+const ACCENT = colors.accent;
+const ACCENT_DARK = colors.accentDark;
 const INK = colors.ink;
 const MUTED = colors.muted;
 const BORDER = colors.hairline;
 const PAGE_BG = emailColors.pageBg;
-const MUTED_LINK = emailColors.mutedLink;
+const ON_DARK_SECONDARY = colors.onDark.secondary;
 const CONTACT_EMAIL = "hello@meridiancogent.com";
 
 const SERIF = "Georgia, 'Times New Roman', Times, serif";
@@ -55,27 +56,27 @@ ${preheader}
 
 <!-- Header -->
 <tr>
-<td style="background-color:${NAVY}; padding:28px 32px;">
+<td style="background-color:${GRAPHITE}; padding:28px 32px;">
 <table role="presentation" cellpadding="0" cellspacing="0" border="0">
 <tr>
 <td style="vertical-align:middle; padding-right:14px;">
 <img src="${SITE_URL}/email/logo-mark.png" width="40" height="40" alt="MeridianCogent" style="display:block; width:40px; height:40px; border:0; border-radius:9px;" />
 </td>
 <td style="vertical-align:middle;">
-<span style="font-family:${SERIF}; font-size:22px; color:#ffffff;">Meridian</span><span style="font-family:${SANS}; font-size:22px; font-weight:bold; color:${ICE};">Cogent</span>
+<span style="font-family:${SERIF}; font-size:22px; color:#ffffff;">Meridian</span><span style="font-family:${SANS}; font-size:22px; font-weight:bold; color:${ACCENT};">Cogent</span>
 </td>
 </tr>
 </table>
 </td>
 </tr>
 
-<!-- Ice accent stripe -->
-<tr><td style="background-color:${ICE}; font-size:0; line-height:0; height:4px;">&nbsp;</td></tr>
+<!-- Accent stripe -->
+<tr><td style="background-color:${ACCENT}; font-size:0; line-height:0; height:4px;">&nbsp;</td></tr>
 
 <!-- Body -->
 <tr>
 <td style="padding:36px 32px 28px 32px;">
-<h1 style="margin:0 0 16px 0; font-family:${SERIF}; font-size:26px; line-height:1.25; color:${NAVY}; font-weight:normal;">
+<h1 style="margin:0 0 16px 0; font-family:${SERIF}; font-size:26px; line-height:1.25; color:${GRAPHITE}; font-weight:normal;">
 You’re on the list.
 </h1>
 
@@ -91,14 +92,14 @@ A few things worth setting expectations on:
 <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 22px 0;">
 <tr>
 <td style="padding:0 0 10px 0; font-family:${SANS}; font-size:15px; line-height:1.6; color:${INK};">
-<span style="color:${NAVY}; font-weight:bold;">Updates come by email.</span>
+<span style="color:${GRAPHITE}; font-weight:bold;">Updates come by email.</span>
 Occasional notes as the product takes shape and as access widens &mdash; no
 newsletter cadence, no drip sequence.
 </td>
 </tr>
 <tr>
 <td style="padding:0; font-family:${SANS}; font-size:15px; line-height:1.6; color:${INK};">
-<span style="color:${NAVY}; font-weight:bold;">No launch date is promised.</span>
+<span style="color:${GRAPHITE}; font-weight:bold;">No launch date is promised.</span>
 Access opens in phases, starting with diagnostics. When there is something
 concrete to show you, you will hear from us.
 </td>
@@ -112,7 +113,7 @@ In the meantime:
 <!-- Button -->
 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 14px 0;">
 <tr>
-<td style="border-radius:6px; background-color:${NAVY};">
+<td style="border-radius:6px; background-color:${GRAPHITE};">
 <a href="${SITE_URL}/platform" target="_blank" style="display:inline-block; padding:12px 22px; font-family:${SANS}; font-size:14px; font-weight:bold; color:#ffffff; text-decoration:none; border-radius:6px;">
 See how the platform works &rarr;
 </a>
@@ -121,11 +122,11 @@ See how the platform works &rarr;
 </table>
 
 <p style="margin:0 0 8px 0; font-family:${SANS}; font-size:14px; line-height:1.6;">
-<a href="${SITE_URL}/principles" target="_blank" style="color:${NAVY}; text-decoration:underline;">What the platform will not assert</a>
+<a href="${SITE_URL}/principles" target="_blank" style="color:${ACCENT_DARK}; text-decoration:underline;">What the platform will not assert</a>
 </p>
 
 <p style="margin:0 0 24px 0; font-family:${SANS}; font-size:14px; line-height:1.6;">
-<a href="${SITE_URL}/resources" target="_blank" style="color:${NAVY}; text-decoration:underline;">Practitioner writing on TSAs and carve-out separation</a>
+<a href="${SITE_URL}/resources" target="_blank" style="color:${ACCENT_DARK}; text-decoration:underline;">Practitioner writing on TSAs and carve-out separation</a>
 </p>
 
 <p style="margin:26px 0 0 0; font-family:${SANS}; font-size:14px; line-height:1.7; color:${MUTED};">
@@ -133,7 +134,7 @@ If you didn’t sign up, you can ignore this email and you won’t hear from us
 again.
 </p>
 
-<p style="margin:18px 0 0 0; font-family:${SERIF}; font-size:15px; line-height:1.6; color:${NAVY};">
+<p style="margin:18px 0 0 0; font-family:${SERIF}; font-size:15px; line-height:1.6; color:${GRAPHITE};">
 &mdash; The MeridianCogent team
 </p>
 </td>
@@ -141,16 +142,16 @@ again.
 
 <!-- Footer -->
 <tr>
-<td style="background-color:${NAVY}; padding:24px 32px;">
-<p style="margin:0 0 8px 0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${ICE};">
+<td style="background-color:${GRAPHITE}; padding:24px 32px;">
+<p style="margin:0 0 8px 0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${ON_DARK_SECONDARY};">
 MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integrations.
 </p>
-<p style="margin:0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${MUTED_LINK};">
-<a href="${SITE_URL}/privacy" target="_blank" style="color:${ICE}; text-decoration:underline;">Privacy</a>
+<p style="margin:0; font-family:${SANS}; font-size:12px; line-height:1.6; color:${ON_DARK_SECONDARY};">
+<a href="${SITE_URL}/privacy" target="_blank" style="color:${ACCENT}; text-decoration:underline;">Privacy</a>
 &nbsp;&bull;&nbsp;
-<a href="mailto:${CONTACT_EMAIL}" style="color:${ICE}; text-decoration:underline;">${CONTACT_EMAIL}</a>
+<a href="mailto:${CONTACT_EMAIL}" style="color:${ACCENT}; text-decoration:underline;">${CONTACT_EMAIL}</a>
 &nbsp;&bull;&nbsp;
-<a href="${unsubscribe}" target="_blank" style="color:${ICE}; text-decoration:underline;">Unsubscribe</a>
+<a href="${unsubscribe}" target="_blank" style="color:${ACCENT}; text-decoration:underline;">Unsubscribe</a>
 </p>
 </td>
 </tr>

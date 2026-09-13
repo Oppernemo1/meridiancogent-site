@@ -23,8 +23,8 @@ export default function TermsPage() {
   return (
     <div className="py-10 md:py-14">
       <Container>
-        <div className="prose prose-meridian mx-auto">
-          <h1 className="text-display-sm md:text-display">Terms of Use</h1>
+        <div className="prose prose-meridian md:prose-meridian-lg mx-auto">
+          <h1 className="text-h1-sm md:text-h1">Terms of Use</h1>
           <p className="lead">
             <em>Last updated: {LAST_UPDATED}.</em> This is a pre-launch marketing
             website for MeridianCogent, an M&amp;A execution platform currently

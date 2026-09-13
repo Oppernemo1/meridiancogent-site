@@ -72,11 +72,11 @@ export function EarlyAccessForm({
   const inputBase =
     "w-full border px-4 py-3 text-body outline-none transition-colors focus:ring-2 focus:ring-offset-2";
   const inputTheme = dark
-    ? "border-white/20 bg-white/10 text-on-navy-primary placeholder:text-white/50 focus:border-ice focus:ring-ice/60 focus:ring-offset-navy"
-    : "border-black/15 bg-white text-ink placeholder:text-muted/70 focus:border-navy focus:ring-navy/30 focus:ring-offset-white";
+    ? "border-white/20 bg-white/10 text-on-dark-primary placeholder:text-white/50 focus:border-accent focus:ring-accent/50 focus:ring-offset-graphite"
+    : "border-black/15 bg-white text-ink placeholder:text-muted/70 focus:border-graphite focus:ring-graphite/30 focus:ring-offset-white";
   const buttonTheme = dark
-    ? "bg-ice text-navy hover:bg-white"
-    : "bg-navy text-on-navy-primary hover:bg-navy/90";
+    ? "bg-white text-graphite hover:bg-on-dark-secondary"
+    : "bg-graphite text-on-dark-primary hover:bg-graphite/90";
 
   return (
     <form
@@ -120,12 +120,10 @@ export function EarlyAccessForm({
         role="status"
         aria-live="polite"
         className={`mt-2 min-h-[1.25rem] text-small ${
-          status === "error"
-            ? dark
-              ? "text-ice"
-              : "text-status-red"
-            : dark
-              ? "text-ice"
+          dark
+            ? "text-on-dark-primary"
+            : status === "error"
+              ? "text-status-red"
               : "text-status-green"
         }`}
       >

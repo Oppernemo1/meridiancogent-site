@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
+import { Section } from "@/components/Section";
+import { SidebarLayout } from "@/components/SidebarLayout";
+import { DataPanel } from "@/components/DataPanel";
 import {
   CONTACT_EMAIL,
   SITE_DESCRIPTION,
@@ -36,6 +39,16 @@ const NOT_IN_PLACE = [
   "No data processing agreement executed with any customer, because there is no customer yet.",
 ];
 
+const SECTIONS = [
+  { id: "problem", label: "The problem" },
+  { id: "access", label: "Access" },
+  { id: "advisors", label: "External access" },
+  { id: "confidentiality", label: "Confidentiality" },
+  { id: "not-in-place", label: "Not in place yet" },
+  { id: "questions", label: "Questions" },
+  { id: "early-access", label: "Early access" },
+];
+
 export default function SecurityPage() {
   const organizationJsonLd = {
     "@context": "https://schema.org",
@@ -59,10 +72,10 @@ export default function SecurityPage() {
       <section className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-3xl">
-            <h1 className="text-balance font-serif text-display-sm leading-[1.1] text-navy md:text-display">
+            <h1 className="text-balance text-h1-sm md:text-h1">
               Security and confidentiality
             </h1>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               Written for the person asked to review whether live deal data
               can go into this. What follows is what is architecturally true
               today, and what is not yet in place.
@@ -71,218 +84,163 @@ export default function SecurityPage() {
         </Container>
       </section>
 
-      {/* The problem this has to solve */}
-      <section aria-labelledby="problem-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="problem-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              A separation is not one organisation
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              Most software treats access control as an organisational
-              question: you work here, so you can see our data. That model
-              does not survive contact with a carve-out.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              A single separation programme involves the seller&apos;s team
-              and the buyer&apos;s team, who must not see each other&apos;s
-              commercial positions. It involves external advisors and
-              counsel, whose access should end when their engagement does. It
-              often involves a transaction that has not been announced,
-              inside a company where most employees should not know it
-              exists at all.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Access control here is scoped to the programme, not the
-              organisation, because that is the only model that matches how
-              a deal actually works.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <SidebarLayout sections={SECTIONS}>
+        {/* The problem this has to solve */}
+        <Section id="problem" label="The problem" heading="A separation is not one organisation" divider={false}>
+          <p>
+            Most software treats access control as an organisational
+            question: you work here, so you can see our data. That model
+            does not survive contact with a carve-out.
+          </p>
+          <p>
+            A single separation programme involves the seller&apos;s team
+            and the buyer&apos;s team, who must not see each other&apos;s
+            commercial positions. It involves external advisors and
+            counsel, whose access should end when their engagement does. It
+            often involves a transaction that has not been announced,
+            inside a company where most employees should not know it
+            exists at all.
+          </p>
+          <p>
+            Access control here is scoped to the programme, not the
+            organisation, because that is the only model that matches how
+            a deal actually works.
+          </p>
+        </Section>
 
-      {/* Access */}
-      <section aria-labelledby="access-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="access-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              Programme-scoped access by default
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              Being a member of the customer&apos;s organisation does not
-              grant visibility of a programme. Membership is granted per
-              programme, explicitly, and every access path in the system
-              enforces that boundary at the database level rather than in
-              application code.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Row-level security policies govern every table. A query that
-              should not return a row does not return it, regardless of
-              which part of the application issued it. That boundary has
-              been reviewed directly — including an audit of database
-              privileges beyond the row-level policies themselves, because
-              row-level security is only one edge of the permission surface
-              and the others are easy to leave open by accident.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Data is held in the European Union, in Frankfurt. Tenant
-              isolation is enforced in the database rather than by
-              convention — there is no shared table without a policy
-              governing who can read from it.
-            </p>
-          </div>
-        </Container>
-      </section>
+        {/* Access */}
+        <Section
+          id="access"
+          label="Access"
+          heading="Programme-scoped access by default"
+          panel={
+            <DataPanel
+              label="Access scope"
+              rows={[
+                { label: "Organisation", value: "No" },
+                { label: "Programme", value: "Yes" },
+                { label: "Advisor", value: "Bounded" },
+              ]}
+            />
+          }
+        >
+          <p>
+            Being a member of the customer&apos;s organisation does not
+            grant visibility of a programme. Membership is granted per
+            programme, explicitly, and every access path in the system
+            enforces that boundary at the database level rather than in
+            application code.
+          </p>
+          <p>
+            Row-level security policies govern every table. A query that
+            should not return a row does not return it, regardless of
+            which part of the application issued it. That boundary has
+            been reviewed directly — including an audit of database
+            privileges beyond the row-level policies themselves, because
+            row-level security is only one edge of the permission surface
+            and the others are easy to leave open by accident.
+          </p>
+          <p>
+            Data is held in the European Union, in Frankfurt. Tenant
+            isolation is enforced in the database rather than by
+            convention — there is no shared table without a policy
+            governing who can read from it.
+          </p>
+        </Section>
 
-      {/* Advisors and vendors */}
-      <section aria-labelledby="advisors-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="advisors-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              External access, time-bounded and logged
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              Advisors, counsel and vendors need access to run a deal, and
-              that access should not outlive the engagement.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              External participants are granted access to specific
-              programmes with a defined scope, and that access is logged.
-              Privileged vendor access is brokered and recorded rather than
-              handed over as a standing credential. When an engagement ends,
-              access ends with it — not as a policy someone is expected to
-              remember, but as a property of how the access was granted.
-            </p>
-          </div>
-        </Container>
-      </section>
+        {/* Advisors and vendors */}
+        <Section id="advisors" label="External access" heading="External access, time-bounded and logged">
+          <p>
+            Advisors, counsel and vendors need access to run a deal, and
+            that access should not outlive the engagement.
+          </p>
+          <p>
+            External participants are granted access to specific
+            programmes with a defined scope, and that access is logged.
+            Privileged vendor access is brokered and recorded rather than
+            handed over as a standing credential. When an engagement ends,
+            access ends with it — not as a policy someone is expected to
+            remember, but as a property of how the access was granted.
+          </p>
+        </Section>
 
-      {/* Confidentiality */}
-      <section aria-labelledby="confidentiality-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="confidentiality-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+        {/* Confidentiality */}
+        <Section id="confidentiality" label="Confidentiality" heading="Deals that are not public yet">
+          <p>
+            A programme can run under a code name. The people working on it
+            see the code name; the real identity of the target is not
+            scattered across the system for anyone with incidental access
+            to find.
+          </p>
+          <p>
+            Exports are watermarked with the identity of the person who
+            generated them. A document that leaves the platform carries a
+            record of who took it out, which changes the calculation for
+            anyone considering forwarding it.
+          </p>
+          <p>
+            An audit log nobody reads is not a control. Access patterns are
+            monitored for anomalies — unusual volume, unusual timing,
+            access to programmes outside a user&apos;s normal pattern — and
+            surfaced to the people who would need to act on them.
+          </p>
+          <p>
+            The audit record itself is append-only.{" "}
+            <Link
+              href="/principles"
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
             >
-              Deals that are not public yet
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              A programme can run under a code name. The people working on it
-              see the code name; the real identity of the target is not
-              scattered across the system for anyone with incidental access
-              to find.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Exports are watermarked with the identity of the person who
-              generated them. A document that leaves the platform carries a
-              record of who took it out, which changes the calculation for
-              anyone considering forwarding it.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              An audit log nobody reads is not a control. Access patterns are
-              monitored for anomalies — unusual volume, unusual timing,
-              access to programmes outside a user&apos;s normal pattern — and
-              surfaced to the people who would need to act on them.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              The audit record itself is append-only.{" "}
-              <Link
-                href="/principles"
-                className="text-navy underline underline-offset-4 hover:text-muted"
-              >
-                Corrections supersede rather than overwrite, and records
-                supporting the evidentiary trail cannot be deleted by design,
-                including by the organisation that owns them.
-              </Link>
-            </p>
-          </div>
-        </Container>
-      </section>
+              Corrections supersede rather than overwrite, and records
+              supporting the evidentiary trail cannot be deleted by design,
+              including by the organisation that owns them.
+            </Link>
+          </p>
+        </Section>
 
-      {/* What is not in place yet */}
-      <section
-        aria-labelledby="not-in-place-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="not-in-place-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+        {/* What is not in place yet */}
+        <Section id="not-in-place" label="Not in place yet" heading="What is not in place yet">
+          <p>
+            MeridianCogent is in development and pre-revenue. The following
+            do not exist, and it would be misleading to imply otherwise:
+          </p>
+          <ul className="list-disc space-y-3 pl-5">
+            {NOT_IN_PLACE.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+          <p>
+            These are sequencing, not position. They are on the path to a
+            first customer, and a prospective customer&apos;s requirements
+            should shape which come first. If your review requires any of
+            them before a pilot, that is a reasonable position and worth
+            telling us early.
+          </p>
+        </Section>
+
+        {/* Questions */}
+        <Section id="questions" label="Questions" heading="If you are reviewing this">
+          <p>
+            Security questionnaires, architecture questions and specific
+            control requirements are welcome, and answering them honestly
+            is more useful to both sides than a page like this one.
+          </p>
+          <p>
+            Write to{" "}
+            <a
+              href={`mailto:${CONTACT_EMAIL}`}
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
             >
-              What is not in place yet
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
-              MeridianCogent is in development and pre-revenue. The following
-              do not exist, and it would be misleading to imply otherwise:
-            </p>
-            <ul className="mt-5 list-disc space-y-3 pl-5 text-body-lg leading-relaxed text-on-navy-secondary">
-              {NOT_IN_PLACE.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
-              These are sequencing, not position. They are on the path to a
-              first customer, and a prospective customer&apos;s requirements
-              should shape which come first. If your review requires any of
-              them before a pilot, that is a reasonable position and worth
-              telling us early.
-            </p>
-          </div>
-        </Container>
-      </section>
+              {CONTACT_EMAIL}
+            </a>
+            .
+          </p>
+        </Section>
 
-      {/* Questions */}
-      <section aria-labelledby="questions-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="questions-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              If you are reviewing this
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              Security questionnaires, architecture questions and specific
-              control requirements are welcome, and answering them honestly
-              is more useful to both sides than a page like this one.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Write to{" "}
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="text-navy underline underline-offset-4 hover:text-muted"
-              >
-                {CONTACT_EMAIL}
-              </a>
-              .
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Early access */}
-      <section aria-labelledby="early-access-security" className="py-section md:py-section-lg">
-        <Container>
+        {/* Early access */}
+        <Section id="early-access" label="Early access" heading="Early access" wide>
           <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
             <div>
-              <h2
-                id="early-access-security"
-                className="font-serif text-h2-sm text-navy md:text-h2"
-              >
-                Early access
-              </h2>
-              <p className="mt-5 text-body leading-relaxed text-muted">
+              <p className="text-muted">
                 MeridianCogent is in development. Join the list for updates
                 as we open access.
               </p>
@@ -291,8 +249,8 @@ export default function SecurityPage() {
               <EarlyAccessForm source="security-page" />
             </div>
           </div>
-        </Container>
-      </section>
+        </Section>
+      </SidebarLayout>
     </>
   );
 }

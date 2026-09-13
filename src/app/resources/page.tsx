@@ -30,16 +30,16 @@ export default function ResourcesPage() {
     <div className="py-10 md:py-14">
       <Container>
         <header className="max-w-measure">
-          <h1 className="font-serif text-display-sm text-navy md:text-display">
+          <h1 className="text-h1-sm md:text-h1">
             Resources
           </h1>
-          <p className="mt-5 text-body-lg leading-relaxed text-muted">
+          <p className="mt-heading-gap text-body-sm leading-relaxed text-muted md:text-body">
             {DESCRIPTION}
           </p>
           <p className="mt-4 text-small">
             <Link
               href="/platform"
-              className="font-medium text-navy underline underline-offset-4 hover:text-muted"
+              className="font-medium text-accent-dark underline underline-offset-4 hover:text-muted"
             >
               See how the platform itself is built
             </Link>

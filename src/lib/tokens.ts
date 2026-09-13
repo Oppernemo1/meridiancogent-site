@@ -6,20 +6,17 @@
  */
 
 export const colors = {
-  navy: "#1E2761",
-  ice: "#CADCFC",
-  ink: "#2C2C2A",
-  muted: "#5F5E5A",
-  // Light neutral hairline/border grey — shared between the prose table
-  // and card borders (tailwind.config.ts) and the email template.
-  hairline: "#e6e6e3",
-  // Solid (non-opacity) text colours for use on the navy ground. Computed to
-  // meet WCAG AA (4.5:1) against #1E2761 without relying on alpha blending,
-  // which is hard to audit at a glance.
-  onNavy: {
-    primary: "#FFFFFF", // 13.83:1
-    secondary: "#C9CEE8", // ~9.4:1 — secondary copy on navy
-    muted: "#A9AFD6", // ~6.3:1 — least-emphasis text on navy (e.g. disabled labels)
+  graphite: "#2B2F3A", // primary — dark grounds, headings, ink-on-paper emphasis
+  accent: "#E8743B", // signal orange — fills, the logo mark, rules/strokes, small labels on dark grounds
+  accentDark: "#C4562A", // orange text on a light ground — links, section labels, emphasis (the bright accent fails AA as body text)
+  ink: "#2A2C31", // body text on paper
+  muted: "#63676F", // secondary text on paper
+  hairline: "#E3E4E7", // border colour — shared between the prose table, card borders (tailwind.config.ts) and the email template
+  paper: "#FBFAF8", // page ground
+  // Solid (non-opacity) text colours for use on the graphite ground.
+  onDark: {
+    primary: "#FFFFFF",
+    secondary: "#C8CCD4",
   },
   // Reserved product-UI status colours — not used decoratively on the
   // marketing site. Only add a colour here once an actual UI state needs it.
@@ -37,7 +34,6 @@ export const colors = {
  */
 export const emailColors = {
   pageBg: "#F4F4F2",
-  mutedLink: "#a9b6e0",
 } as const;
 
 export const fontFamily = {
@@ -62,25 +58,22 @@ export const fontFamily = {
 } as const;
 
 /**
- * Type scale. Sizes are desktop values; headings step down responsively via
- * Tailwind's `md:`/`sm:` variants in components rather than a fluid-clamp
- * mechanism, to keep the scale easy to reason about.
+ * Type scale. Exactly one value per level per breakpoint — no
+ * page-specific variants (marketing vs. document/prose headings share the
+ * same h2/h3). Mobile sizes are applied as the base class, desktop via
+ * `md:`, matching the mobile-first pattern used throughout the components.
  */
 export const fontSize: Record<string, [string, { lineHeight: string; letterSpacing?: string }]> = {
-  display: ["2.75rem", { lineHeight: "1.15", letterSpacing: "-0.015em" }], // 44px — h1 desktop
-  displaySm: ["1.65rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }], // 26.4px — h1 mobile
-  h2: ["1.875rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }], // 30px desktop
-  h2Sm: ["1.875rem", { lineHeight: "1.2", letterSpacing: "-0.01em" }], // 30px mobile
-  h3: ["1.5rem", { lineHeight: "1.3", letterSpacing: "-0.005em" }], // 24px
-  h4: ["1.125rem", { lineHeight: "1.4" }], // 18px
-  bodyLg: ["1.125rem", { lineHeight: "1.7" }], // 18px — desktop prose/body copy
-  body: ["1rem", { lineHeight: "1.65" }], // 16px — meta, secondary copy
-  small: ["0.875rem", { lineHeight: "1.5" }], // 14px
-  micro: ["0.75rem", { lineHeight: "1.4" }], // 12px — labels/tags
-  // Long-form prose headings (article/legal pages) sit deliberately smaller
-  // than the marketing-page h2/h3 scale above, so they get their own steps.
-  proseH2: ["1.75rem", { lineHeight: "1.3" }], // 28px
-  proseH3: ["1.375rem", { lineHeight: "1.35" }], // 22px
+  h1: ["2.5rem", { lineHeight: "1.2" }], // 40px desktop
+  h1Sm: ["1.75rem", { lineHeight: "1.2" }], // 28px mobile
+  h2: ["1.625rem", { lineHeight: "1.3" }], // 26px desktop
+  h2Sm: ["1.375rem", { lineHeight: "1.3" }], // 22px mobile
+  h3: ["1.125rem", { lineHeight: "1.4" }], // 18px — sans, medium weight, no breakpoint step
+  body: ["1rem", { lineHeight: "1.7" }], // 16px desktop
+  bodySm: ["0.9375rem", { lineHeight: "1.7" }], // 15px mobile
+  label: ["0.65rem", { lineHeight: "1.4", letterSpacing: "0.07em" }], // small-caps section label
+  sidebar: ["0.75rem", { lineHeight: "1.4" }], // sidebar TOC item
+  small: ["0.8125rem", { lineHeight: "1.5" }], // meta copy, footer, form status text
 };
 
 /**
@@ -90,19 +83,27 @@ export const fontSize: Record<string, [string, { lineHeight: string; letterSpaci
  * source of truth so the rhythm changes everywhere at once, not per page.
  */
 export const sectionSpacing = {
-  base: ["2.5rem", "4rem"], // ~half the original 4.5rem/8rem: sections
-  // should read as one document, not isolated islands.
+  base: ["2.5rem", "3.5rem"],
 } as const;
 
 /**
  * Gap between a section heading and its first paragraph, in rem. Wired into
  * Tailwind as the `heading-gap` spacing key — applied as `mt-heading-gap`.
  */
-export const headingGap = "0.5rem";
+export const headingGap = "0.75rem";
+
+/**
+ * Gap between consecutive paragraphs, in rem. Equal to Tailwind's default
+ * `5` spacing step (1.25rem) — exposed as its own token so intent is
+ * explicit at call sites (`mt-paragraph-gap`) rather than an unlabelled `mt-5`.
+ */
+export const paragraphGap = "1.25rem";
 
 /** Layout widths. */
 export const layout = {
   contentWidth: "1100px", // wide sections (grids, two-column layouts)
-  proseWidth: "700px", // long-form article/legal-copy measure
+  proseWidth: "720px", // long-form content measure — article/legal copy and the content column in the sidebar layout
   diagramCaption: "200px", // ChainDiagram node description line length
+  sidebarWidth: "145px", // sticky "on this page" sidebar
+  dataPanelWidth: "165px", // floated data panel
 } as const;

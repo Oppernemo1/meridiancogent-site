@@ -17,18 +17,18 @@ const SOCIAL_PLACEHOLDERS = ["LinkedIn", "X", "RSS"];
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 overflow-hidden bg-navy text-on-navy-primary">
+    <footer className="relative mt-32 overflow-hidden bg-graphite text-on-dark-primary">
       <BackgroundLines
-        tone="ice"
+        tone="accent"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full opacity-60"
       />
       <Container className="relative py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           <div>
-            <h2 className="font-serif text-h3 text-on-navy-primary md:text-h2-sm">
+            <h2 className="text-h2-sm text-on-dark-primary md:text-h2">
               Get updates as we open access.
             </h2>
-            <p className="mt-heading-gap max-w-md text-body leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap max-w-md leading-relaxed text-on-dark-secondary">
               In development. Join the early access list for updates.
             </p>
             <div className="mt-6 max-w-md">
@@ -38,15 +38,15 @@ export function Footer() {
 
           <div className="grid grid-cols-2 gap-8 md:justify-items-end">
             <nav aria-label="Footer">
-              <h3 className="text-micro font-semibold uppercase tracking-wider text-on-navy-muted">
+              <h3 className="text-label font-semibold uppercase text-on-dark-secondary">
                 Site
               </h3>
-              <ul className="mt-4 space-y-2 text-body">
+              <ul className="mt-4 space-y-2 text-small">
                 {FOOTER_NAV.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-white/80 transition-colors hover:text-ice"
+                      className="text-on-dark-secondary transition-colors hover:text-accent"
                     >
                       {link.label}
                     </Link>
@@ -56,10 +56,10 @@ export function Footer() {
             </nav>
 
             <div>
-              <h3 className="text-micro font-semibold uppercase tracking-wider text-on-navy-muted">
+              <h3 className="text-label font-semibold uppercase text-on-dark-secondary">
                 Elsewhere
               </h3>
-              <ul className="mt-4 space-y-2 text-body text-on-navy-muted">
+              <ul className="mt-4 space-y-2 text-small text-on-dark-secondary/70">
                 {SOCIAL_PLACEHOLDERS.map((name) => (
                   <li key={name} aria-disabled="true" title="Coming soon">
                     {name}
@@ -70,7 +70,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-white/15 pt-8 text-small text-white/60 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-2 border-t border-white/15 pt-8 text-small text-on-dark-secondary/70 md:flex-row md:items-center md:justify-between">
           <p>
             &copy; {new Date().getFullYear()} MeridianCogent. All rights
             reserved.
@@ -78,7 +78,7 @@ export function Footer() {
           <p>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-white/70 underline underline-offset-4 hover:text-ice"
+              className="text-on-dark-secondary underline underline-offset-4 hover:text-accent"
             >
               {CONTACT_EMAIL}
             </a>

@@ -34,22 +34,22 @@ export default function UnsubscribedPage({
     <div className="py-12 md:py-16">
       <Container>
         <div className="mx-auto max-w-xl text-center">
-          <h1 className="font-serif text-display-sm text-navy md:text-display">
+          <h1 className="text-h1-sm md:text-h1">
             {copy.heading}
           </h1>
-          <p className="mt-4 text-body leading-relaxed text-muted">
+          <p className="mt-4 text-body-sm leading-relaxed text-muted md:text-body">
             {copy.body}
           </p>
           <div className="mt-10 flex items-center justify-center gap-4">
             <Link
               href="/"
-              className="bg-navy px-5 py-3 text-body font-semibold text-on-navy-primary transition-colors hover:bg-navy/90"
+              className="bg-graphite px-5 py-3 text-body font-semibold text-on-dark-primary transition-colors hover:bg-graphite/90"
             >
               Back to home
             </Link>
             <a
               href={`mailto:${CONTACT_EMAIL}`}
-              className="text-body font-medium text-navy underline underline-offset-4 hover:text-muted"
+              className="text-body font-medium text-accent-dark underline underline-offset-4 hover:text-muted"
             >
               Email us
             </a>

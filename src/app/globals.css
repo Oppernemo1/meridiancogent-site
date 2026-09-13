@@ -24,16 +24,17 @@
   }
 
   body {
-    @apply bg-white font-sans text-ink antialiased;
-    font-size: 1rem;
-    line-height: 1.65;
+    @apply bg-paper font-sans text-ink antialiased;
+    /* Mirrors the `body`/`body-sm` tokens in tokens.ts — kept as literal
+       values here because plain CSS can't read the TS token file. */
+    font-size: 0.9375rem;
+    line-height: 1.7;
     text-rendering: optimizeLegibility;
   }
 
   @media (min-width: 768px) {
     body {
-      font-size: 1.125rem;
-      line-height: 1.7;
+      font-size: 1rem;
     }
   }
 
@@ -43,13 +44,19 @@
   h4,
   h5,
   h6 {
-    @apply font-serif text-navy;
+    @apply font-serif text-graphite;
     letter-spacing: -0.01em;
   }
 
+  h3,
+  h4 {
+    @apply font-sans font-medium;
+    letter-spacing: normal;
+  }
+
   ::selection {
-    background-color: #cadcfc;
-    color: #1e2761;
+    background-color: #f3d9c8;
+    color: #2b2f3a;
   }
 
   a {

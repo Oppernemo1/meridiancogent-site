@@ -5,6 +5,7 @@ import {
   fontSize,
   headingGap,
   layout,
+  paragraphGap,
   sectionSpacing,
 } from "./src/lib/tokens";
 
@@ -15,13 +16,24 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      screens: {
+        // The "on this page" sidebar's own breakpoint — deliberately not one
+        // of the default screens, since the sidebar needs more room than a
+        // typical two-column switch (768px) before it stops competing with
+        // the 720px content measure.
+        sidebar: "900px",
+      },
       colors: {
-        navy: colors.navy,
-        ice: colors.ice,
+        graphite: colors.graphite,
+        accent: {
+          DEFAULT: colors.accent,
+          dark: colors.accentDark,
+        },
         ink: colors.ink,
         muted: colors.muted,
         hairline: colors.hairline,
-        "on-navy": colors.onNavy,
+        paper: colors.paper,
+        "on-dark": colors.onDark,
         status: colors.status,
       },
       fontFamily: {
@@ -29,61 +41,69 @@ const config: Config = {
         sans: [...fontFamily.sans],
       },
       fontSize: {
-        display: fontSize.display,
-        "display-sm": fontSize.displaySm,
+        h1: fontSize.h1,
+        "h1-sm": fontSize.h1Sm,
         h2: fontSize.h2,
         "h2-sm": fontSize.h2Sm,
         h3: fontSize.h3,
-        h4: fontSize.h4,
-        "body-lg": fontSize.bodyLg,
         body: fontSize.body,
+        "body-sm": fontSize.bodySm,
+        label: fontSize.label,
+        sidebar: fontSize.sidebar,
         small: fontSize.small,
-        micro: fontSize.micro,
-        "prose-h2": fontSize.proseH2,
-        "prose-h3": fontSize.proseH3,
       },
       maxWidth: {
         content: layout.contentWidth,
         measure: layout.proseWidth,
         "diagram-caption": layout.diagramCaption,
+        sidebar: layout.sidebarWidth,
+        panel: layout.dataPanelWidth,
+      },
+      gridTemplateColumns: {
+        sidebar: `${layout.sidebarWidth} 1fr`,
       },
       spacing: {
         section: sectionSpacing.base[0],
         "section-lg": sectionSpacing.base[1],
         "heading-gap": headingGap,
+        "paragraph-gap": paragraphGap,
       },
       typography: () => ({
         meridian: {
           css: {
             "--tw-prose-body": colors.ink,
-            "--tw-prose-headings": colors.navy,
+            "--tw-prose-headings": colors.graphite,
             "--tw-prose-lead": colors.muted,
-            "--tw-prose-links": colors.navy,
+            "--tw-prose-links": colors.accentDark,
             "--tw-prose-bold": colors.ink,
             "--tw-prose-counters": colors.muted,
-            "--tw-prose-bullets": colors.ice,
+            "--tw-prose-bullets": colors.hairline,
             "--tw-prose-hr": colors.hairline,
             "--tw-prose-quotes": colors.ink,
-            "--tw-prose-quote-borders": colors.ice,
+            "--tw-prose-quote-borders": colors.hairline,
             "--tw-prose-captions": colors.muted,
-            "--tw-prose-th-borders": colors.navy,
+            "--tw-prose-th-borders": colors.graphite,
             "--tw-prose-td-borders": colors.hairline,
             maxWidth: layout.proseWidth,
-            fontSize: fontSize.bodyLg[0],
-            lineHeight: "1.7",
+            fontSize: fontSize.bodySm[0],
+            lineHeight: fontSize.body[1].lineHeight,
             "h1, h2, h3, h4": {
               fontFamily: fontFamily.serif.join(", "),
               fontWeight: "600",
               letterSpacing: "-0.01em",
             },
-            h2: { fontSize: fontSize.proseH2[0], marginTop: "1.6em", marginBottom: "0.5em" },
-            h3: { fontSize: fontSize.proseH3[0], marginTop: "1.4em", marginBottom: "0.45em" },
-            p: { marginTop: "1.4em", marginBottom: "1.4em" },
+            "h3, h4": {
+              fontFamily: fontFamily.sans.join(", "),
+              fontWeight: "500",
+            },
+            h2: { fontSize: fontSize.h2Sm[0], lineHeight: fontSize.h2Sm[1].lineHeight, marginTop: "2.25em", marginBottom: headingGap },
+            h3: { fontSize: fontSize.h3[0], lineHeight: fontSize.h3[1].lineHeight, marginTop: "2em", marginBottom: headingGap },
+            p: { marginTop: paragraphGap, marginBottom: paragraphGap },
             a: { textDecoration: "underline", textUnderlineOffset: "3px", textDecorationThickness: "1px" },
             "a:hover": { color: colors.muted },
             table: {
               width: "100%",
-              fontSize: "0.9375rem",
+              fontSize: fontSize.small[0],
               fontVariantNumeric: "tabular-nums",
             },
             'th[style*="right"], td[style*="right"]': {
@@ -97,7 +117,7 @@ const config: Config = {
               fontWeight: "600",
               letterSpacing: "0.02em",
               textTransform: "uppercase",
-              fontSize: fontSize.micro[0],
+              fontSize: fontSize.label[0],
               color: colors.muted,
               paddingBottom: "0.6em",
             },
@@ -120,6 +140,17 @@ const config: Config = {
             code: {
               wordBreak: "break-word",
             },
+          },
+        },
+        // Desktop-only font-size step for the `meridian` variant above —
+        // the typography plugin's css-in-JS config doesn't support a nested
+        // `@media` key (it gets emitted as a literal, non-functional
+        // selector), so the responsive step has to be its own variant,
+        // applied as `md:prose-meridian-lg` alongside `prose-meridian`.
+        "meridian-lg": {
+          css: {
+            fontSize: fontSize.body[0],
+            h2: { fontSize: fontSize.h2[0], lineHeight: fontSize.h2[1].lineHeight },
           },
         },
       }),
