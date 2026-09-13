@@ -9,6 +9,11 @@ import { type ReactNode } from "react";
  * `id` doubles as the sidebar TOC anchor and the `aria-labelledby` target
  * (via `${id}-heading` on the h2) — pass the same id used in the page's
  * `sections` array for the Sidebar component.
+ *
+ * `heading` is optional — an unlabelled-introduction section (a label with
+ * no h2, e.g. /principles's opening) omits it rather than inventing heading
+ * copy that wasn't in the original text; the section falls back to
+ * `aria-label` on the label text instead of `aria-labelledby`.
  */
 export function Section({
   id,
@@ -21,7 +26,7 @@ export function Section({
 }: {
   id: string;
   label: string;
-  heading: ReactNode;
+  heading?: ReactNode;
   panel?: ReactNode;
   divider?: boolean;
   /** Skip the 720px measure cap on the content — for card grids and other
@@ -35,15 +40,18 @@ export function Section({
   return (
     <section
       id={id}
-      aria-labelledby={`${id}-heading`}
+      aria-labelledby={heading ? `${id}-heading` : undefined}
+      aria-label={heading ? undefined : label}
       className={`py-section md:py-section-lg ${divider ? "border-t border-hairline" : ""}`}
     >
       <p className="text-label font-semibold uppercase text-accent-dark">
         {label}
       </p>
-      <h2 id={`${id}-heading`} className={`mt-2 text-h2-sm md:text-h2 ${measure}`}>
-        {heading}
-      </h2>
+      {heading && (
+        <h2 id={`${id}-heading`} className={`mt-2 text-h2-sm md:text-h2 ${measure}`}>
+          {heading}
+        </h2>
+      )}
       <div className={panel ? "mt-heading-gap md:flex md:items-start md:gap-10" : `mt-heading-gap ${measure}`}>
         <div className={`space-y-paragraph-gap text-body-sm leading-relaxed text-ink md:text-body ${panel ? "md:flex-1" : ""} ${measure}`}>
           {children}

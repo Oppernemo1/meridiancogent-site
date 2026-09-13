@@ -31,6 +31,7 @@ export const metadata: Metadata = {
 };
 
 const SECTIONS = [
+  { id: "pressure", label: "The pressure" },
   { id: "legal", label: "The law" },
   { id: "arithmetic", label: "Arithmetic" },
   { id: "costs", label: "What this costs you" },
@@ -73,34 +74,30 @@ export default function PrinciplesPage() {
         </Container>
       </section>
 
-      {/* Opening */}
-      <section aria-label="Introduction" className="border-t border-hairline py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure space-y-paragraph-gap text-body-sm leading-relaxed text-ink md:text-body">
-            <p>
-              Every piece of M&amp;A software eventually faces the same
-              commercial pressure: a customer asks a question the system
-              cannot honestly answer, and answering it anyway would be easy,
-              impressive, and wrong.
-            </p>
-            <p>
-              Produce a risk score. Estimate what is left to spend. Tell them
-              what the notice period is in Germany. Each of these is a small
-              step, each is individually defensible, and each moves the
-              platform from recording what people decided to asserting things
-              it has no basis to assert.
-            </p>
-            <p>
-              The constraints below are how that pressure is refused. They
-              are design positions, not gaps waiting to be filled.
-            </p>
-          </div>
-        </Container>
-      </section>
-
       <SidebarLayout sections={SECTIONS}>
+        {/* Opening */}
+        <Section id="pressure" label="The pressure" divider={false}>
+          <p>
+            Every piece of M&amp;A software eventually faces the same
+            commercial pressure: a customer asks a question the system
+            cannot honestly answer, and answering it anyway would be easy,
+            impressive, and wrong.
+          </p>
+          <p>
+            Produce a risk score. Estimate what is left to spend. Tell them
+            what the notice period is in Germany. Each of these is a small
+            step, each is individually defensible, and each moves the
+            platform from recording what people decided to asserting things
+            it has no basis to assert.
+          </p>
+          <p>
+            The constraints below are how that pressure is refused. They
+            are design positions, not gaps waiting to be filled.
+          </p>
+        </Section>
+
         {/* Legal */}
-        <Section id="legal" label="The law" heading="It will not tell you what the law requires" divider={false}>
+        <Section id="legal" label="The law" heading="It will not tell you what the law requires">
           <p>
             MeridianCogent does not maintain a corpus of jurisdictional
             rules. It does not tell you what a consultation requires, what
