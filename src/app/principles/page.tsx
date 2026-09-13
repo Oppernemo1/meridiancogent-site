@@ -64,26 +64,23 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Opening */}
-      <section
-        aria-label="Introduction"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-label="Introduction" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
-            <p className="text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="text-body-lg leading-relaxed text-ink">
               Every piece of M&amp;A software eventually faces the same
               commercial pressure: a customer asks a question the system
               cannot honestly answer, and answering it anyway would be easy,
               impressive, and wrong.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               Produce a risk score. Estimate what is left to spend. Tell them
               what the notice period is in Germany. Each of these is a small
               step, each is individually defensible, and each moves the
               platform from recording what people decided to asserting things
               it has no basis to assert.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               The constraints below are how that pressure is refused. They
               are design positions, not gaps waiting to be filled.
             </p>
@@ -133,51 +130,48 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Arithmetic */}
-      <section
-        aria-labelledby="arithmetic-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="arithmetic-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="arithmetic-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               It will not calculate what it has no basis to calculate
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Some numbers look like arithmetic but are not.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               A risk register that multiplies likelihood by impact produces a
               score. High multiplied by medium is not a quantity. The
               platform records both dimensions and shows them together; it
               never derives a score from them, and never ranks risks by one.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               A cost-to-complete figure derived from burn rate is a forecast,
               not a measurement. Where a cost-to-complete exists here, a
               person entered it, and it is recorded as their estimate with
               their name and the date attached.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               An annual run rate and a one-time cost are different
               quantities. They are never summed.{" "}
               <Link
                 href="/platform"
-                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
+                className="text-navy underline underline-offset-4 hover:text-muted"
               >
                 A synergy figure and an integration cost are independently
                 reported and shown side by side — never netted into a single
                 number that implies a precision nobody has.
               </Link>
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               A difference between a budget and an actual is only a variance
               if a phased budget exists. Otherwise it is remaining budget,
               and it is labelled that way.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               These distinctions sound pedantic until a board pack built on
               them turns out to be wrong.
             </p>
@@ -186,36 +180,39 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Inference */}
-      <section aria-labelledby="inference-heading" className="py-section md:py-section-lg">
+      <section
+        aria-labelledby="inference-heading"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
+      >
         <Container>
           <div className="max-w-measure">
             <h2
               id="inference-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               It will not infer what a person should decide
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               When a perimeter item is entered, the platform does not suggest
               whether it transfers or is retained. When a contract is
               entered, it does not infer whether it needs novation,
               assignment or nothing at all.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               These look like helpful defaults. They are positions on
               contested commercial questions, and the platform has no
               standing to take them. Disposition is entered by the customer
               or their counsel. Nothing is pre-filled, nothing is flagged as
               wrong, and no suggested default appears anywhere.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               The same applies to dates. Where the platform can model when
               something will finish, it shows that. Where it cannot, it says
               the date is unavailable — rather than quietly falling back to
               the date you originally hoped for.{" "}
               <Link
                 href="/platform"
-                className="text-navy underline underline-offset-4 hover:text-muted"
+                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
               >
                 A target date presented as a modelled date is the most
                 dangerous number in a programme.
@@ -226,31 +223,28 @@ export default function PrinciplesPage() {
       </section>
 
       {/* History */}
-      <section
-        aria-labelledby="history-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="history-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="history-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               It will not quietly overwrite the past
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Corrections are made by superseding a record, never by editing
               one. The original remains visible, with who entered it and
               when.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               When a figure is formally adopted, the platform snapshots
               exactly what was adopted at that moment. If the underlying
               figure later changes, the adoption is marked stale — it does
               not silently update to match. The decision that was actually
               made, on the information actually available, survives.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               This matters most in the situation nobody plans for: eighteen
               months later, when someone asks why a commitment was made, and
               the honest answer depends on what was known at the time.
@@ -285,23 +279,20 @@ export default function PrinciplesPage() {
       </section>
 
       {/* What this costs you */}
-      <section
-        aria-labelledby="costs-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="costs-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="costs-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               What this costs you
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               These constraints are not free, and it would be dishonest to
               present them as pure benefit.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               MeridianCogent asks more of you than a platform that guesses.
               Someone has to enter the jurisdictional content and put their
               name to it. Someone has to decide what a perimeter
@@ -309,13 +300,13 @@ export default function PrinciplesPage() {
               represents before it can be stored, and someone has to
               formally adopt it before it affects a plan.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               That is more work than accepting a default. It is the work
               that makes the output defensible, and it is the work a
               platform cannot do on your behalf without pretending to a
               knowledge it does not have.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               If what you want is a system that fills in the blanks for you,
               this is the wrong product, and that is a reasonable thing to
               want.
@@ -325,20 +316,23 @@ export default function PrinciplesPage() {
       </section>
 
       {/* Direct questions */}
-      <section aria-labelledby="direct-heading" className="py-section md:py-section-lg">
+      <section
+        aria-labelledby="direct-heading"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
+      >
         <Container>
           <div className="max-w-measure">
             <h2
               id="direct-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               One deliberate exception
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               There is a difference between a forecast the platform
               volunteers and a counterfactual you explicitly ask for.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               MeridianCogent is being built to answer a direct question —
               move this date, and show me what it does to exit timing and
               cost. You supply the change, and the answer is computed
@@ -346,7 +340,7 @@ export default function PrinciplesPage() {
               live programme. Nothing is assumed on your behalf; the input is
               yours, and the output is traceable to it.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               That is not a prediction. It is arithmetic you asked for, on
               inputs you chose.
             </p>

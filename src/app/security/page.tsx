@@ -72,24 +72,21 @@ export default function SecurityPage() {
       </section>
 
       {/* The problem this has to solve */}
-      <section
-        aria-labelledby="problem-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="problem-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="problem-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               A separation is not one organisation
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Most software treats access control as an organisational
               question: you work here, so you can see our data. That model
               does not survive contact with a carve-out.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               A single separation programme involves the seller&apos;s team
               and the buyer&apos;s team, who must not see each other&apos;s
               commercial positions. It involves external advisors and
@@ -98,7 +95,7 @@ export default function SecurityPage() {
               inside a company where most employees should not know it
               exists at all.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               Access control here is scoped to the programme, not the
               organisation, because that is the only model that matches how
               a deal actually works.
@@ -138,23 +135,20 @@ export default function SecurityPage() {
       </section>
 
       {/* Advisors and vendors */}
-      <section
-        aria-labelledby="advisors-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="advisors-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="advisors-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               External access, time-bounded and logged
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               Advisors, counsel and vendors need access to run a deal, and
               that access should not outlive the engagement.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               External participants are granted access to specific
               programmes with a defined scope, and that access is logged.
               Privileged vendor access is brokered and recorded rather than

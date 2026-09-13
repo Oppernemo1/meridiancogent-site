@@ -59,54 +59,69 @@ const CHAIN_NODES: ChainNode[] = [
   },
 ];
 
-const SCOPE_ITEMS = [
+const SCOPE_GROUPS = [
   {
-    lead: "Obligations and conditions precedent",
-    body: "what must be done, and what gates closing",
+    heading: "Scope and obligations",
+    items: [
+      {
+        lead: "The perimeter register",
+        body: "what transfers, what is retained, and what remains disputed",
+      },
+      {
+        lead: "Obligations and conditions precedent",
+        body: "what must be done, and what gates closing",
+      },
+      {
+        lead: "The consent register",
+        body: "change-of-control consents and where they stand",
+      },
+      {
+        lead: "Contract novation",
+        body: "the full population of contracts to be re-papered, assigned or novated",
+      },
+    ],
   },
   {
-    lead: "The consent register",
-    body: "change-of-control consents and where they stand",
+    heading: "Cost and risk",
+    items: [
+      {
+        lead: "Integration budget and cost-to-complete",
+        body: "what the capture is costing",
+      },
+      {
+        lead: "Stranded costs",
+        body: "the overhead that does not leave when the business does",
+      },
+      {
+        lead: "Risk register",
+        body: "assessed on two dimensions, never reduced to a score",
+      },
+      {
+        lead: "Delay scenarios",
+        body: "what a slipped date does to exit timing and cost",
+      },
+    ],
   },
   {
-    lead: "Contract novation",
-    body: "the full population of contracts to be re-papered, assigned or novated",
-  },
-  {
-    lead: "The perimeter register",
-    body: "what transfers, what is retained, and what remains disputed",
-  },
-  {
-    lead: "Risk register",
-    body: "assessed on two dimensions, never reduced to a score",
-  },
-  {
-    lead: "Integration budget and cost-to-complete",
-    body: "what the capture is costing",
-  },
-  {
-    lead: "Stranded costs",
-    body: "the overhead that does not leave when the business does",
-  },
-  {
-    lead: "Delay scenarios",
-    body: "what a slipped date does to exit timing and cost",
-  },
-  {
-    lead: "Cutover runbook and hypercare",
-    body: "the hours around Day 1, and the weeks after",
-  },
-  {
-    lead: "The communications plan",
-    body: "what gets said, to whom, when",
-  },
-  {
-    lead: "Playbooks",
-    body: "Day 1 readiness, first hundred days, and carve-out separation, as starting structure rather than an empty list",
-  },
-  {
-    lead: "Bulk import",
-    body: "because a real carve-out arrives as a spreadsheet",
+    heading: "Execution",
+    items: [
+      {
+        lead: "Cutover runbook and hypercare",
+        body: "the hours around Day 1, and the weeks after",
+      },
+      {
+        lead: "The communications plan",
+        body: "what gets said, to whom, when",
+      },
+      {
+        lead: "Playbooks",
+        body: "Day 1 readiness, first hundred days, and carve-out separation, as starting structure rather than an empty list",
+      },
+      {
+        lead: "Bulk import",
+        body: "because a real carve-out arrives as a spreadsheet",
+      },
+    ],
   },
 ];
 
@@ -193,29 +208,78 @@ export default function PlatformPage() {
         </Container>
       </section>
 
+      {/* Scope */}
+      <section aria-labelledby="scope-heading" className="py-section md:py-section-lg">
+        <Container>
+          <div className="max-w-measure">
+            <h2
+              id="scope-heading"
+              className="font-serif text-h2-sm text-navy md:text-h2"
+            >
+              What else the platform covers
+            </h2>
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+              Alongside the execution chain, MeridianCogent is being built to
+              hold the artifacts every transaction actually runs on:
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {SCOPE_GROUPS.map((group) => (
+              <div key={group.heading}>
+                <h3 className="font-serif text-h4 text-navy">
+                  {group.heading}
+                </h3>
+                <ul className="mt-4 space-y-4">
+                  {group.items.map((item) => (
+                    <li
+                      key={item.lead}
+                      className="text-body leading-relaxed text-ink"
+                    >
+                      <span className="font-semibold text-navy">
+                        {item.lead}
+                      </span>{" "}
+                      — {item.body}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-12 max-w-measure text-body-lg leading-relaxed text-ink">
+            Some of these are live today and some are in build. MeridianCogent
+            is not commercially available yet.
+          </p>
+        </Container>
+      </section>
+
       {/* Gates */}
-      <section aria-labelledby="gates-heading" className="py-section md:py-section-lg">
+      <section
+        aria-labelledby="gates-heading"
+        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
+      >
         <Container>
           <div className="max-w-measure">
             <h2
               id="gates-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
+              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
               Gates that actually block
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
               Most platforms have gates that record disapproval. A gate is
               marked red, and the work continues anyway, because nothing in
               the system can stop it.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               Here, a gate is a real constraint on the schedule. Work
               downstream of an unsatisfied gate cannot be scheduled as though
               the gate will clear. Conditions precedent block closing rather
               than annotating it. The critical path reflects what is
               genuinely possible, not what the plan assumed in January.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
               This is the difference between a system that reports on a
               programme and a system that governs one.
             </p>
@@ -224,40 +288,37 @@ export default function PlatformPage() {
       </section>
 
       {/* The record */}
-      <section
-        aria-labelledby="record-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="record-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="record-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               Every number has a named human behind it
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               The platform does not source legal requirements, costs,
               valuations or jurisdictional rules. Every material figure is
               entered by a customer or their advisor, and formally adopted by
               a named person before it can affect a plan.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               When it is adopted, the platform takes a snapshot of exactly
               what was adopted and when. If the underlying figure later
               changes, the adoption is marked stale rather than silently
               updating — the original decision remains visible, along with
               who made it and on what basis.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               Corrections are made by superseding a record, never by
               overwriting one. The history of what was believed, and when,
               survives intact.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               <Link
                 href="/principles"
-                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
+                className="text-navy underline underline-offset-4 hover:text-muted"
               >
                 This constraint is deliberate and it is not negotiable.
               </Link>{" "}
@@ -314,31 +375,28 @@ export default function PlatformPage() {
       </section>
 
       {/* Scenarios */}
-      <section
-        aria-labelledby="scenarios-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
+      <section aria-labelledby="scenarios-heading" className="py-section md:py-section-lg">
         <Container>
           <div className="max-w-measure">
             <h2
               id="scenarios-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
+              className="font-serif text-h2-sm text-navy md:text-h2"
             >
               What happens if this slips?
             </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
               It is one thing to know a transitional service exits in
               September. It is another to know what a two-week delay on a
               single cutover does to that date — and to the invoice that
               follows it.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               MeridianCogent is being built to answer that directly: take the
               current schedule, move one date, and see which transitional
               services can no longer end when they were meant to, and what
               that costs.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               The question a CFO actually asks is not what the plan says. It
               is what the plan costs when it does not hold.
             </p>
@@ -410,41 +468,6 @@ export default function PlatformPage() {
               deal that is not announced yet.
             </p>
           </div>
-        </Container>
-      </section>
-
-      {/* Scope */}
-      <section aria-labelledby="scope-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="scope-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              What else the platform covers
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              Alongside the execution chain, MeridianCogent is being built to
-              hold the artifacts every transaction actually runs on:
-            </p>
-          </div>
-
-          <ul className="mt-10 grid gap-x-10 gap-y-6 sm:grid-cols-2">
-            {SCOPE_ITEMS.map((item) => (
-              <li
-                key={item.lead}
-                className="text-body leading-relaxed text-ink"
-              >
-                <span className="font-semibold text-navy">{item.lead}</span>{" "}
-                — {item.body}
-              </li>
-            ))}
-          </ul>
-
-          <p className="mt-12 max-w-measure text-body-lg leading-relaxed text-ink">
-            Some of these are live today and some are in build. MeridianCogent
-            is not commercially available yet.
-          </p>
         </Container>
       </section>
 
