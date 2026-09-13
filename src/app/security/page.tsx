@@ -130,6 +130,12 @@ export default function SecurityPage() {
               row-level security is only one edge of the permission surface
               and the others are easy to leave open by accident.
             </p>
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+              Data is held in the European Union, in Frankfurt. Tenant
+              isolation is enforced in the database rather than by
+              convention — there is no shared table without a policy
+              governing who can read from it.
+            </p>
           </div>
         </Container>
       </section>
@@ -182,63 +188,22 @@ export default function SecurityPage() {
               record of who took it out, which changes the calculation for
               anyone considering forwarding it.
             </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Detection */}
-      <section
-        aria-labelledby="detection-heading"
-        className="bg-navy py-section text-on-navy-primary md:py-section-lg"
-      >
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="detection-heading"
-              className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
-            >
-              Unusual access is surfaced, not filed
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               An audit log nobody reads is not a control. Access patterns are
               monitored for anomalies — unusual volume, unusual timing,
               access to programmes outside a user&apos;s normal pattern — and
               surfaced to the people who would need to act on them.
             </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
               The audit record itself is append-only.{" "}
               <Link
                 href="/principles"
-                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
+                className="text-navy underline underline-offset-4 hover:text-muted"
               >
                 Corrections supersede rather than overwrite, and records
                 supporting the evidentiary trail cannot be deleted by design,
                 including by the organisation that owns them.
               </Link>
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Infrastructure */}
-      <section aria-labelledby="infrastructure-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="infrastructure-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              Where the data lives
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              Data is held in the European Union, in Frankfurt. The
-              application runs on managed infrastructure with encryption in
-              transit and at rest as provided by the platform layer.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Tenant isolation is enforced in the database rather than by
-              convention. There is no shared table without a policy
-              governing who can read from it.
             </p>
           </div>
         </Container>

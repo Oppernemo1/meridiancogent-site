@@ -320,11 +320,21 @@ export default function PlatformPage() {
                 href="/principles"
                 className="text-navy underline underline-offset-4 hover:text-muted"
               >
-                This constraint is deliberate and it is not negotiable.
+                This constraint is deliberate and it is not negotiable. A
+                platform that asserts what a jurisdiction requires has taken
+                on a liability it cannot discharge and a claim it cannot stand
+                behind.
+              </Link>
+            </p>
+            <p className="mt-5 text-body-lg leading-relaxed text-ink">
+              Access is scoped to the programme rather than the organisation.{" "}
+              <Link
+                href="/security"
+                className="text-navy underline underline-offset-4 hover:text-muted"
+              >
+                Security and confidentiality
               </Link>{" "}
-              A platform that asserts what a jurisdiction requires has taken
-              on a liability it cannot discharge and a claim it cannot stand
-              behind.
+              covers how.
             </p>
           </div>
         </Container>
@@ -375,97 +385,33 @@ export default function PlatformPage() {
       </section>
 
       {/* Scenarios */}
-      <section aria-labelledby="scenarios-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="scenarios-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              What happens if this slips?
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              It is one thing to know a transitional service exits in
-              September. It is another to know what a two-week delay on a
-              single cutover does to that date — and to the invoice that
-              follows it.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              MeridianCogent is being built to answer that directly: take the
-              current schedule, move one date, and see which transitional
-              services can no longer end when they were meant to, and what
-              that costs.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              The question a CFO actually asks is not what the plan says. It
-              is what the plan costs when it does not hold.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Money */}
-      <section aria-labelledby="money-heading" className="py-section md:py-section-lg">
-        <Container>
-          <div className="max-w-measure">
-            <h2
-              id="money-heading"
-              className="font-serif text-h2-sm text-navy md:text-h2"
-            >
-              Numbers that mean what they say
-            </h2>
-            <p className="mt-heading-gap text-body-lg leading-relaxed text-ink">
-              A synergy ledger that lets one row mean an annual run rate and
-              the next mean a cumulative figure, then adds them together,
-              produces an authoritative total that is simply wrong.
-            </p>
-            <p className="mt-5 text-body-lg leading-relaxed text-ink">
-              Every amount in the platform states what it represents before
-              it can be stored. Quantities on different bases are never
-              summed. Independently reported figures are shown side by side
-              rather than netted into a single number that implies a
-              precision nobody has.
-            </p>
-          </div>
-        </Container>
-      </section>
-
-      {/* Confidentiality */}
       <section
-        aria-labelledby="confidentiality-heading"
+        aria-labelledby="scenarios-heading"
         className="bg-navy py-section text-on-navy-primary md:py-section-lg"
       >
         <Container>
           <div className="max-w-measure">
             <h2
-              id="confidentiality-heading"
+              id="scenarios-heading"
               className="font-serif text-h2-sm text-on-navy-primary md:text-h2"
             >
-              Built for deals that are not public
+              What happens if this slips?
             </h2>
             <p className="mt-heading-gap text-body-lg leading-relaxed text-on-navy-secondary">
-              Access is scoped to the programme, not the organisation — being
-              an employee of the customer does not grant visibility of a
-              deal. Advisors and vendors hold{" "}
-              <Link
-                href="/security"
-                className="text-ice underline underline-offset-4 hover:text-on-navy-primary"
-              >
-                time-bounded, logged access
-              </Link>{" "}
-              to only what they need.
+              It is one thing to know a transitional service exits in
+              September. It is another to know what a two-week delay on a
+              single cutover does to that date — and to the invoice that
+              follows it.
             </p>
             <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
-              Programmes can run under code names. Exports are watermarked to
-              the person who generated them. Unusual access patterns are
-              detected and surfaced rather than sitting in a log nobody
-              reads.
+              MeridianCogent is being built to answer that directly: take the
+              current schedule, move one date, and see which transitional
+              services can no longer end when they were meant to, and what
+              that costs.
             </p>
             <p className="mt-5 text-body-lg leading-relaxed text-on-navy-secondary">
-              These are not enterprise add-ons sold separately. They are how
-              the platform works by default, because a separation involves
-              people who should not see each other&apos;s information and a
-              deal that is not announced yet.
+              The question a CFO actually asks is not what the plan says. It
+              is what the plan costs when it does not hold.
             </p>
           </div>
         </Container>
