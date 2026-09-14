@@ -6,7 +6,6 @@ import { PostCard } from "@/components/PostCard";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
-import { ChainDiagram, type ChainNode } from "@/components/ChainDiagram";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { getAllPosts } from "@/lib/posts";
 import { CONTACT_EMAIL, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
@@ -45,18 +44,9 @@ const AT_A_GLANCE = [
   },
 ];
 
-const CHAIN_NODES: ChainNode[] = [
-  { title: "Systems" },
-  { title: "Decommission sequencing" },
-  { title: "TSA exit dependencies" },
-  { title: "Exit risk" },
-  { title: "Day 1 readiness" },
-];
-
 const SECTIONS = [
   { id: "problem", label: "The problem" },
-  { id: "chain", label: "Dependencies" },
-  { id: "scenarios", label: "Scenarios" },
+  { id: "how-it-thinks", label: "How it thinks" },
   { id: "gates", label: "Gates" },
   { id: "trust", label: "Trust & record" },
   { id: "confidentiality", label: "Confidentiality" },
@@ -158,51 +148,24 @@ export default function HomePage() {
           </Section>
         </RevealOnScroll>
 
-        {/* The chain */}
+        {/* How it thinks */}
         <RevealOnScroll>
-          <Section id="chain" label="Dependencies" heading="Dependencies, modelled rather than assumed" wide>
-            <p className="max-w-measure">
-              MeridianCogent models the chain that actually governs a
-              separation: what the business runs on, what has to be
-              untangled, which transitional services cannot end until that
-              work completes, and what is genuinely blocking Day 1.
+          <Section id="how-it-thinks" label="How it thinks" heading="Every date is a chain, not a status.">
+            <p>
+              A transitional service ends when the work behind it finishes.
+              That work depends on other work. MeridianCogent models the
+              chain — systems, decommissioning, TSA exit, exit risk, Day 1 —
+              so the date that will not hold is visible months before the
+              invoice arrives. Move one date and see what it costs the rest
+              of the chain.
             </p>
-
-            <ChainDiagram nodes={CHAIN_NODES} compact />
-
-            <p className="max-w-measure">
-              Every stage reads from the one before it. Nothing here is a
-              status someone updates by hand.
-            </p>
-
             <p className="text-small">
               <Link
                 href="/platform"
                 className="font-medium text-accent-dark underline underline-offset-4 hover:text-muted"
               >
-                How the platform works
+                See the full model →
               </Link>
-            </p>
-          </Section>
-        </RevealOnScroll>
-
-        {/* Scenarios */}
-        <RevealOnScroll>
-          <Section id="scenarios" label="Scenarios" heading="Move one date. See what it costs.">
-            <p>
-              Knowing a service exits in September is useful. Knowing what a
-              two-week slip on a single cutover does to that date — and to
-              the invoice that follows it — is the question a CFO actually
-              asks.
-            </p>
-            <p>
-              MeridianCogent answers it directly: change one date, and see
-              which transitional services can no longer end when they were
-              meant to, repriced through the same engine that governs the
-              live programme.
-            </p>
-            <p>
-              Not a forecast. Arithmetic you asked for, on inputs you chose.
             </p>
           </Section>
         </RevealOnScroll>
