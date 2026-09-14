@@ -62,75 +62,66 @@ const CHAIN_NODES: ChainNode[] = [
   },
 ];
 
-const SCOPE_GROUPS = [
+const WHAT_IT_COVERS_GROUPS = [
   {
     heading: "Scope and obligations",
     items: [
-      {
-        lead: "The perimeter register",
-        body: "what transfers, what is retained, and what remains disputed",
-      },
-      {
-        lead: "Obligations and conditions precedent",
-        body: "what must be done, and what gates closing",
-      },
-      {
-        lead: "The consent register",
-        body: "change-of-control consents and where they stand",
-      },
-      {
-        lead: "Contract novation",
-        body: "the full population of contracts to be re-papered, assigned or novated",
-      },
+      "The perimeter register — what transfers, what is retained, what remains disputed",
+      "Obligations and conditions precedent — what must be done, and what gates closing",
+      "The consent register — change-of-control consents and where they stand",
+      "Contract novation and assignment — the full population to be re-papered",
+      "Attestations — who confirmed what, and when",
     ],
   },
   {
     heading: "Cost and risk",
     items: [
-      {
-        lead: "Integration budget and cost-to-complete",
-        body: "what the capture is costing",
-      },
-      {
-        lead: "Stranded costs",
-        body: "the overhead that does not leave when the business does",
-      },
-      {
-        lead: "Risk register",
-        body: "assessed on two dimensions, never reduced to a score",
-      },
-      {
-        lead: "Delay scenarios",
-        body: "what a slipped date does to exit timing and cost",
-      },
+      "TSA catalogue and exposure — services, multi-currency, overrun and step-up pricing",
+      "Integration budget and cost-to-complete — what the capture is costing",
+      "Stranded costs — the overhead that does not leave when the business does",
+      "Advisory and transaction fees",
+      "Risk register — assessed on two dimensions, never reduced to a score",
+      "The synergy ledger — with every amount stating what it represents",
+      "Delay scenarios — what a slipped date does to exit timing and cost",
     ],
   },
   {
     heading: "Execution",
     items: [
-      {
-        lead: "Cutover runbook and hypercare",
-        body: "the hours around Day 1, and the weeks after",
-      },
-      {
-        lead: "The communications plan",
-        body: "what gets said, to whom, when",
-      },
-      {
-        lead: "Playbooks",
-        body: "Day 1 readiness, first hundred days, and carve-out separation, as starting structure rather than an empty list",
-      },
-      {
-        lead: "Bulk import",
-        body: "because a real carve-out arrives as a spreadsheet",
-      },
+      "Programme structure — tasks, workstreams, typed dependencies and a real critical path",
+      "Gates that block rather than annotate",
+      "Systems register and decommission sequencing",
+      "Day 1 readiness — derived from the chain, not typed into a status field",
+      "Cutover runbook and hypercare",
+      "The communications plan",
+      "Escalations with a clock",
+      "Playbooks — Day 1 readiness, first hundred days, carve-out separation",
+    ],
+  },
+  {
+    heading: "Visibility and record",
+    items: [
+      "The control tower and timeline rail",
+      "Executive and portfolio views across several programmes",
+      "The decision record — append-only, corrections supersede",
+      "Board pack export",
+      "Activity centre and command palette",
+    ],
+  },
+  {
+    heading: "Getting data in and out",
+    items: [
+      "Bulk import — because a real carve-out arrives as a spreadsheet",
+      "Email-in — for the people who will never log in",
+      "Exports, watermarked to whoever generated them",
+      "Public tools — a TSA exit cost calculator and a Day 1 readiness score",
     ],
   },
 ];
 
 const SECTIONS = [
+  { id: "covers", label: "What it covers" },
   { id: "chain", label: "The chain" },
-  { id: "scope", label: "Scope" },
   { id: "gates", label: "Gates" },
   { id: "record", label: "The record" },
   { id: "tsa", label: "TSA exposure" },
@@ -183,8 +174,53 @@ export default function PlatformPage() {
       </section>
 
       <SidebarLayout sections={SECTIONS}>
+        {/* What it covers */}
+        <Section id="covers" label="What it covers" heading="Everything a separation actually runs on" divider={false} wide>
+          <p className="max-w-measure">
+            A carve-out is not one problem. It is scope, obligations,
+            contracts, costs, systems, people and dates, all moving at once
+            and all depending on each other. MeridianCogent holds them in
+            one place.
+          </p>
+
+          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+            {WHAT_IT_COVERS_GROUPS.map((group) => (
+              <div key={group.heading}>
+                <h3 className="text-h3 text-graphite">
+                  {group.heading}
+                </h3>
+                <ul className="mt-4 space-y-4">
+                  {group.items.map((item) => {
+                    const sepIndex = item.indexOf(" — ");
+                    if (sepIndex === -1) {
+                      return (
+                        <li key={item} className="text-small leading-relaxed text-ink">
+                          {item}
+                        </li>
+                      );
+                    }
+                    return (
+                      <li key={item} className="text-small leading-relaxed text-ink">
+                        <span className="font-semibold text-graphite">
+                          {item.slice(0, sepIndex)}
+                        </span>
+                        {item.slice(sepIndex)}
+                      </li>
+                    );
+                  })}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <p className="max-w-measure">
+            Some of this is live today and some is in build. MeridianCogent
+            is not commercially available yet.
+          </p>
+        </Section>
+
         {/* The chain */}
-        <Section id="chain" label="The chain" heading="Most tools track tasks. This one tracks consequence." divider={false} wide>
+        <Section id="chain" label="The chain" heading="Most tools track tasks. This one tracks consequence." wide>
           <p className="max-w-measure">
             A separation is not a list of work. It is a chain of
             dependencies where each link determines the next, and where
@@ -206,42 +242,6 @@ export default function PlatformPage() {
           <p className="max-w-measure">
             Every stage reads from the one before it. Nothing in this chain
             is a status someone updates by hand.
-          </p>
-        </Section>
-
-        {/* Scope */}
-        <Section id="scope" label="Scope" heading="What else the platform covers" wide>
-          <p className="max-w-measure">
-            Alongside the execution chain, MeridianCogent is being built to
-            hold the artifacts every transaction actually runs on:
-          </p>
-
-          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            {SCOPE_GROUPS.map((group) => (
-              <div key={group.heading}>
-                <h3 className="text-h3 text-graphite">
-                  {group.heading}
-                </h3>
-                <ul className="mt-4 space-y-4">
-                  {group.items.map((item) => (
-                    <li
-                      key={item.lead}
-                      className="text-small leading-relaxed text-ink"
-                    >
-                      <span className="font-semibold text-graphite">
-                        {item.lead}
-                      </span>{" "}
-                      — {item.body}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-
-          <p className="max-w-measure">
-            Some of these are live today and some are in build. MeridianCogent
-            is not commercially available yet.
           </p>
         </Section>
 
