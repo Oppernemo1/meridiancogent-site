@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import {
@@ -36,7 +35,6 @@ const SECTIONS = [
   { id: "arithmetic", label: "Arithmetic" },
   { id: "costs", label: "What this costs you" },
   { id: "direct", label: "One exception" },
-  { id: "early-access", label: "Early access" },
 ];
 
 export default function PrinciplesPage() {
@@ -210,21 +208,6 @@ export default function PrinciplesPage() {
             That is not a prediction. It is arithmetic you asked for, on
             inputs you chose.
           </p>
-        </Section>
-
-        {/* Early access */}
-        <Section id="early-access" label="Early access" heading="Early access" wide>
-          <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
-            <div>
-              <p className="text-muted">
-                MeridianCogent is in development. Join the list for updates
-                as we open access.
-              </p>
-            </div>
-            <div className="border border-hairline bg-white p-6 md:p-8">
-              <EarlyAccessForm source="principles-page" />
-            </div>
-          </div>
         </Section>
       </SidebarLayout>
     </>

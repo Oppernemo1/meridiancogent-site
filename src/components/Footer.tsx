@@ -26,7 +26,7 @@ export function Footer() {
     <footer className="relative mt-32 overflow-hidden bg-graphite text-on-dark-primary">
       <BackgroundLines
         tone="accent"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full opacity-60"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 w-full opacity-60"
       />
       <Container className="relative py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">

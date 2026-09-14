@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { DataPanel } from "@/components/DataPanel";
@@ -126,7 +125,6 @@ const SECTIONS = [
   { id: "record", label: "The record" },
   { id: "tsa", label: "TSA exposure" },
   { id: "scenarios", label: "Scenarios" },
-  { id: "early-access", label: "Early access" },
 ];
 
 export default function PlatformPage() {
@@ -374,21 +372,6 @@ export default function PlatformPage() {
             The question a CFO actually asks is not what the plan says. It
             is what the plan costs when it does not hold.
           </p>
-        </Section>
-
-        {/* Early access */}
-        <Section id="early-access" label="Early access" heading="Early access" wide>
-          <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
-            <div>
-              <p className="text-muted">
-                MeridianCogent is in development. Join the list for updates
-                as we open access.
-              </p>
-            </div>
-            <div className="border border-hairline bg-white p-6 md:p-8">
-              <EarlyAccessForm source="platform-page" />
-            </div>
-          </div>
         </Section>
       </SidebarLayout>
     </>

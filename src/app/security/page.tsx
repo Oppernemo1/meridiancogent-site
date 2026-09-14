@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
-import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { DataPanel } from "@/components/DataPanel";
@@ -46,7 +45,6 @@ const SECTIONS = [
   { id: "confidentiality", label: "Confidentiality" },
   { id: "not-in-place", label: "Not in place yet" },
   { id: "questions", label: "Questions" },
-  { id: "early-access", label: "Early access" },
 ];
 
 export default function SecurityPage() {
@@ -234,21 +232,6 @@ export default function SecurityPage() {
             </a>
             .
           </p>
-        </Section>
-
-        {/* Early access */}
-        <Section id="early-access" label="Early access" heading="Early access" wide>
-          <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
-            <div>
-              <p className="text-muted">
-                MeridianCogent is in development. Join the list for updates
-                as we open access.
-              </p>
-            </div>
-            <div className="border border-hairline bg-white p-6 md:p-8">
-              <EarlyAccessForm source="security-page" />
-            </div>
-          </div>
         </Section>
       </SidebarLayout>
     </>
