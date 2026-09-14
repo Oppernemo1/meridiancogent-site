@@ -23,13 +23,13 @@ const SOCIAL_PLACEHOLDERS = ["X"];
 
 export function Footer() {
   return (
-    <footer className="relative mt-32 overflow-hidden bg-graphite text-on-dark-primary">
+    <footer className="relative mt-section overflow-hidden bg-graphite text-on-dark-primary md:mt-section-lg">
       <BackgroundLines
         tone="accent"
         className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full opacity-60"
       />
-      <Container className="relative py-16 md:py-24">
-        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+      <Container className="relative py-10">
+        <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16">
           <div>
             <h2 className="text-h2-sm text-on-dark-primary md:text-h2">
               Get updates as we open access.
@@ -42,7 +42,7 @@ export function Footer() {
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:justify-items-end">
+          <div className="grid grid-cols-2 items-start gap-8 md:justify-items-end">
             <nav aria-label="Footer">
               <h3 className="text-label font-semibold uppercase text-on-dark-secondary">
                 Site
@@ -88,7 +88,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 text-small text-on-dark-secondary/70 md:flex-row md:items-center md:justify-between">
+        <div className="mt-6 flex flex-col gap-2 text-small text-on-dark-secondary/70 md:flex-row md:items-center md:justify-between">
           <p>
             &copy; {new Date().getFullYear()} MeridianCogent. All rights
             reserved.
