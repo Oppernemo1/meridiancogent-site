@@ -30,6 +30,21 @@ export const metadata: Metadata = {
   },
 };
 
+const AT_A_GLANCE = [
+  {
+    label: "What it is",
+    body: "A platform for running M&A separations, carve-outs and integrations. It holds the perimeter, obligations, consents, contracts, TSAs, systems, risks, costs and dates in one place, with a named human behind every number that matters.",
+  },
+  {
+    label: "Who it is for",
+    body: "Separation offices and divestiture teams, integration and PMI teams, corporate development running several deals at once, and the advisors and counsel working alongside them. Buy-side and sell-side, corporate and sponsor.",
+  },
+  {
+    label: "Where it is",
+    body: "In development. Not commercially available yet. Join the list and we will tell you when there is something to show you.",
+  },
+];
+
 const CHAIN_NODES: ChainNode[] = [
   { title: "Systems" },
   { title: "Decommission sequencing" },
@@ -99,6 +114,24 @@ export default function HomePage() {
                 <EarlyAccessForm source="homepage-hero" />
               </div>
             </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* At a glance */}
+      <section className="border-t border-hairline">
+        <Container>
+          <div className="grid gap-8 py-10 sm:grid-cols-3 sm:gap-10 md:py-12">
+            {AT_A_GLANCE.map((item) => (
+              <div key={item.label}>
+                <p className="text-label font-semibold uppercase text-accent-dark">
+                  {item.label}
+                </p>
+                <p className="mt-2 text-small leading-relaxed text-muted">
+                  {item.body}
+                </p>
+              </div>
+            ))}
           </div>
         </Container>
       </section>
