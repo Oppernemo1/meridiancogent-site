@@ -32,7 +32,7 @@ const EXPECTATIONS = [
   },
   {
     heading: "No launch date is promised",
-    body: "We're not going to give you a quarter and miss it. When there's something concrete to show you or to give you access to, you'll hear from us.",
+    body: "We are not going to give you a quarter and miss it. When there is something concrete to show you, you will hear from us.",
   },
   {
     heading: "One email address, nothing else",

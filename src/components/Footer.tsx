@@ -5,15 +5,21 @@ import { BackgroundLines } from "./LineGraphMotif";
 import { CONTACT_EMAIL } from "@/lib/site";
 
 const FOOTER_NAV = [
-  { label: "Product", href: "/#approach" },
+  { label: "Platform", href: "/platform" },
+  { label: "Principles", href: "/principles" },
+  { label: "Security", href: "/security" },
   { label: "Resources", href: "/resources" },
   { label: "Early Access", href: "/early-access" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ];
 
-// Placeholder only — no accounts exist yet. Rendered as non-links on purpose.
-const SOCIAL_PLACEHOLDERS = ["LinkedIn", "X", "RSS"];
+const SOCIAL_LINKS = [
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/meridiancogent/" },
+];
+
+// Placeholder only — no account exists yet. Rendered as a non-link on purpose.
+const SOCIAL_PLACEHOLDERS = ["X"];
 
 export function Footer() {
   return (
@@ -60,6 +66,18 @@ export function Footer() {
                 Elsewhere
               </h3>
               <ul className="mt-4 space-y-2 text-small text-on-dark-secondary/70">
+                {SOCIAL_LINKS.map((link) => (
+                  <li key={link.href}>
+                    <a
+                      href={link.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="transition-colors hover:text-accent-light"
+                    >
+                      {link.label}
+                    </a>
+                  </li>
+                ))}
                 {SOCIAL_PLACEHOLDERS.map((name) => (
                   <li key={name} aria-disabled="true" title="Coming soon">
                     {name}

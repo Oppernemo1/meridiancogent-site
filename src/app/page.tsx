@@ -47,7 +47,6 @@ const SECTIONS = [
   { id: "confidentiality", label: "Confidentiality" },
   { id: "who", label: "Who it's for" },
   { id: "resources-preview", label: "Resources" },
-  { id: "early-access", label: "Early access" },
 ];
 
 export default function HomePage() {
@@ -81,13 +80,15 @@ export default function HomePage() {
         <Container className="relative py-section md:py-section-lg">
           <div className="max-w-3xl">
             <h1 className="text-balance text-h1-sm md:text-h1">
-              Somewhere in your separation plan is a task that decides
-              whether September holds.
+              A carve-out is a hundred moving parts and one date that has to
+              hold.
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
-              Nobody knows which one it is. MeridianCogent models what every
-              transitional service actually depends on — so the date that
-              will not hold is visible in March, not September.
+              MeridianCogent holds all of them — what transfers, what needs
+              consent, what a TSA costs, what blocks Day 1 — and shows which
+              commitments are still real. Built for separation offices,
+              integration teams, corporate development, and the advisors
+              working alongside them.
             </p>
 
             <div className="mt-10 max-w-xl">
@@ -274,23 +275,6 @@ export default function HomePage() {
                 All resources
               </Link>
             </p>
-          </Section>
-        </RevealOnScroll>
-
-        {/* Early access */}
-        <RevealOnScroll>
-          <Section id="early-access" label="Early access" heading="Early access" wide>
-            <div className="grid gap-10 md:grid-cols-2 md:items-center md:gap-16">
-              <div>
-                <p className="text-muted">
-                  MeridianCogent is in development. Join the list for updates
-                  as we open access.
-                </p>
-              </div>
-              <div className="border border-hairline bg-white p-6 md:p-8">
-                <EarlyAccessForm source="homepage-early-access" />
-              </div>
-            </div>
           </Section>
         </RevealOnScroll>
       </SidebarLayout>

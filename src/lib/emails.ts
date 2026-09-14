@@ -101,8 +101,7 @@ newsletter cadence, no drip sequence.
 <tr>
 <td style="padding:0; font-family:${SANS}; font-size:15px; line-height:1.6; color:${INK};">
 <span style="color:${GRAPHITE}; font-weight:bold;">No launch date is promised.</span>
-Access opens in phases, starting with diagnostics. When there is something
-concrete to show you, you will hear from us.
+When there is something concrete to show you, you will hear from us.
 </td>
 </tr>
 </table>
@@ -173,7 +172,7 @@ MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integra
     "A few things worth setting expectations on:",
     "",
     "- Updates come by email. Occasional notes as the product takes shape and as access widens - no newsletter cadence, no drip sequence.",
-    "- No launch date is promised. Access opens in phases, starting with diagnostics. When there is something concrete to show you, you will hear from us.",
+    "- No launch date is promised. When there is something concrete to show you, you will hear from us.",
     "",
     "In the meantime:",
     `- See how the platform works: ${SITE_URL}/platform`,
