@@ -18,22 +18,23 @@ export function Header() {
             alt="MeridianCogent"
             width={186}
             height={41}
-            className="h-6 w-auto md:h-9"
+            className="h-8 w-auto md:h-[46.7px]"
           />
         </Link>
         <nav aria-label="Primary" className="min-w-0">
-          <ul className="flex items-center gap-x-4 gap-y-1 text-small flex-wrap justify-end md:flex-nowrap md:gap-8">
+          <ul className="flex items-center gap-x-4 gap-y-1 text-nav flex-wrap justify-end md:flex-nowrap md:gap-8">
             {NAV_LINKS.map((link) => {
-              const active = pathname === link.href;
+              const active =
+                link.href === "/" ? pathname === "/" : pathname === link.href;
               return (
                 <li key={link.href}>
                   <Link
                     href={link.href}
                     aria-current={active ? "page" : undefined}
-                    className={`transition-colors ${
+                    className={`border-b-2 pb-1 transition-colors ${
                       active
-                        ? "text-on-dark-primary"
-                        : "text-on-dark-secondary hover:text-on-dark-primary"
+                        ? "border-accent text-accent-light"
+                        : "border-transparent text-on-dark-secondary hover:text-on-dark-primary"
                     }`}
                   >
                     {link.label}

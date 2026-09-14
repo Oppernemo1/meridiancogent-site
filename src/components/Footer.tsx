@@ -26,7 +26,7 @@ export function Footer() {
     <footer className="relative mt-32 overflow-hidden bg-graphite text-on-dark-primary">
       <BackgroundLines
         tone="accent"
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-32 w-full opacity-60"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-64 w-full opacity-60"
       />
       <Container className="relative py-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
@@ -88,7 +88,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col gap-2 border-t border-white/15 pt-8 text-small text-on-dark-secondary/70 md:flex-row md:items-center md:justify-between">
+        <div className="mt-14 flex flex-col gap-2 text-small text-on-dark-secondary/70 md:flex-row md:items-center md:justify-between">
           <p>
             &copy; {new Date().getFullYear()} MeridianCogent. All rights
             reserved.

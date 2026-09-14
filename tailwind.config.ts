@@ -52,6 +52,7 @@ const config: Config = {
         label: fontSize.label,
         sidebar: fontSize.sidebar,
         small: fontSize.small,
+        nav: fontSize.nav,
       },
       maxWidth: {
         content: layout.contentWidth,

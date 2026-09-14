@@ -75,9 +75,10 @@ export const fontSize: Record<string, [string, { lineHeight: string; letterSpaci
   h3: ["1.125rem", { lineHeight: "1.4" }], // 18px — sans, medium weight, no breakpoint step
   body: ["1rem", { lineHeight: "1.7" }], // 16px desktop
   bodySm: ["0.9375rem", { lineHeight: "1.7" }], // 15px mobile
-  label: ["0.65rem", { lineHeight: "1.4", letterSpacing: "0.07em" }], // small-caps section label
+  label: ["0.6875rem", { lineHeight: "1.4", letterSpacing: "0.07em" }], // small-caps section label
   sidebar: ["0.75rem", { lineHeight: "1.4" }], // sidebar TOC item
   small: ["0.8125rem", { lineHeight: "1.5" }], // meta copy, footer, form status text
+  nav: ["0.9375rem", { lineHeight: "1.4" }], // header nav links
 };
 
 /**
