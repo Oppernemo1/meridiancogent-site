@@ -37,7 +37,7 @@ const AT_A_GLANCE = [
   },
   {
     label: "Who it is for",
-    body: "Separation offices and divestiture teams, integration and PMI teams, corporate development running several deals at once, and the advisors and counsel working alongside them. Buy-side and sell-side, corporate and sponsor.",
+    body: "Separation offices and divestiture teams, integration and PMI teams, corporate development running several deals at once, and the advisors and counsel working alongside them. Buy-side and sell-side, corporate and sponsor. Typically eight to forty people per deal team, in mid-market and enterprise transactions.",
   },
   {
     label: "Where it is",
@@ -60,7 +60,6 @@ const SECTIONS = [
   { id: "gates", label: "Gates" },
   { id: "trust", label: "Trust & record" },
   { id: "confidentiality", label: "Confidentiality" },
-  { id: "who", label: "Who it's for" },
   { id: "resources-preview", label: "Resources" },
 ];
 
@@ -92,7 +91,7 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden">
         <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
-        <Container className="relative py-section md:py-section-lg">
+        <Container className="relative pt-section pb-8 md:pt-section-lg md:pb-10">
           <div className="max-w-3xl">
             <h1 className="text-balance text-h1-sm md:text-h1">
               A carve-out is a hundred moving parts and one date that has to
@@ -121,13 +120,13 @@ export default function HomePage() {
       {/* At a glance */}
       <section className="border-t border-hairline">
         <Container>
-          <div className="grid gap-8 py-10 sm:grid-cols-3 sm:gap-10 md:py-12">
+          <div className="grid gap-8 py-8 sm:grid-cols-3 sm:gap-10 md:py-10">
             {AT_A_GLANCE.map((item) => (
               <div key={item.label}>
                 <p className="text-label font-semibold uppercase text-accent-dark">
                   {item.label}
                 </p>
-                <p className="mt-2 text-small leading-relaxed text-muted">
+                <p className="mt-2 text-body-sm leading-relaxed text-muted md:text-body">
                   {item.body}
                 </p>
               </div>
@@ -271,23 +270,6 @@ export default function HomePage() {
             <p>
               Not enterprise add-ons sold separately — how the platform
               works by default.
-            </p>
-          </Section>
-        </RevealOnScroll>
-
-        {/* Who it is for */}
-        <RevealOnScroll>
-          <Section id="who" label="Who it's for" heading="Who it is for">
-            <p>
-              Separation offices preparing a business for divestiture.
-              Integration and PMI teams running the programme after close.
-              Corporate development managing several transactions at once.
-              Advisory firms and transaction counsel guiding execution and
-              needing the plan to survive their departure.
-            </p>
-            <p>
-              Typically eight to forty people per deal team, in mid-market
-              and enterprise transactions.
             </p>
           </Section>
         </RevealOnScroll>
