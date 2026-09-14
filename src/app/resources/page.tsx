@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 import { ResourceIndex } from "@/components/ResourceIndex";
+import { BackgroundLines } from "@/components/LineGraphMotif";
 import { getAllPosts } from "@/lib/posts";
 
 const TITLE = "Resources";
@@ -27,25 +28,31 @@ export default function ResourcesPage() {
   const posts = getAllPosts();
 
   return (
-    <div className="py-10 md:py-14">
-      <Container>
-        <header className="max-w-measure">
-          <h1 className="text-h1-sm md:text-h1">
-            Resources
-          </h1>
-          <p className="mt-heading-gap text-body-sm leading-relaxed text-muted md:text-body">
-            {DESCRIPTION}
-          </p>
-          <p className="mt-4 text-small">
-            <Link
-              href="/platform"
-              className="font-medium text-accent-dark underline underline-offset-4 hover:text-muted"
-            >
-              See how the platform itself is built
-            </Link>
-          </p>
-        </header>
+    <div className="pb-10 md:pb-14">
+      {/* Hero */}
+      <section className="relative overflow-hidden py-10 md:py-14">
+        <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
+        <Container className="relative">
+          <header className="max-w-measure">
+            <h1 className="text-h1-sm md:text-h1">
+              Resources
+            </h1>
+            <p className="mt-heading-gap text-body-sm leading-relaxed text-muted md:text-body">
+              {DESCRIPTION}
+            </p>
+            <p className="mt-4 text-small">
+              <Link
+                href="/platform"
+                className="font-medium text-accent-dark underline underline-offset-4 hover:text-muted"
+              >
+                See how the platform itself is built
+              </Link>
+            </p>
+          </header>
+        </Container>
+      </section>
 
+      <Container>
         <div className="mt-16">
           <ResourceIndex posts={posts} />
         </div>

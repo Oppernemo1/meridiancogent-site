@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
+import { BackgroundLines } from "@/components/LineGraphMotif";
 import {
   CONTACT_EMAIL,
   SITE_DESCRIPTION,
@@ -57,8 +58,9 @@ export default function PrinciplesPage() {
       />
 
       {/* Hero */}
-      <section className="py-section md:py-section-lg">
-        <Container>
+      <section className="relative overflow-hidden py-section md:py-section-lg">
+        <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
+        <Container className="relative">
           <div className="max-w-3xl">
             <h1 className="text-balance text-h1-sm md:text-h1">
               What this platform will not do

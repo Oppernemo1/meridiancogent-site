@@ -73,6 +73,14 @@ export function LineGraphMotif({
 /**
  * Large, very subtle background line-graph field. Purely decorative — sits
  * behind content at low opacity, never reads as a literal chart.
+ *
+ * preserveAspectRatio="none": call sites stretch this to fill containers of
+ * very different aspect ratios (short wide heroes, a tall footer band). A
+ * "meet"/"slice" fit keeps the 1200x400 aspect locked and crops or letterboxes
+ * outside it, which cut the path off-frame or exposed empty canvas depending
+ * on the container's proportions. Stretching non-uniformly keeps the line
+ * spanning edge-to-edge with no clipping at any size — imperceptible for a
+ * faint decorative stroke.
  */
 export function BackgroundLines({
   className,
@@ -89,7 +97,7 @@ export function BackgroundLines({
       fill="none"
       aria-hidden="true"
       className={className}
-      preserveAspectRatio="xMidYMid slice"
+      preserveAspectRatio="none"
     >
       <path
         d="M-20 320 L160 180 L300 250 L460 90 L640 210 L820 70 L1000 200 L1220 120"
