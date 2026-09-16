@@ -41,15 +41,7 @@ export const emailColors = {
 } as const;
 
 export const fontFamily = {
-  serif: [
-    "ui-serif",
-    "Iowan Old Style",
-    "Apple Garamond",
-    "Palatino Linotype",
-    "Georgia",
-    "Times New Roman",
-    "serif",
-  ],
+  serif: ["var(--font-serif)", "Georgia", "Times New Roman", "serif"],
   sans: [
     "ui-sans-serif",
     "-apple-system",
