@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Container } from "@/components/Container";
+import { Section } from "@/components/Section";
+import { SidebarLayout } from "@/components/SidebarLayout";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Terms of Use";
@@ -19,29 +21,51 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
+const SECTIONS = [
+  { id: "use-of-this-site", label: "Use of this site" },
+  { id: "early-access", label: "Early access" },
+  { id: "no-warranties", label: "No warranties" },
+  { id: "intellectual-property", label: "Intellectual property" },
+  { id: "limitation-of-liability", label: "Limitation of liability" },
+  { id: "changes", label: "Changes" },
+  { id: "contact", label: "Contact" },
+];
+
 export default function TermsPage() {
   return (
-    <div className="py-10 md:py-14">
-      <Container>
-        <div className="prose prose-meridian md:prose-meridian-lg mx-auto">
-          <h1 className="text-h1-sm md:text-h1">Terms of Use</h1>
-          <p className="lead">
-            <em>Last updated: {LAST_UPDATED}.</em> This is a pre-launch marketing
-            website for MeridianCogent, an M&amp;A execution platform currently
-            in development. These terms are early-stage boilerplate and are
-            subject to change. They will be replaced with full product terms
-            before the platform becomes generally available.
-          </p>
+    <>
+      {/* Hero */}
+      <section className="py-section md:py-section-lg">
+        <Container>
+          <div className="max-w-3xl">
+            <h1 className="text-balance text-h1-sm md:text-h1">
+              Terms of Use
+            </h1>
+            <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
+              <em>Last updated: {LAST_UPDATED}.</em> This is a pre-launch
+              marketing website for MeridianCogent, an M&amp;A execution
+              platform currently in development. These terms are early-stage
+              boilerplate and are subject to change. They will be replaced
+              with full product terms before the platform becomes generally
+              available.
+            </p>
+          </div>
+        </Container>
+      </section>
 
-          <h2>Use of this site</h2>
+      <SidebarLayout sections={SECTIONS}>
+        {/* Use of this site */}
+        <Section id="use-of-this-site" label="Use of this site" heading="Use of this site" divider={false}>
           <p>
             You may view this site for the purpose of learning about
             MeridianCogent and joining the early access list. Please don&apos;t
             attempt to disrupt the site, access it other than through the
             interface we provide, or use it in a way that breaks the law.
           </p>
+        </Section>
 
-          <h2>Early access</h2>
+        {/* Early access */}
+        <Section id="early-access" label="Early access" heading="Early access">
           <p>
             Joining the early access list places your email address on a list
             for occasional updates. It is not a contract, it does not guarantee
@@ -49,8 +73,10 @@ export default function TermsPage() {
             launch date, feature, or price. Nothing on this site is an offer to
             sell a product or a commitment to deliver one.
           </p>
+        </Section>
 
-          <h2>No warranties</h2>
+        {/* No warranties */}
+        <Section id="no-warranties" label="No warranties" heading="No warranties">
           <p>
             This site is provided &ldquo;as is&rdquo;. Content is for general
             information only and may be incomplete, out of date, or changed
@@ -58,37 +84,48 @@ export default function TermsPage() {
             MeridianCogent team&apos;s reading of publicly available research and
             are not professional, legal, or financial advice.
           </p>
+        </Section>
 
-          <h2>Intellectual property</h2>
+        {/* Intellectual property */}
+        <Section id="intellectual-property" label="Intellectual property" heading="Intellectual property">
           <p>
             The MeridianCogent name, logo, and site content are owned by
             MeridianCogent. You may quote or link to articles with attribution;
             please don&apos;t reproduce them in full without permission.
           </p>
+        </Section>
 
-          <h2>Limitation of liability</h2>
+        {/* Limitation of liability */}
+        <Section id="limitation-of-liability" label="Limitation of liability" heading="Limitation of liability">
           <p>
             To the extent permitted by law, MeridianCogent is not liable for any
             loss arising from your use of, or reliance on, this site or its
             content.
           </p>
+        </Section>
 
-          <h2>Changes</h2>
+        {/* Changes */}
+        <Section id="changes" label="Changes" heading="Changes">
           <p>
             We may update these terms at any time. The version posted here, with
             the date above, is the current one.
           </p>
+        </Section>
 
-          <h2>Contact</h2>
+        {/* Contact */}
+        <Section id="contact" label="Contact" heading="Contact">
           <p>
             Questions about these terms:{" "}
-            <a href="mailto:hello@meridiancogent.com">
+            <a
+              href="mailto:hello@meridiancogent.com"
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
+            >
               hello@meridiancogent.com
             </a>
             .
           </p>
-        </div>
-      </Container>
-    </div>
+        </Section>
+      </SidebarLayout>
+    </>
   );
 }
