@@ -8,7 +8,7 @@ type Status = "idle" | "submitting" | "success" | "error";
 export function EarlyAccessForm({
   theme = "light",
   source = "unknown",
-  buttonLabel = "Request early access",
+  buttonLabel = "Join the Program",
   className = "",
 }: {
   theme?: "light" | "dark";

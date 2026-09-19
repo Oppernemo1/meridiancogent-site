@@ -200,7 +200,7 @@ export default function SecurityPage() {
         {/* What is not in place yet */}
         <Section id="not-in-place" label="Not in place yet" heading="What is not in place yet">
           <p>
-            MeridianCogent is in development and pre-revenue. The following
+            MeridianCogent is in testing and pre-revenue. The following
             do not exist, and it would be misleading to imply otherwise:
           </p>
           <ul className="list-disc space-y-3 pl-5">

@@ -40,7 +40,7 @@ const AT_A_GLANCE = [
   },
   {
     label: "Where it is",
-    body: "In development. Not commercially available yet. Join the list and we will tell you when there is something to show you.",
+    body: "Currently in testing. Not commercially available yet. Join the list and we will tell you when there is something to show you.",
   },
 ];
 
@@ -97,7 +97,7 @@ export default function HomePage() {
 
             <div className="mt-10 max-w-xl">
               <p className="text-small font-medium text-graphite">
-                In development. Join the list for updates as we open access.
+                Currently in testing. Join the list for updates as we open access.
               </p>
               <div className="mt-3">
                 <EarlyAccessForm source="homepage-hero" />

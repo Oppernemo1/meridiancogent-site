@@ -6,7 +6,7 @@ import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Privacy Policy";
 const DESCRIPTION =
-  "How MeridianCogent handles the limited personal data collected through this website during early access.";
+  "How MeridianCogent handles the limited personal data collected through this website during the program.";
 const LAST_UPDATED = "9 September 2026";
 
 export const metadata: Metadata = {
@@ -74,7 +74,7 @@ export default function PrivacyPage() {
         <Section id="what-we-collect" label="What we collect" heading="What we collect">
           <p>
             The only personal data this site collects is the email address you
-            submit to the early access form. We do not ask for your name,
+            submit to the sign-up form. We do not ask for your name,
             company, or any other detail. We do not use advertising or
             cross-site tracking cookies.
           </p>
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
         <Section id="how-we-use-it" label="How we use it" heading="How we use it">
           <ul className="list-disc space-y-3 pl-5">
             <li>
-              To add you to our early access list and send you occasional
+              To add you to our program list and send you occasional
               product updates by email.
             </li>
             <li>
@@ -111,7 +111,7 @@ export default function PrivacyPage() {
         <Section id="service-providers" label="Service providers" heading="Service providers">
           <ul className="list-disc space-y-3 pl-5">
             <li>
-              <strong>Resend</strong> — stores the early access list and
+              <strong>Resend</strong> — stores the program list and
               delivers our email. See resend.com for their terms and privacy
               information.
             </li>
@@ -125,7 +125,7 @@ export default function PrivacyPage() {
         {/* Retention */}
         <Section id="retention" label="Retention" heading="Retention">
           <p>
-            We keep your email address on the early access list until you
+            We keep your email address on the program list until you
             unsubscribe or ask us to remove it, or until we decide the list is
             no longer needed.
           </p>

@@ -6,9 +6,9 @@ import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { SITE_NAME } from "@/lib/site";
 
-const TITLE = "Early Access";
+const TITLE = "Join the Program";
 const DESCRIPTION =
-  "MeridianCogent is in development. Join the early access list for occasional email updates as we get closer to launch — no specific date promised.";
+  "MeridianCogent is currently in testing. Join the program for occasional email updates as we get closer to launch — no specific date promised.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -55,16 +55,16 @@ export default function EarlyAccessPage() {
         <Container className="relative py-section md:py-section-lg">
           <div className="max-w-2xl">
             <h1 className="text-balance text-h1-sm md:text-h1">
-              Early access
+              Join the program
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent is a control environment for separation offices and
-              integration teams. It&apos;s still being built. Early access is how
+              integration teams. It&apos;s currently in testing. The program is how
               we stay in touch with the people we&apos;re building it for.
             </p>
             <div className="mt-8 max-w-lg">
               <p className="text-small font-medium text-graphite">
-                In development. Join the early access list for updates.
+                Currently in testing. Join the program for updates.
               </p>
               <div className="mt-3">
                 <EarlyAccessForm source="early-access-page" />
@@ -92,7 +92,7 @@ export default function EarlyAccessPage() {
           </dl>
 
           <p className="text-small text-muted">
-            Questions about early access? Email{" "}
+            Questions about the program? Email{" "}
             <a
               href="mailto:hello@meridiancogent.com"
               className="text-accent-dark underline underline-offset-4 hover:text-muted"

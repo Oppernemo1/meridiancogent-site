@@ -9,7 +9,7 @@ const FOOTER_NAV = [
   { label: "Principles", href: "/principles" },
   { label: "Security", href: "/security" },
   { label: "Resources", href: "/resources" },
-  { label: "Early Access", href: "/early-access" },
+  { label: "Join the Program", href: "/early-access" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ];
@@ -35,7 +35,7 @@ export function Footer() {
               Get updates as we open access.
             </h2>
             <p className="mt-heading-gap max-w-md leading-relaxed text-on-dark-secondary">
-              In development. Join the early access list for updates.
+              Currently in testing. Join the program for updates.
             </p>
             <div className="mt-6 max-w-md">
               <EarlyAccessForm theme="dark" source="footer" />

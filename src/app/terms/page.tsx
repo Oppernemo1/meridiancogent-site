@@ -23,7 +23,7 @@ export const metadata: Metadata = {
 
 const SECTIONS = [
   { id: "use-of-this-site", label: "Use of this site" },
-  { id: "early-access", label: "Early access" },
+  { id: "early-access", label: "The program" },
   { id: "no-warranties", label: "No warranties" },
   { id: "intellectual-property", label: "Intellectual property" },
   { id: "limitation-of-liability", label: "Limitation of liability" },
@@ -44,7 +44,7 @@ export default function TermsPage() {
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               <em>Last updated: {LAST_UPDATED}.</em> This is a pre-launch
               marketing website for MeridianCogent, an M&amp;A execution
-              platform currently in development. These terms are early-stage
+              platform currently in testing. These terms are early-stage
               boilerplate and are subject to change. They will be replaced
               with full product terms before the platform becomes generally
               available.
@@ -58,16 +58,16 @@ export default function TermsPage() {
         <Section id="use-of-this-site" label="Use of this site" heading="Use of this site" divider={false}>
           <p>
             You may view this site for the purpose of learning about
-            MeridianCogent and joining the early access list. Please don&apos;t
+            MeridianCogent and joining the program. Please don&apos;t
             attempt to disrupt the site, access it other than through the
             interface we provide, or use it in a way that breaks the law.
           </p>
         </Section>
 
-        {/* Early access */}
-        <Section id="early-access" label="Early access" heading="Early access">
+        {/* The program */}
+        <Section id="early-access" label="The program" heading="The program">
           <p>
-            Joining the early access list places your email address on a list
+            Joining the program places your email address on a list
             for occasional updates. It is not a contract, it does not guarantee
             access to the product, and it does not commit MeridianCogent to any
             launch date, feature, or price. Nothing on this site is an offer to

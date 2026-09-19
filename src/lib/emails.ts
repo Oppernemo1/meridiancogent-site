@@ -20,7 +20,7 @@ const SERIF = "Georgia, 'Times New Roman', Times, serif";
 const SANS = "Helvetica, Arial, sans-serif";
 
 /**
- * Branded HTML confirmation email sent to a new early access registrant.
+ * Branded HTML confirmation email sent to a new program registrant.
  * Table-based layout, inline styles only, capped at 600px so it renders on
  * mobile. Web-safe fonts only (Georgia serif headings, Arial/Helvetica body)
  * to match the site's typographic system.
@@ -31,9 +31,9 @@ export function confirmationEmail(email: string): {
   text: string;
   unsubscribeUrl: string;
 } {
-  const subject = "You’re on the list — early access updates coming";
+  const subject = "You’re on the list — program updates coming";
   const preheader =
-    "Thanks for joining MeridianCogent early access. Here’s what to expect.";
+    "Thanks for joining the MeridianCogent program. Here’s what to expect.";
   const unsubscribe = unsubscribeUrl(email);
 
   const html = `<!DOCTYPE html>
@@ -82,7 +82,7 @@ You’re on the list.
 </h1>
 
 <p style="margin:0 0 18px 0; font-family:${SANS}; font-size:15px; line-height:1.7; color:${INK};">
-Thanks for joining the MeridianCogent early access list. Here is what that
+Thanks for joining the MeridianCogent program. Here is what that
 means.
 </p>
 
@@ -167,7 +167,7 @@ MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integra
   const text = [
     "You’re on the list.",
     "",
-    "Thanks for joining the MeridianCogent early access list. Here is what that means.",
+    "Thanks for joining the MeridianCogent program. Here is what that means.",
     "",
     "A few things worth setting expectations on:",
     "",
@@ -197,9 +197,9 @@ export function internalNotification(params: {
   source: string;
 }): { subject: string; text: string } {
   return {
-    subject: `New early access signup: ${params.email}`,
+    subject: `New program signup: ${params.email}`,
     text: [
-      `${params.email} signed up for early access.`,
+      `${params.email} signed up for the program.`,
       "",
       `Source: ${params.source}`,
       `Time: ${new Date().toISOString()}`,
