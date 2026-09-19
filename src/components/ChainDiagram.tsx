@@ -17,6 +17,13 @@ export type ChainNode = {
  *
  * `compact` renders labels only (no per-node description) — the condensed
  * form used on the homepage, versus the fuller version on /platform.
+ *
+ * TEMP / blocked: SITE-BUILD-MANUAL Part 5 item 4 calls for a chain diagram
+ * in "The Dependency Problem" article, replacing a monospace text chain and
+ * styled to match this component exactly. That article is not published —
+ * there is no such file in content/resources, and no monospace chain exists
+ * anywhere in the content. Build it from this component when the article
+ * lands; do not substitute a different article for it.
  */
 export function ChainDiagram({
   nodes,
