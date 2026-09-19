@@ -10,11 +10,23 @@ export function EarlyAccessForm({
   source = "unknown",
   buttonLabel = "Join the Program",
   className = "",
+  successMessage,
+  download,
 }: {
   theme?: "light" | "dark";
   source?: string;
   buttonLabel?: string;
   className?: string;
+  /** Overrides the default confirmation line. */
+  successMessage?: string;
+  /**
+   * Guide downloads: on success the file is revealed here rather than gated
+   * behind a confirmation link. The submission itself goes through the same
+   * /api/early-access route, so there is one contact list and one welcome
+   * email — a repeat submitter gets the same 200 and the same download, with
+   * no second contact record and no second email.
+   */
+  download?: { href: string; label: string };
 }) {
   const id = useId();
   const [email, setEmail] = useState("");
@@ -58,7 +70,8 @@ export function EarlyAccessForm({
 
       setStatus("success");
       setMessage(
-        "You're on the list — we'll email you as we get closer to launch.",
+        successMessage ??
+          "You're on the list — we'll email you as we get closer to launch.",
       );
       setEmail("");
     } catch {
@@ -129,6 +142,18 @@ export function EarlyAccessForm({
       >
         {message}
       </p>
+
+      {download && status === "success" && (
+        <p className="mt-3">
+          <a
+            href={download.href}
+            download
+            className="inline-block bg-graphite px-5 py-3 text-body font-semibold text-on-dark-primary transition-colors hover:bg-graphite/90"
+          >
+            {download.label}
+          </a>
+        </p>
+      )}
     </form>
   );
 }

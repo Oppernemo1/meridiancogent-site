@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Container } from "@/components/Container";
 import { ResourceIndex } from "@/components/ResourceIndex";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { GUIDES, guideHref } from "@/lib/guides";
 import { getAllPosts } from "@/lib/posts";
 
 const TITLE = "Resources";
@@ -53,6 +54,39 @@ export default function ResourcesPage() {
       </section>
 
       <Container>
+        {/* Practitioner guides — each links to its own page, never straight to
+            the PDF: the page is what carries the content and the download. */}
+        <section aria-labelledby="guides-heading" className="mt-4">
+          <h2 id="guides-heading" className="text-h2-sm md:text-h2">
+            Practitioner guides
+          </h2>
+          <p className="mt-heading-gap max-w-measure text-body-sm leading-relaxed text-muted md:text-body">
+            Working documents drawn from the articles below — built to be
+            useful with a spreadsheet and a named owner, not a platform.
+          </p>
+          <ul className="mt-8 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
+            {GUIDES.map((guide) => (
+              <li key={guide.slug}>
+                <div aria-hidden="true" className="h-px w-10 bg-accent" />
+                <h3 className="mt-3 text-h3 text-graphite">
+                  <Link
+                    href={guideHref(guide.slug)}
+                    className="underline-offset-4 hover:underline"
+                  >
+                    {guide.title}
+                  </Link>
+                </h3>
+                <p className="mt-2 text-small leading-relaxed text-muted">
+                  {guide.standfirst}
+                </p>
+                <p className="mt-2 text-small text-muted">
+                  PDF · {guide.pages} pages · free
+                </p>
+              </li>
+            ))}
+          </ul>
+        </section>
+
         <div className="mt-16">
           <ResourceIndex posts={posts} />
         </div>
