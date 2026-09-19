@@ -37,6 +37,30 @@ const NOT_IN_PLACE = [
   "No third-party penetration test has been commissioned.",
   "No SSO or SCIM integration. Both require an enterprise identity provider to configure and test against, which requires a customer.",
   "No data processing agreement executed with any customer, because there is no customer yet.",
+  "Organisation-enforced multi-factor authentication — in progress.",
+];
+
+const CONTINUITY = [
+  {
+    term: "Data location",
+    body: "Hosted in the European Union, in Frankfurt.",
+  },
+  {
+    term: "Backup",
+    body: "Standard managed database backups are in place. Point-in-time recovery and a tested restore procedure will be enabled ahead of the first customer engagement — this is a planned, not yet completed, control.",
+  },
+  {
+    term: "Export and exit",
+    body: "Programme data — registers, decisions, and audit history — can be exported in a readable form at any point, including when an engagement ends, so continued access to the application is never a precondition for keeping your own record.",
+  },
+  {
+    term: "Retention",
+    body: "Audit and evidentiary records follow a defined retention schedule, with contractual retention and legal-hold requirements applied without silently deleting the transaction record. Specific retention periods are set out in the data processing agreement, not asserted here as a universal figure.",
+  },
+  {
+    term: "Erasure and evidence",
+    body: "Where identity data can be removed without destroying a record that must be retained, MeridianCogent can de-identify the actor reference while preserving the integrity of the underlying decision or audit record. This is not automatic in every case — some erasure requests intersect with a legal basis for retention, and the response depends on the record.",
+  },
 ];
 
 const SECTIONS = [
@@ -44,6 +68,8 @@ const SECTIONS = [
   { id: "access", label: "Access" },
   { id: "advisors", label: "External access" },
   { id: "confidentiality", label: "Confidentiality" },
+  { id: "continuity", label: "Continuity and data" },
+  { id: "incidents", label: "If something goes wrong" },
   { id: "not-in-place", label: "Not in place yet" },
   { id: "questions", label: "Questions" },
 ];
@@ -141,10 +167,16 @@ export default function SecurityPage() {
             and the others are easy to leave open by accident.
           </p>
           <p>
-            Data is held in the European Union, in Frankfurt. Tenant
-            isolation is enforced in the database rather than by
+            Tenant isolation is enforced in the database rather than by
             convention — there is no shared table without a policy
             governing who can read from it.
+          </p>
+          <p>
+            Access rules apply to aggregates as well as records. Counts,
+            dashboard figures, and history do not reveal anything a viewer
+            could not read directly at the record level — this is enforced
+            at the same layer as row-level access, not left to the
+            interface to hide.
           </p>
         </Section>
 
@@ -195,13 +227,44 @@ export default function SecurityPage() {
               including by the organisation that owns them.
             </Link>
           </p>
+          <p>
+            Audit history respects the same access boundary as the
+            underlying record. A change log does not reveal a value the
+            viewer could not read directly.
+          </p>
+        </Section>
+
+        {/* Continuity and data */}
+        <Section id="continuity" label="Continuity and data" heading="Continuity and data">
+          {CONTINUITY.map((item) => (
+            <p key={item.term}>
+              <strong className="font-semibold text-graphite">
+                {item.term}.
+              </strong>{" "}
+              {item.body}
+            </p>
+          ))}
+        </Section>
+
+        {/* Incident notification */}
+        <Section id="incidents" label="If something goes wrong" heading="If something goes wrong">
+          <p>
+            If MeridianCogent confirms a personal-data breach affecting
+            customer data, affected customers are notified without undue
+            delay through a named security contact, with information
+            provided in phases as the investigation develops. The
+            notification identifies what occurred, the data affected where
+            known, the likely consequences, and the containment and
+            remediation steps taken.
+          </p>
         </Section>
 
         {/* What is not in place yet */}
         <Section id="not-in-place" label="Not in place yet" heading="What is not in place yet">
           <p>
             MeridianCogent is in testing and pre-revenue. The following
-            do not exist, and it would be misleading to imply otherwise:
+            do not exist or are not yet complete, and it would be
+            misleading to imply otherwise:
           </p>
           <ul className="list-disc space-y-3 pl-5">
             {NOT_IN_PLACE.map((item) => (
