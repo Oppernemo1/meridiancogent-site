@@ -61,6 +61,15 @@ const CHAIN_NODES: ChainNode[] = [
   },
 ];
 
+/**
+ * Separator between an item's term and its gloss in the lists below. Each
+ * item is authored as "Term — gloss": the term renders as the row heading
+ * and the gloss as the muted line beneath it, so the dash is a field
+ * separator rather than punctuation and is dropped on render. An item with
+ * no dash renders as a term on its own.
+ */
+const ITEM_SEP = " — ";
+
 const WHAT_IT_COVERS_GROUPS = [
   {
     heading: "Scope and obligations",
@@ -78,7 +87,7 @@ const WHAT_IT_COVERS_GROUPS = [
       "TSA catalogue and exposure — services, multi-currency, overrun and step-up pricing",
       "Integration budget and cost-to-complete — what the capture is costing",
       "Stranded costs — the overhead that does not leave when the business does",
-      "Advisory and transaction fees",
+      "Advisory and transaction fees — what the advisers on the deal are costing",
       "Risk register — assessed on two dimensions, never reduced to a score",
       "The synergy ledger — with every amount stating what it represents",
       "Delay scenarios — what a slipped date does to exit timing and cost",
@@ -88,23 +97,14 @@ const WHAT_IT_COVERS_GROUPS = [
     heading: "Execution",
     items: [
       "Programme structure — tasks, workstreams, typed dependencies and a real critical path",
+      "Guided programme setup — a new programme shows what still needs to be configured rather than turning missing information into a zero",
       "Gates that block rather than annotate",
-      "Systems register and decommission sequencing",
+      "Systems register and decommission sequencing — what the business runs on, and the order it comes apart in",
       "Day 1 readiness — derived from the chain, not typed into a status field",
-      "Cutover runbook and hypercare",
-      "The communications plan",
+      "Cutover runbook and hypercare — for the weekend itself, and the weeks immediately after",
+      "The communications plan — who hears what, and when",
       "Escalations with a clock",
-      "Playbooks — Day 1 readiness, first hundred days, carve-out separation",
-    ],
-  },
-  {
-    heading: "Visibility and record",
-    items: [
-      "The control tower and timeline rail",
-      "Executive and portfolio views across several programmes",
-      "The decision record — append-only, corrections supersede",
-      "Board pack export",
-      "Activity centre and command palette",
+      "Reusable playbooks — platform and organisation-owned playbooks instantiate tasks, dependencies, role mappings and country-specific work against programme milestones, then can be adapted and saved back as reusable operating standards",
     ],
   },
   {
@@ -113,7 +113,23 @@ const WHAT_IT_COVERS_GROUPS = [
       "Bulk import — because a real carve-out arrives as a spreadsheet",
       "Email-in — for the people who will never log in",
       "Exports, watermarked to whoever generated them",
-      "Public tools — a TSA exit cost calculator and a Day 1 readiness score",
+      "Full programme export — registers, decisions and the audit history remain readable outside the platform, not trapped inside the application",
+      "Public tools — a TSA exit cost calculator and a Day 1 readiness score, both planned and not yet built",
+    ],
+  },
+  {
+    heading: "Visibility and record",
+    items: [
+      "Control tower, exceptions first — six-week trajectories for Day 1 readiness, TSA monthly exposure and open blockers, each showing the coverage behind the number rather than a bare figure",
+      "Timeline rail — the programme sequence from signing through Day 1, TSA exit and integration completion, with country-specific lanes showing where jurisdictions diverge or block",
+      "Waiting on me — one view of everything currently requiring action from you, matched across every register by identity rather than by name",
+      "Executive review — the same governed numbers as the control tower, reweighted for steering committees, with a factual view of what changed since the last review point: gates cleared or reopened, dates moved, risks escalated, grouped by workstream",
+      "Portfolio view across several programmes — where an organisation is running more than one separation at a time",
+      "Coverage stays visible — incomplete modelling, stale assumptions and unavailable inputs remain beside the figures they qualify, rather than disappearing behind a dashboard total",
+      "Dedicated external workspace — advisors, counsel and other guests see the records and actions shared with them for their engagement, not a reduced copy of the full programme control tower",
+      "The decision record — append-only, corrections supersede",
+      "Board pack export — for the meeting that happens outside the platform",
+      "Activity centre and command palette — what changed recently, and a way to reach any record without hunting for it",
     ],
   },
 ];
@@ -165,7 +181,7 @@ export default function PlatformPage() {
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent models how a carve-out actually works — what a
               business depends on, what has to be untangled, in what order,
-              and what it costs when that slips. Currently in development.
+              and what it costs when that slips. Currently in testing.
             </p>
           </div>
         </Container>
@@ -181,28 +197,38 @@ export default function PlatformPage() {
             one place.
           </p>
 
-          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {/* Balanced columns rather than a grid: the groups are different
+              lengths, and a grid stretches every cell in a row to the tallest
+              one — which left a near-empty cell beside the longest group and
+              an empty third cell, adding ~1200px of whitespace. Multi-column
+              flows the groups and balances the column heights instead.
+              `break-inside-avoid` keeps each group whole. */}
+          <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
             {WHAT_IT_COVERS_GROUPS.map((group) => (
-              <div key={group.heading}>
-                <h3 className="text-h3 text-graphite">
+              <div key={group.heading} className="mb-12 break-inside-avoid">
+                <div aria-hidden="true" className="h-px w-10 bg-accent" />
+                <h3 className="mt-3 text-h3 text-graphite">
                   {group.heading}
                 </h3>
-                <ul className="mt-4 space-y-4">
+                <ul className="mt-4 divide-y divide-hairline border-t border-hairline">
                   {group.items.map((item) => {
-                    const sepIndex = item.indexOf(" — ");
-                    if (sepIndex === -1) {
-                      return (
-                        <li key={item} className="text-small leading-relaxed text-ink">
-                          {item}
-                        </li>
-                      );
-                    }
+                    const sepIndex = item.indexOf(ITEM_SEP);
+                    const term =
+                      sepIndex === -1 ? item : item.slice(0, sepIndex);
+                    const gloss =
+                      sepIndex === -1
+                        ? null
+                        : item.slice(sepIndex + ITEM_SEP.length);
                     return (
-                      <li key={item} className="text-small leading-relaxed text-ink">
-                        <span className="font-semibold text-graphite">
-                          {item.slice(0, sepIndex)}
-                        </span>
-                        {item.slice(sepIndex)}
+                      <li key={item} className="py-2.5">
+                        <p className="text-body-sm font-semibold leading-snug text-graphite">
+                          {term}
+                        </p>
+                        {gloss && (
+                          <p className="mt-1 text-small leading-snug text-muted">
+                            {gloss}
+                          </p>
+                        )}
                       </li>
                     );
                   })}
