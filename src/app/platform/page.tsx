@@ -9,6 +9,7 @@ import {
   CountryLaneTimeline,
   type TimelineLane,
 } from "@/components/CountryLaneTimeline";
+import { TrajectorySchematic } from "@/components/TrajectorySchematic";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -169,6 +170,7 @@ const WHAT_IT_COVERS_GROUPS = [
 const SECTIONS = [
   { id: "covers", label: "What it covers" },
   { id: "chain", label: "The chain" },
+  { id: "control-tower", label: "Control tower" },
   { id: "timeline", label: "Timeline" },
   { id: "gates", label: "Gates" },
   { id: "record", label: "The record" },
@@ -300,6 +302,26 @@ export default function PlatformPage() {
             Every stage reads from the one before it. Nothing in this chain
             is a status someone updates by hand.
           </p>
+        </Section>
+
+        {/* Control tower */}
+        <Section id="control-tower" label="Control tower" heading="Exceptions first, and never a bare figure" wide>
+          <p className="max-w-measure">
+            The control tower opens on what is moving against you, not on a
+            wall of everything at once. Day 1 readiness, TSA monthly exposure
+            and open blockers each carry a six-week trajectory, so the
+            question is not only where a number stands but which way it has
+            been going.
+          </p>
+          <p className="max-w-measure">
+            Each figure is reported with the coverage behind it — how much of
+            the underlying population it actually reflects. A number drawn
+            from a third of the register is not the same number as one drawn
+            from all of it, and the difference stays visible rather than
+            disappearing into a total.
+          </p>
+
+          <TrajectorySchematic />
         </Section>
 
         {/* Timeline */}
