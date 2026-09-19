@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { DataPanel } from "@/components/DataPanel";
+import { AggregateSafetyDiagram } from "@/components/AggregateSafetyDiagram";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import {
   CONTACT_EMAIL,
@@ -178,6 +179,8 @@ export default function SecurityPage() {
             at the same layer as row-level access, not left to the
             interface to hide.
           </p>
+
+          <AggregateSafetyDiagram />
         </Section>
 
         {/* Advisors and vendors */}
