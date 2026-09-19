@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/Container";
+import { CostMechanismBlocks } from "@/components/CostMechanismBlocks";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { LineGraphMotif } from "@/components/LineGraphMotif";
 import { GUIDES, getGuide } from "@/lib/guides";
@@ -115,6 +116,8 @@ export default function GuidePage({
             <p key={para.slice(0, 40)}>{para}</p>
           ))}
         </div>
+
+        {guide.diagram === "cost-mechanisms" && <CostMechanismBlocks />}
 
         {/* Sourced figures printed in the guide */}
         <div className="mx-auto mt-12 max-w-measure">

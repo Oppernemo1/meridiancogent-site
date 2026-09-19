@@ -38,6 +38,11 @@ export type Guide = {
   /** Sources cited in the guide itself. */
   sources: string;
   /**
+   * Optional explanatory diagram rendered after the intro. Keyed rather than
+   * inferred from the slug so the guide page needs no per-guide branching.
+   */
+  diagram?: "cost-mechanisms";
+  /**
    * Articles this guide is drawn from, shown as "The writing behind it".
    *
    * TEMP substitutes: three of these point at the nearest published article
@@ -302,6 +307,7 @@ export const GUIDES: Guide[] = [
     ],
     sources:
       "BCG, “The 2021 M&A Report: Mastering the Art of Breaking Up” and “6 Technology Due Diligence Imperatives in Carve-outs”; McKinsey, “Solving the carve-out conundrum”; Deloitte, 2026 Global Divestiture Survey; BD Emerson, TSA and stranded cost analysis.",
+    diagram: "cost-mechanisms",
     related: [
       {
         slug: "stranded-costs",
