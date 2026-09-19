@@ -5,6 +5,10 @@ import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { DataPanel } from "@/components/DataPanel";
 import { ChainDiagram, type ChainNode } from "@/components/ChainDiagram";
+import {
+  CountryLaneTimeline,
+  type TimelineLane,
+} from "@/components/CountryLaneTimeline";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -69,6 +73,34 @@ const CHAIN_NODES: ChainNode[] = [
  * no dash renders as a term on its own.
  */
 const ITEM_SEP = " — ";
+
+const TIMELINE_MILESTONES = [
+  "Signing",
+  "Day 1",
+  "TSA exit",
+  "Integration complete",
+];
+
+// Illustrative, and deliberately only three lanes: enough to show that
+// jurisdictions run independently without implying a country list.
+const TIMELINE_LANES: TimelineLane[] = [
+  {
+    name: "Programme",
+    note: "the consolidated date",
+    states: ["reached", "reached", "reached", "pending"],
+  },
+  {
+    name: "Germany",
+    note: "consultation not closed",
+    states: ["reached", "reached", "blocked", "pending"],
+  },
+  {
+    name: "US",
+    note: "exited on schedule",
+    states: ["reached", "reached", "reached", "reached"],
+  },
+];
+
 
 const WHAT_IT_COVERS_GROUPS = [
   {
@@ -137,6 +169,7 @@ const WHAT_IT_COVERS_GROUPS = [
 const SECTIONS = [
   { id: "covers", label: "What it covers" },
   { id: "chain", label: "The chain" },
+  { id: "timeline", label: "Timeline" },
   { id: "gates", label: "Gates" },
   { id: "record", label: "The record" },
   { id: "tsa", label: "TSA exposure" },
@@ -266,6 +299,34 @@ export default function PlatformPage() {
           <p className="max-w-measure">
             Every stage reads from the one before it. Nothing in this chain
             is a status someone updates by hand.
+          </p>
+        </Section>
+
+        {/* Timeline */}
+        <Section id="timeline" label="Timeline" heading="Jurisdictions run on their own clocks">
+          <p className="max-w-measure">
+            A separation does not happen in one place. The programme has a
+            sequence — signing, Day 1, TSA exit, integration completion —
+            and every jurisdiction inside it runs that sequence on its own
+            calendar, against its own filings, consents and consultation
+            periods.
+          </p>
+          <p className="max-w-measure">
+            The timeline rail holds both. Country lanes show where a
+            jurisdiction has diverged from the programme date or blocked
+            outright, and what that does to the milestones downstream of it.
+          </p>
+
+          <CountryLaneTimeline
+            milestones={TIMELINE_MILESTONES}
+            lanes={TIMELINE_LANES}
+            caption="Illustrative. Germany is blocked at TSA exit while the US lane exits on schedule — the block does not stop the other lanes, but the consolidated integration date sits downstream of it and cannot be treated as reached."
+          />
+
+          <p className="max-w-measure">
+            A programme date is only as good as its latest lane. Showing the
+            lanes separately is what makes that visible before the date
+            arrives rather than after it.
           </p>
         </Section>
 
