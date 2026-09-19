@@ -8,7 +8,7 @@ import { getAllPosts } from "@/lib/posts";
 
 const TITLE = "Resources";
 const DESCRIPTION =
-  "Practitioner-level writing on TSAs, carve-out separation, integration, and Day 1 readiness — from the MeridianCogent team.";
+  "Working guides and practitioner-level writing on TSAs, carve-out separation, integration and Day 1 readiness — from the MeridianCogent team.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -54,10 +54,16 @@ export default function ResourcesPage() {
       </section>
 
       <Container>
+        {/* Two sibling sections under the page h1. Both headings are fixed at
+            text-h2-sm — no md:text-h2 step — so neither competes with the h1
+            and neither outweighs the other. Keep them identical if either
+            changes. No eyebrow labels: an eyebrow should add information
+            beyond the heading, and "Guides"/"Articles" would only restate. */}
+
         {/* Practitioner guides — each links to its own page, never straight to
             the PDF: the page is what carries the content and the download. */}
-        <section aria-labelledby="guides-heading" className="mt-4">
-          <h2 id="guides-heading" className="text-h2-sm md:text-h2">
+        <section aria-labelledby="guides-heading">
+          <h2 id="guides-heading" className="text-h2-sm">
             Practitioner guides
           </h2>
           <p className="mt-heading-gap max-w-measure text-body-sm leading-relaxed text-muted md:text-body">
@@ -87,9 +93,16 @@ export default function ResourcesPage() {
           </ul>
         </section>
 
-        <div className="mt-16">
-          <ResourceIndex posts={posts} />
-        </div>
+        {/* "Articles" rather than "All articles": the heading names the
+            section, while the live count beneath the filter names the state. */}
+        <section aria-labelledby="articles-heading" className="mt-12">
+          <h2 id="articles-heading" className="text-h2-sm">
+            Articles
+          </h2>
+          <div className="mt-6">
+            <ResourceIndex posts={posts} />
+          </div>
+        </section>
       </Container>
     </div>
   );
