@@ -151,7 +151,7 @@ const WHAT_IT_COVERS_GROUPS = [
     ],
   },
   {
-    heading: "Visibility and record",
+    heading: "Visibility",
     items: [
       "Control tower, exceptions first — six-week trajectories for Day 1 readiness, TSA monthly exposure and open blockers, each showing the coverage behind the number rather than a bare figure",
       "Timeline rail — the programme sequence from signing through Day 1, TSA exit and integration completion, with country-specific lanes showing where jurisdictions diverge or block",
@@ -160,9 +160,16 @@ const WHAT_IT_COVERS_GROUPS = [
       "Portfolio view across several programmes — where an organisation is running more than one separation at a time",
       "Coverage stays visible — incomplete modelling, stale assumptions and unavailable inputs remain beside the figures they qualify, rather than disappearing behind a dashboard total",
       "Dedicated external workspace — advisors, counsel and other guests see the records and actions shared with them for their engagement, not a reduced copy of the full programme control tower",
+    ],
+  },
+  {
+    heading: "Governance and audit",
+    items: [
       "The decision record — append-only, corrections supersede",
       "Board pack export — for the meeting that happens outside the platform",
       "Activity centre and command palette — what changed recently, and a way to reach any record without hunting for it",
+      "Culture and sentiment trend — an imported trend line from whatever pulse-survey tool an organisation already runs, shown alongside the operational timeline: anonymous by default, suppressed below a minimum group size, and read as a direction of travel rather than a single score",
+      "Post-close retention — customer-entered revenue retention and churn figures, held to the same basis-and-source discipline as every other governed number: who entered it, what it is based on, when it was last confirmed",
     ],
   },
 ];
