@@ -153,7 +153,14 @@ export default function HomePage() {
           <Section id="how-it-thinks" label="How it thinks" heading="Every date is a chain, not a status.">
             <p>
               A transitional service ends when the work behind it finishes.
-              That work depends on other work. MeridianCogent models the
+              That work{" "}
+              <Link
+                href="/resources/dependency-problem"
+                className="text-accent-dark underline underline-offset-4 hover:text-muted"
+              >
+                depends on other work
+              </Link>
+              . MeridianCogent models the
               chain — systems, decommissioning, TSA exit, exit risk, Day 1 —
               so the date that will not hold is visible months before the
               invoice arrives. Move one date and see what it costs the rest
