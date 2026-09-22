@@ -1,9 +1,15 @@
-import type { ComponentPropsWithoutRef } from "react";
+import {
+  Children,
+  isValidElement,
+  type ComponentPropsWithoutRef,
+  type ReactNode,
+} from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
+import { ChainDiagram } from "@/components/ChainDiagram";
 import { Container } from "@/components/Container";
 import { LineGraphMotif } from "@/components/LineGraphMotif";
 import {
@@ -16,10 +22,32 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 // Wraps rendered markdown tables in a scrollable box so wide financial
 // tables scroll horizontally on narrow viewports rather than overflowing.
+//
+// ChainDiagram takes its stages as <ChainStep> children rather than a nodes
+// array, because next-mdx-remote blocks JS expressions in MDX props. It sits
+// outside prose styling so it renders exactly as it does on /platform, in
+// compact form, with plain-paragraph labels rather than outline headings.
+function ChainStep({ children }: { children?: ReactNode }) {
+  return <>{children}</>;
+}
+
 const mdxComponents = {
   table: (props: ComponentPropsWithoutRef<"table">) => (
     <div className="table-scroll">
       <table {...props} />
+    </div>
+  ),
+  ChainStep,
+  ChainDiagram: ({ title, children }: { title?: string; children?: ReactNode }) => (
+    <div className="not-prose">
+      <ChainDiagram
+        compact
+        labelAs="p"
+        title={title}
+        nodes={Children.toArray(children)
+          .filter(isValidElement<{ children?: ReactNode }>)
+          .map((step) => ({ title: step.props.children }))}
+      />
     </div>
   ),
 };

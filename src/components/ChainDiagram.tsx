@@ -6,37 +6,49 @@ export type ChainNode = {
   description?: string;
 };
 
+const COUNT_WORDS: Record<number, string> = {
+  2: "Two",
+  3: "Three",
+  4: "Four",
+  5: "Five",
+  6: "Six",
+  7: "Seven",
+};
+
 /**
- * Five-stage sequence diagram. Labels are the primary element; nodes (small
+ * Sequence diagram of N stages (five on /platform, six in the dependency
+ * problem article). Labels are the primary element; nodes (small
  * dots) and the connecting line are supporting structure, so they're kept
  * visually subtle. Desktop centres each label under its dot using a
- * gap-free 5-column grid — the grid's column widths are what the dot
+ * gap-free N-column grid — the grid's column widths are what the dot
  * x-positions are computed against, so column centres and dot centres always
  * match exactly, however long or short a label is. Mobile stacks nodes
  * vertically with labels to the right, left-aligned.
  *
  * `compact` renders labels only (no per-node description) — the condensed
- * form used on the homepage, versus the fuller version on /platform.
+ * form used in articles, versus the fuller version on /platform.
  *
- * TEMP / blocked: SITE-BUILD-MANUAL Part 5 item 4 calls for a chain diagram
- * in "The Dependency Problem" article, replacing a monospace text chain and
- * styled to match this component exactly. That article is not published —
- * there is no such file in content/resources, and no monospace chain exists
- * anywhere in the content. Build it from this component when the article
- * lands; do not substitute a different article for it.
+ * `labelAs` sets the label element. /platform uses h3 because each stage is
+ * a titled item in that section; in an article the labels are not section
+ * headings, so they render as <p> with the same styling to keep them out of
+ * the document outline.
  */
 export function ChainDiagram({
   nodes,
   compact = false,
+  title = "Sequence diagram of the separation dependency chain",
+  labelAs: Label = "h3",
 }: {
   nodes: ChainNode[];
   compact?: boolean;
+  title?: string;
+  labelAs?: "h3" | "p";
 }) {
   const titleId = useId();
   const descId = useId();
 
   const summary =
-    "Five stages, each depending on the one before: " +
+    `${COUNT_WORDS[nodes.length] ?? nodes.length} stages, each depending on the one before: ` +
     nodes.map((n) => (typeof n.title === "string" ? n.title : "")).join(", ") +
     ".";
 
@@ -55,7 +67,7 @@ export function ChainDiagram({
           viewBox="0 0 1000 32"
           className="w-full"
         >
-          <title id={titleId}>Sequence diagram of the separation dependency chain</title>
+          <title id={titleId}>{title}</title>
           <desc id={descId}>{summary}</desc>
           <defs>
             <marker
@@ -92,10 +104,13 @@ export function ChainDiagram({
           ))}
         </svg>
 
-        <div className="mt-5 grid grid-cols-5">
+        <div
+          className="mt-5 grid"
+          style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+        >
           {nodes.map((node, i) => (
             <div key={i} className="text-center">
-              <h3 className="text-h3 text-graphite">{node.title}</h3>
+              <Label className="text-h3 text-graphite">{node.title}</Label>
               {!compact && node.description && (
                 <p className="mx-auto mt-2 max-w-diagram-caption text-small leading-relaxed text-muted">
                   {node.description}
@@ -127,7 +142,7 @@ export function ChainDiagram({
                   <circle cx={8} cy={8} r={5} fill={colors.accent} />
                 </svg>
                 <div>
-                  <h3 className="text-h3 text-graphite">{node.title}</h3>
+                  <Label className="text-h3 text-graphite">{node.title}</Label>
                   {!compact && node.description && (
                     <p className="mt-2 text-small leading-relaxed text-muted">
                       {node.description}

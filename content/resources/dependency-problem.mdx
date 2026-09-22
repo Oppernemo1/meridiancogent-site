@@ -1,0 +1,86 @@
+---
+title: "Five Green Workstreams Can Still Mean the Deal Is Late: The M&A Dependency Problem"
+description: "A green M&A status report is not the same as execution readiness. Cross-functional dependencies often become visible only at the handoff between workstreams — precisely where traditional status reporting is weakest."
+date: "2026-09-23"
+tags: ["Playbooks", "Integration"]
+readingTime: "8 min"
+---
+
+By the MeridianCogent team — this perspective is drawn from published M&A integration research across the industry, synthesised into the operating logic behind how we think execution should be tracked.
+
+---
+
+Picture a steering committee update. IT is green. HR is green. Finance is green. Legal is green. Operations is green. Five workstreams, five green statuses, and everyone in the room reasonably concludes the deal is on track.
+
+Then payroll doesn't run on Day 1.
+
+Not because HR failed. HR's own tasks were genuinely complete — the org design was finished, the comp bands were mapped, the manager toolkit was distributed. Payroll didn't run because it depended on employee master data that depended on a legal-entity registration that depended on a bank account that depended on a regulatory approval that nobody on the HR workstream tracked, because it wasn't HR's task. It belonged to Legal, and Legal's own status was also green, because Legal's tasks were also genuinely complete.
+
+Five green workstreams. One broken handoff. A missed Day 1.
+
+## Why this keeps happening
+
+This is not a story about a badly-run integration. It is what a status report structurally cannot see.
+
+A workstream status answers one question: is the work inside this function on track? It cannot answer a different question: does the work inside this function depend on work inside a different function, and is that dependency actually going to resolve in time? Those are two different questions, and workstream-level reporting is built to answer only the first one.
+
+Deloitte's own guidance on Day One readiness names this directly, describing it as a pattern seen across transactions of increasing complexity: teams are adept at working within their own workstream, and problems arise at the handoff between functions. The fix Deloitte recommends — cross-functional readiness checkpoints, run like a matrix across functions, then regions, then processes — exists precisely because a workstream-by-workstream view cannot surface a cross-functional dependency by design. It isn't that anyone is looking in the wrong place. It's that the workstream view was never built to look at handoffs at all.
+
+Tax integration guidance describes the same failure from a different angle: a tax team frequently needs deep involvement in workstreams it doesn't own — purchase accounting, legal entity rationalisation, treasury cash management, HR compensation changes — precisely because tax sits at the intersection of functions rather than inside one. A RAID log (risks, assumptions, issues, dependencies) is standard integration practice specifically because dependencies don't live inside any single function's status report; they live in the gaps between them, and someone has to write them down separately or they don't exist anywhere.
+
+## The pattern is consistent enough to have a name
+
+Practitioner guidance on cross-functional M&A capability lists this as one of a small number of recurring failure points, naming Day 1 itself — alongside talent retention, org design, and system cutovers — as one of the "critical areas that require significant cross-functional coordination," specifically because no single workstream owns it end to end.
+
+One integration methodology guide is explicit that a dedicated cross-functional dependency workshop is a required step in the plan, held immediately after individual workstream plans are drafted, for exactly this reason: workstream plans get built independently, in parallel, by people who don't automatically know what the other workstreams are assuming about them.
+
+Separate M&A change-management guidance recommends mapping the processes that cross company boundaries within the first weeks post-close specifically because integration friction tends to appear at those handoffs rather than inside any single function's own workstream — the same pattern, described from a different angle of the same problem.
+
+## Why the chain, not the checklist, is the right mental model
+
+A checklist is a flat list. Every item on it looks equally important until you check it, and a completed checklist tells you that every individual item is done — but says nothing about the order those items had to happen in, or which ones were blocking which others.
+
+A dependency chain is different. It says: this cannot start until that finishes. Payroll cannot run until employee master data exists. Employee master data cannot be created until the HR system mapping is complete. The HR system mapping cannot be finalized until the legal entity is registered. The legal entity cannot register until a specific regulatory filing clears.
+
+Every one of those four things can show its own workstream as "on track" independently. What matters — what actually determines whether payroll runs on Day 1 — is not any single item's status. It's whether the chain resolves in the right order, on time, all the way through.
+
+This is the distinction between a task being *complete* and a workstream being *ready*. A workstream can complete one hundred percent of its own tasks and still not be ready, if the thing it was waiting on from someone else hasn't landed. Status reporting measures the first. Almost nothing measures the second, because measuring it requires knowing what depends on what across functional boundaries — information that, by default, lives in nobody's spreadsheet, because it isn't any one function's job to track another function's dependency on it.
+
+## What actually catches this before Day 1
+
+The practitioner guidance converges on a small number of mechanisms, and they share a common feature: someone has to deliberately go looking for the connections between workstreams, because the workstreams themselves won't surface them on their own.
+
+**A dependency workshop, run early and cross-functionally.** Not a status meeting where each function reports on itself in sequence — a session specifically structured to ask "what do you need from another function, and by when," with every function's answer visible to every other function in the room.
+
+**Readiness checkpoints run as a matrix, not a stack.** Deloitte's recommendation is explicit on structure: first across functions and workstreams, then across countries and regions, then down into underlying processes — a genuinely cross-cutting review, not five parallel single-function reviews that happen not to talk to each other.
+
+**A dependency log that is nobody's workstream and everybody's problem.** A RAID log, or its equivalent, has to be owned by someone whose job is the connections between functions, not by a person embedded in any one of them — otherwise it quietly becomes another single-function artifact, tracked from one perspective, missing what the other functions know.
+
+**A distinction between "task done" and "downstream unblocked."** The single highest-leverage discipline is separating these two facts for every material task: is this item finished, and separately, has finishing it actually removed the block it was creating for someone else? A task can be done and still leave its dependent blocked, if nobody checks the second half of that question.
+
+## The chain, made visible
+
+<ChainDiagram title="Sequence diagram of the Day 1 payroll dependency chain">
+  <ChainStep>Regulatory approval</ChainStep>
+  <ChainStep>Legal entity registered</ChainStep>
+  <ChainStep>Bank account established</ChainStep>
+  <ChainStep>Employee master data loaded</ChainStep>
+  <ChainStep>Payroll validated</ChainStep>
+  <ChainStep>Day 1 payroll runs</ChainStep>
+</ChainDiagram>
+
+Each link in that chain can sit inside a different workstream's own status report, and each workstream can independently show green, while the end-to-end chain is already running late. No single status was wrong. The chain was never being read as a chain.
+
+## Why this is the more interesting problem
+
+A checklist answers "did everyone finish their own list." That is useful and genuinely necessary — teams should track their own work. But it is not the question that determines whether Day 1 actually happens. Day 1 can fail even when every function has completed its own tasks, because readiness depends on whether the connections between those tasks resolve in the right sequence, not on any one task's status in isolation.
+
+The distinction matters for how an integration programme is designed, not just how the problem gets described. A programme organised around "how green is each workstream" and one organised around "what does this milestone unblock, and is that downstream outcome still achievable" are structurally different — even when both are looking at the same five workstreams on the same screen. The first measures activity. The second measures execution readiness.
+
+A green workstream tells you the work inside the silo is on track. A dependency tells you whether the deal is.
+
+The difference sounds small. Operationally, it changes what an integration office has to measure. Instead of asking only whether work is complete, it has to ask what that work unlocks, who is waiting for it, and whether the end-to-end chain still reaches Day 1 on time.
+
+---
+
+*Sources: Deloitte, "M&A integration plan for Day One readiness"; International Tax Review on cross-functional PMI dependencies; M&A Partners, "Keys to Identifying, Managing and Executing Cross-Functional Dependencies" and "14 Key Elements of Functional M&A Capability and Readiness"; general M&A change-management guidance on cross-boundary process mapping timing.*
