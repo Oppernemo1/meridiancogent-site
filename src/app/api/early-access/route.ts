@@ -234,7 +234,17 @@ export async function POST(request: Request) {
   // an existing contact (e.g. someone who downloaded a guide and now wants a
   // call) — a request for a conversation must never be swallowed by the
   // duplicate check above.
+  //
+  // By this point the contact is saved, so a failure here never reaches the
+  // visitor: from their side the submission worked. It is logged under a
+  // fixed, searchable tag with the address to look up in Resend, where the
+  // contact's properties hold the same details the email would have.
   if (isNewContact || details) {
+    const notificationFailed = (reason: unknown) =>
+      console.error(
+        `[early-access] NOTIFICATION_FAILED — lead not emailed to the team; check Resend contact ${email}:`,
+        reason,
+      );
     try {
       const { subject, text } = internalNotification({
         email,
@@ -249,18 +259,9 @@ export async function POST(request: Request) {
         subject,
         text,
       });
-      if (error) {
-        console.error(
-          "[early-access] internal notification error; details remain on the Resend contact:",
-          error,
-        );
-      }
+      if (error) notificationFailed(error);
     } catch (err) {
-      // The lead's details are also on the Resend contact (properties above).
-      console.error(
-        "[early-access] internal notification failed; details remain on the Resend contact:",
-        err,
-      );
+      notificationFailed(err);
     }
   }
 
