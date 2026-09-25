@@ -86,7 +86,7 @@ const TIMELINE_MILESTONES = [
 // jurisdictions run independently without implying a country list.
 const TIMELINE_LANES: TimelineLane[] = [
   {
-    name: "Programme",
+    name: "Program",
     note: "the consolidated date",
     states: ["reached", "reached", "reached", "pending"],
   },
@@ -129,15 +129,15 @@ const WHAT_IT_COVERS_GROUPS = [
   {
     heading: "Execution",
     items: [
-      "Programme structure — tasks, workstreams, typed dependencies and a real critical path",
-      "Guided programme setup — a new programme shows what still needs to be configured rather than turning missing information into a zero",
+      "Program structure — tasks, workstreams, typed dependencies and a real critical path",
+      "Guided program setup — a new program shows what still needs to be configured rather than turning missing information into a zero",
       "Gates that block rather than annotate",
       "Systems register and decommission sequencing — what the business runs on, and the order it comes apart in",
       "Day 1 readiness — derived from the chain, not typed into a status field",
       "Cutover runbook and hypercare — for the weekend itself, and the weeks immediately after",
       "The communications plan — who hears what, and when",
       "Escalations with a clock",
-      "Reusable playbooks — platform and organisation-owned playbooks instantiate tasks, dependencies, role mappings and country-specific work against programme milestones, then can be adapted and saved back as reusable operating standards",
+      "Reusable playbooks — platform and organisation-owned playbooks instantiate tasks, dependencies, role mappings and country-specific work against program milestones, then can be adapted and saved back as reusable operating standards",
     ],
   },
   {
@@ -146,7 +146,7 @@ const WHAT_IT_COVERS_GROUPS = [
       "Bulk import — because a real carve-out arrives as a spreadsheet",
       "Email-in — for the people who will never log in",
       "Exports, watermarked to whoever generated them",
-      "Full programme export — registers, decisions and the audit history remain readable outside the platform, not trapped inside the application",
+      "Full program export — registers, decisions and the audit history remain readable outside the platform, not trapped inside the application",
       "Public tools — a TSA exit cost calculator and a Day 1 readiness score, both planned and not yet built",
     ],
   },
@@ -154,12 +154,12 @@ const WHAT_IT_COVERS_GROUPS = [
     heading: "Visibility",
     items: [
       "Control tower, exceptions first — six-week trajectories for Day 1 readiness, TSA monthly exposure and open blockers, each showing the coverage behind the number rather than a bare figure",
-      "Timeline rail — the programme sequence from signing through Day 1, TSA exit and integration completion, with country-specific lanes showing where jurisdictions diverge or block",
+      "Timeline rail — the program sequence from signing through Day 1, TSA exit and integration completion, with country-specific lanes showing where jurisdictions diverge or block",
       "Waiting on me — one view of everything currently requiring action from you, matched across every register by identity rather than by name",
       "Executive review — the same governed numbers as the control tower, reweighted for steering committees, with a factual view of what changed since the last review point: gates cleared or reopened, dates moved, risks escalated, grouped by workstream",
-      "Portfolio view across several programmes — where an organisation is running more than one separation at a time",
+      "Portfolio view across several programs — where an organisation is running more than one separation at a time",
       "Coverage stays visible — incomplete modelling, stale assumptions and unavailable inputs remain beside the figures they qualify, rather than disappearing behind a dashboard total",
-      "Dedicated external workspace — advisors, counsel and other guests see the records and actions shared with them for their engagement, not a reduced copy of the full programme control tower",
+      "Dedicated external workspace — advisors, counsel and other guests see the records and actions shared with them for their engagement, not a reduced copy of the full program control tower",
     ],
   },
   {
@@ -358,7 +358,7 @@ export default function PlatformPage() {
         {/* Timeline */}
         <Section id="timeline" label="Timeline" heading="Jurisdictions run on their own clocks">
           <p className="max-w-measure">
-            A separation does not happen in one place. The programme has a
+            A separation does not happen in one place. The program has a
             sequence — signing, Day 1, TSA exit, integration completion —
             and every jurisdiction inside it runs that sequence on its own
             calendar, against its own filings, consents and consultation
@@ -366,7 +366,7 @@ export default function PlatformPage() {
           </p>
           <p className="max-w-measure">
             The timeline rail holds both. Country lanes show where a
-            jurisdiction has diverged from the programme date or blocked
+            jurisdiction has diverged from the program date or blocked
             outright, and what that does to the milestones downstream of it.
           </p>
 
@@ -377,7 +377,7 @@ export default function PlatformPage() {
           />
 
           <p className="max-w-measure">
-            A programme date is only as good as its latest lane. Showing the
+            A program date is only as good as its latest lane. Showing the
             lanes separately is what makes that visible before the date
             arrives rather than after it.
           </p>
@@ -399,7 +399,7 @@ export default function PlatformPage() {
           </p>
           <p>
             This is the difference between a system that reports on a
-            programme and a system that governs one.
+            program and a system that governs one.
           </p>
         </Section>
 
@@ -435,7 +435,7 @@ export default function PlatformPage() {
             </Link>
           </p>
           <p>
-            Access is scoped to the programme rather than the organisation.{" "}
+            Access is scoped to the program rather than the organisation.{" "}
             <Link
               href="/security"
               className="text-accent-dark underline underline-offset-4 hover:text-muted"

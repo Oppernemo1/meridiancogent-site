@@ -15,7 +15,7 @@ import {
 
 const TITLE = "Security";
 const DESCRIPTION =
-  "Programme-scoped access, time-bounded external access, watermarked exports and EU data residency — and a plain statement of what is not yet in place.";
+  "Program-scoped access, time-bounded external access, watermarked exports and EU data residency — and a plain statement of what is not yet in place.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -52,7 +52,7 @@ const CONTINUITY = [
   },
   {
     term: "Export and exit",
-    body: "Programme data — registers, decisions, and audit history — can be exported in a readable form at any point, including when an engagement ends, so continued access to the application is never a precondition for keeping your own record.",
+    body: "Program data — registers, decisions, and audit history — can be exported in a readable form at any point, including when an engagement ends, so continued access to the application is never a precondition for keeping your own record.",
   },
   {
     term: "Retention",
@@ -120,7 +120,7 @@ export default function SecurityPage() {
             does not survive contact with a carve-out.
           </p>
           <p>
-            A single separation programme involves the seller&apos;s team
+            A single separation program involves the seller&apos;s team
             and the buyer&apos;s team, who must not see each other&apos;s
             commercial positions. It involves external advisors and
             counsel, whose access should end when their engagement does. It
@@ -129,7 +129,7 @@ export default function SecurityPage() {
             exists at all.
           </p>
           <p>
-            Access control here is scoped to the programme, not the
+            Access control here is scoped to the program, not the
             organisation, because that is the only model that matches how
             a deal actually works.
           </p>
@@ -139,13 +139,13 @@ export default function SecurityPage() {
         <Section
           id="access"
           label="Access"
-          heading="Programme-scoped access by default"
+          heading="Program-scoped access by default"
           panel={
             <DataPanel
               label="Access scope"
               rows={[
                 { label: "Organisation", value: "No" },
-                { label: "Programme", value: "Yes" },
+                { label: "Program", value: "Yes" },
                 { label: "Advisor", value: "Bounded" },
               ]}
             />
@@ -153,8 +153,8 @@ export default function SecurityPage() {
         >
           <p>
             Being a member of the customer&apos;s organisation does not
-            grant visibility of a programme. Membership is granted per
-            programme, explicitly, and every access path in the system
+            grant visibility of a program. Membership is granted per
+            program, explicitly, and every access path in the system
             enforces that boundary at the database level rather than in
             application code.
           </p>
@@ -191,7 +191,7 @@ export default function SecurityPage() {
           </p>
           <p>
             External participants are granted access to specific
-            programmes with a defined scope, and that access is logged.
+            programs with a defined scope, and that access is logged.
             Privileged vendor access is brokered and recorded rather than
             handed over as a standing credential. When an engagement ends,
             access ends with it — not as a policy someone is expected to
@@ -202,7 +202,7 @@ export default function SecurityPage() {
         {/* Confidentiality */}
         <Section id="confidentiality" label="Confidentiality" heading="Deals that are not public yet">
           <p>
-            A programme can run under a code name. The people working on it
+            A program can run under a code name. The people working on it
             see the code name; the real identity of the target is not
             scattered across the system for anyone with incidental access
             to find.
@@ -216,7 +216,7 @@ export default function SecurityPage() {
           <p>
             An audit log nobody reads is not a control. Access patterns are
             monitored for anomalies — unusual volume, unusual timing,
-            access to programmes outside a user&apos;s normal pattern — and
+            access to programs outside a user&apos;s normal pattern — and
             surfaced to the people who would need to act on them.
           </p>
           <p>

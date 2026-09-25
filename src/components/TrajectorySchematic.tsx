@@ -48,7 +48,7 @@ const SERIES: Series[] = [
 ];
 
 const CAPTION =
-  "Illustrative shape only — not data from a programme. Each of these carries the coverage behind it: how much of the underlying population the figure actually reflects. A trajectory with thin coverage is reported as thin rather than smoothed into a clean line.";
+  "Illustrative shape only — not data from a program. Each of these carries the coverage behind it: how much of the underlying population the figure actually reflects. A trajectory with thin coverage is reported as thin rather than smoothed into a clean line.";
 
 /**
  * Three small panels, one per control-tower trajectory over a six-week
@@ -62,7 +62,7 @@ const CAPTION =
  * currency, no counts. The only numeral is the "6" in "6 weeks ago", which
  * names the window rather than measuring anything. That is deliberate: a
  * plausible-looking figure in an illustration gets screenshotted without its
- * caption and read as a real customer programme.
+ * caption and read as a real customer program.
  *
  * Every panel's line is drawn identically, so colour distinguishes nothing
  * and the diagram reads in grayscale. Nothing depends on hover, and there is
@@ -140,7 +140,7 @@ export function TrajectorySchematic() {
           Each is shown as a separate panel with its own line, because the
           three are measured in different units and do not share a scale. No
           values are given: the panels show the shape of a trajectory and the
-          slot in which its coverage appears, not figures from any programme.
+          slot in which its coverage appears, not figures from any program.
           {" "}
           {CAPTION}
         </p>

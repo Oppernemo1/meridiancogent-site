@@ -40,7 +40,7 @@ const AT_A_GLANCE = [
   },
   {
     label: "Where it is",
-    body: "Ready to demo. Some of the platform is live today and some is in build — tell us about your programme and we will show you which is which.",
+    body: "Ready to demo. Some of the platform is live today and some is in build — tell us about your program and we will show you which is which.",
   },
 ];
 
@@ -97,7 +97,7 @@ export default function HomePage() {
 
             <div className="mt-10 max-w-xl">
               <p className="text-small font-medium text-graphite">
-                MeridianCogent is ready to demo. Tell us about your programme
+                MeridianCogent is ready to demo. Tell us about your program
                 and we&apos;ll show you how it works.
               </p>
               <div className="mt-3">
@@ -132,7 +132,7 @@ export default function HomePage() {
           <Section id="problem" label="The problem" heading="The plan is not the problem. The plan not holding is the problem." divider={false}>
             <p>
               Every separation has a plan, and every plan has dates on it.
-              What most programmes cannot tell you is which of those dates
+              What most programs cannot tell you is which of those dates
               are still real.
             </p>
             <p>
@@ -238,9 +238,9 @@ export default function HomePage() {
         <RevealOnScroll>
           <Section id="confidentiality" label="Confidentiality" heading="Built for deals that are not public">
             <p>
-              Access is scoped to the programme, not the organisation.
+              Access is scoped to the program, not the organisation.
               Advisors and vendors hold time-bounded, logged access to only
-              what they need. Programmes can run under code names, exports
+              what they need. Programs can run under code names, exports
               are watermarked to whoever generated them, and unusual access
               patterns are surfaced rather than sitting in a log nobody
               reads.

@@ -9,7 +9,7 @@ import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Talk to Us";
 const DESCRIPTION =
-  "MeridianCogent is ready to demo. Tell us about your programme and we'll show you how it works.";
+  "MeridianCogent is ready to demo. Tell us about your program and we'll show you how it works.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -32,7 +32,7 @@ const EXPECTATIONS = [
     body: "Someone from the team writes back from hello@meridiancogent.com to find a time for a call.",
   },
   {
-    heading: "The call starts with your programme",
+    heading: "The call starts with your program",
     body: "Tell us about the deal, the perimeter and where it's hard. Then we show you how the platform handles it.",
   },
   {
@@ -61,7 +61,7 @@ export default function EarlyAccessPage() {
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent is a control environment for separation offices and
               integration teams. It&apos;s ready to demo. Tell us about your
-              programme and we&apos;ll show you how it works.
+              program and we&apos;ll show you how it works.
             </p>
             {/* Same graphite panel treatment as DataPanel, so the four
                 fields read as one contained block rather than loose inputs. */}

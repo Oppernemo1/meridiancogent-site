@@ -25,9 +25,9 @@ const STATE_LABEL: Record<LaneState, string> = {
 };
 
 /**
- * Programme timeline with per-jurisdiction lanes, showing that countries run
+ * Program timeline with per-jurisdiction lanes, showing that countries run
  * on their own clocks: one lane can block without stopping the others, and a
- * programme milestone downstream of a blocked lane inherits the block.
+ * program milestone downstream of a blocked lane inherits the block.
  *
  * Built on the same conventions as ChainDiagram: dot-and-line geometry, every label
  * in HTML so type never scales below its set size, and a full restructure at

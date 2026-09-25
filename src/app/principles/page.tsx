@@ -105,7 +105,7 @@ export default function PrinciplesPage() {
             obligations are in any country.
           </p>
           <p>
-            Where jurisdiction-specific content exists in a programme, it
+            Where jurisdiction-specific content exists in a program, it
             was entered by the customer or their advisor, and formally
             adopted by a named person who takes responsibility for it. The
             platform records that decision. It does not make it, suggest
@@ -203,7 +203,7 @@ export default function PrinciplesPage() {
             move this date, and show me what it does to exit timing and
             cost. You supply the change, and the answer is computed
             through the same pricing and scheduling logic that governs the
-            live programme. Nothing is assumed on your behalf; the input is
+            live program. Nothing is assumed on your behalf; the input is
             yours, and the output is traceable to it.
           </p>
           <p>

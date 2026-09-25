@@ -53,7 +53,7 @@ function confirmationCopy(kind: "contact" | "list", name?: string): Confirmation
           body: `Someone from the team will write from ${CONTACT_EMAIL} to find a time for a call.`,
         },
         {
-          lead: "The call starts with your programme.",
+          lead: "The call starts with your program.",
           body: "Tell us about the deal and where it’s hard, and we’ll show you how the platform handles it — including which parts are live today and which are still in build.",
         },
         {
