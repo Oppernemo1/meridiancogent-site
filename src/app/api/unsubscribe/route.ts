@@ -29,8 +29,9 @@ async function unsubscribe(request: Request): Promise<Result> {
 
   const resend = new Resend(apiKey);
   try {
+    // Contacts are global since Resend's Audiences → Segments change, so
+    // this is the account-wide unsubscribe flag for the address.
     const { error } = await resend.contacts.update({
-      audienceId: segmentId,
       email,
       unsubscribed: true,
     });

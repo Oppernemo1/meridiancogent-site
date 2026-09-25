@@ -52,10 +52,15 @@ export async function POST(request: Request) {
   const details = isContactRequest
     ? (parsed.data as ContactRequestInput)
     : undefined;
+  // Where on the site the form sat (homepage-hero, footer, guide-<slug>…).
+  // Goes in the internal notification.
   const source =
     typeof (payload as { source?: unknown }).source === "string"
       ? (payload as { source: string }).source.slice(0, 64)
       : "unknown";
+  // What the contact asked for, stored on the Resend contact as the `source`
+  // property: "talk-to-us", or the guide's "guide-<slug>".
+  const contactSource = details ? "talk-to-us" : source;
 
   // --- Config ---
   const apiKey = process.env.RESEND_API_KEY;
@@ -79,17 +84,14 @@ export async function POST(request: Request) {
 
   const resend = new Resend(apiKey);
 
-  // --- 1. Check whether this contact already exists in the Segment ---
-  // Resend's create endpoint's behaviour on a duplicate email isn't
-  // documented, so we check explicitly rather than rely on it. A repeat
-  // submission gets the same success response but no second contact record
-  // and no second confirmation email.
+  // --- 1. Check whether this contact already exists ---
+  // Since Resend's move from Audiences to Segments, contacts are global to
+  // the account (one per email address) and Segments are memberships, so the
+  // lookup is by email alone. A repeat submission gets the same success
+  // response but no second contact record and no second confirmation email.
   let isNewContact = true;
   try {
-    const { data, error } = await resend.contacts.get({
-      audienceId: segmentId,
-      email,
-    });
+    const { data, error } = await resend.contacts.get({ email });
     if (data) {
       isNewContact = false;
     } else if (error && error.name !== "not_found") {
@@ -107,18 +109,33 @@ export async function POST(request: Request) {
     );
   }
 
+  // Custom contact properties. Each key must already exist as a contact
+  // property in Resend (see scripts/setup-resend-properties.mjs) — an
+  // unknown key fails the whole create/update call. These are the durable
+  // record of a lead: if the internal notification below fails, the
+  // details are still on the contact.
+  const { firstName, lastName } = splitName(details?.name);
+  const properties: Record<string, string | null> = details
+    ? {
+        source: contactSource,
+        company: details.company,
+        // A new request replaces the whole set, so a stale role from an
+        // earlier request doesn't sit next to a new company.
+        role: details.role ?? null,
+      }
+    : { source: contactSource };
+
   if (isNewContact) {
-    // --- 2. Add the contact to the Resend Segment ---
+    // --- 2a. Create the contact in the Segment ---
     try {
-      // Resend contacts only carry first/last name; company and role travel
-      // in the internal notification below.
-      const { firstName, lastName } = splitName(details?.name);
       const { error } = await resend.contacts.create({
         email,
-        audienceId: segmentId,
         firstName,
         lastName,
         unsubscribed: false,
+        segments: [{ id: segmentId }],
+        // No role given: leave the property unset rather than null.
+        properties: withoutNulls(properties),
       });
       if (error) {
         console.error("[early-access] contacts.create error:", error);
@@ -137,7 +154,54 @@ export async function POST(request: Request) {
         502,
       );
     }
+  } else if (details) {
+    // --- 2b. Existing contact asking to talk: bring the record up to date ---
+    // e.g. someone who downloaded a guide and now wants a call. A repeat
+    // guide download leaves the contact alone, so it never overwrites a
+    // "talk-to-us" source. The unsubscribed flag is never touched here.
+    try {
+      const { error } = await resend.contacts.update({
+        email,
+        firstName,
+        lastName,
+        properties,
+      });
+      if (error) {
+        console.error("[early-access] contacts.update error:", error);
+        return json(
+          {
+            error:
+              "We couldn't send your request. Please try again in a moment.",
+          },
+          502,
+        );
+      }
+    } catch (err) {
+      console.error("[early-access] contacts.update threw:", err);
+      return json(
+        { error: "We couldn't send your request. Please try again in a moment." },
+        502,
+      );
+    }
+  }
 
+  if (!isNewContact) {
+    // Contacts are global, so an existing contact may not be in this
+    // Segment yet. Best-effort: the contact record itself is already right.
+    try {
+      const { error } = await resend.contacts.segments.add({
+        email,
+        segmentId,
+      });
+      if (error) {
+        console.error("[early-access] contacts.segments.add error:", error);
+      }
+    } catch (err) {
+      console.error("[early-access] contacts.segments.add threw:", err);
+    }
+  }
+
+  if (isNewContact) {
     // --- 3. Branded confirmation email to the registrant (best-effort) ---
     try {
       const { subject, html, text, unsubscribeUrl: listUnsubscribe } =
@@ -145,7 +209,7 @@ export async function POST(request: Request) {
           kind: details ? "contact" : "list",
           name: details?.name,
         });
-      await resend.emails.send({
+      const { error } = await resend.emails.send({
         from: fromEmail,
         to: email,
         subject,
@@ -156,6 +220,9 @@ export async function POST(request: Request) {
           "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
         },
       });
+      if (error) {
+        console.error("[early-access] confirmation email error:", error);
+      }
     } catch (err) {
       console.error("[early-access] confirmation email failed:", err);
       // The submission itself succeeded; don't fail the request.
@@ -175,15 +242,25 @@ export async function POST(request: Request) {
         details,
         existingContact: !isNewContact,
       });
-      await resend.emails.send({
+      const { error } = await resend.emails.send({
         from: fromEmail,
         to: internalEmail,
         replyTo: email,
         subject,
         text,
       });
+      if (error) {
+        console.error(
+          "[early-access] internal notification error; details remain on the Resend contact:",
+          error,
+        );
+      }
     } catch (err) {
-      console.error("[early-access] internal notification failed:", err);
+      // The lead's details are also on the Resend contact (properties above).
+      console.error(
+        "[early-access] internal notification failed; details remain on the Resend contact:",
+        err,
+      );
     }
   }
 
@@ -198,4 +275,14 @@ function splitName(name?: string): { firstName?: string; lastName?: string } {
   if (!name) return {};
   const [first, ...rest] = name.split(/\s+/);
   return { firstName: first, lastName: rest.join(" ") || undefined };
+}
+
+function withoutNulls(
+  properties: Record<string, string | null>,
+): Record<string, string> {
+  return Object.fromEntries(
+    Object.entries(properties).filter(
+      (entry): entry is [string, string] => entry[1] !== null,
+    ),
+  );
 }

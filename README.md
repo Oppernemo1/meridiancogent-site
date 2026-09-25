@@ -44,6 +44,17 @@ Set these in Vercel (Project → Settings → Environment Variables) and in
 The early access form works without Resend configured only insofar as it will
 return a clear error state — no signups are stored until the keys are set.
 
+### Resend contact properties
+
+The form writes `company`, `role` and `source` as custom properties on the
+Resend contact. Resend rejects any contact create/update that names a
+property the account doesn't have, so the form fails until they exist. Create
+them once per Resend account (idempotent, safe to re-run) before deploying:
+
+```bash
+node --env-file=.env.local scripts/setup-resend-properties.mjs
+```
+
 ## Content: adding a resource article
 
 1. Create `content/resources/<slug>.mdx`.
