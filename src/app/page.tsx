@@ -40,7 +40,7 @@ const AT_A_GLANCE = [
   },
   {
     label: "Where it is",
-    body: "Currently in testing. Not commercially available yet. Join the list and we will tell you when there is something to show you.",
+    body: "Ready to demo. Some of the platform is live today and some is in build — tell us about your programme and we will show you which is which.",
   },
 ];
 
@@ -97,7 +97,8 @@ export default function HomePage() {
 
             <div className="mt-10 max-w-xl">
               <p className="text-small font-medium text-graphite">
-                Currently in testing. Join the list for updates as we open access.
+                MeridianCogent is ready to demo. Tell us about your programme
+                and we&apos;ll show you how it works.
               </p>
               <div className="mt-3">
                 <EarlyAccessForm source="homepage-hero" />

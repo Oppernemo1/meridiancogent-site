@@ -18,5 +18,5 @@ export const NAV_LINKS = [
   { label: "Principles", href: "/principles" },
   { label: "Security", href: "/security" },
   { label: "Resources", href: "/resources" },
-  { label: "Join the Program", href: "/early-access" },
+  { label: "Talk to Us", href: "/early-access" },
 ];

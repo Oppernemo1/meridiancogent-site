@@ -1,8 +1,8 @@
 // Simple in-memory per-key rate limiter. Good enough to stop someone looping
 // a single endpoint from one IP — not a distributed limiter, so a burst
 // spread across serverless instances or a cold start resets it. That's an
-// acceptable trade-off for the modest limit this guards (program
-// signups), not something worth a Redis dependency for.
+// acceptable trade-off for the modest limit this guards (form
+// submissions), not something worth a Redis dependency for.
 const WINDOW_MS = 60 * 60 * 1000; // 1 hour
 const MAX_HITS = 5;
 

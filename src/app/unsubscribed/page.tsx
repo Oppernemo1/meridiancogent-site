@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const COPY: Record<string, { heading: string; body: string }> = {
   ok: {
     heading: "You’re unsubscribed.",
-    body: "You won’t get any more program emails from MeridianCogent. If that was a mistake, join the list again from the Join the Program page at any time.",
+    body: "You won’t get any more program emails from MeridianCogent. If that was a mistake, get in touch from the Talk to Us page at any time.",
   },
   invalid: {
     heading: "That link isn’t valid.",

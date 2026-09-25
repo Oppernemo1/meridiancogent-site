@@ -224,7 +224,7 @@ export default function PlatformPage() {
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent models how a carve-out actually works — what a
               business depends on, what has to be untangled, in what order,
-              and what it costs when that slips. Currently in testing.
+              and what it costs when that slips.
             </p>
           </div>
         </Container>
@@ -304,8 +304,8 @@ export default function PlatformPage() {
           </div>
 
           <p className="max-w-measure">
-            Some of this is live today and some is in build. MeridianCogent
-            is not commercially available yet.
+            Some of this is live today and some is in build. A demo shows
+            you which is which.
           </p>
         </Section>
 

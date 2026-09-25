@@ -6,8 +6,8 @@ import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Privacy Policy";
 const DESCRIPTION =
-  "How MeridianCogent handles the limited personal data collected through this website during the program.";
-const LAST_UPDATED = "9 September 2026";
+  "How MeridianCogent handles the limited personal data collected through this website's forms.";
+const LAST_UPDATED = "25 September 2026";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -73,9 +73,11 @@ export default function PrivacyPage() {
         {/* What we collect */}
         <Section id="what-we-collect" label="What we collect" heading="What we collect">
           <p>
-            The only personal data this site collects is the email address you
-            submit to the sign-up form. We do not ask for your name,
-            company, or any other detail. We do not use advertising or
+            The only personal data this site collects is what you submit
+            through its forms. A guide download asks for your email address
+            only. A request to talk to us asks for your name, company and
+            email address, and optionally your role. We do not ask for a
+            phone number or any other detail. We do not use advertising or
             cross-site tracking cookies.
           </p>
           <p>
@@ -89,19 +91,25 @@ export default function PrivacyPage() {
         <Section id="how-we-use-it" label="How we use it" heading="How we use it">
           <ul className="list-disc space-y-3 pl-5">
             <li>
-              To add you to our program list and send you occasional
+              To reply to a request to talk, using the name, company, role
+              and email address you gave us.
+            </li>
+            <li>
+              To add you to our update list and send you occasional
               product updates by email.
             </li>
             <li>
-              To send you a confirmation that you have joined the list.
+              To send you a confirmation that we have received your request
+              or sign-up.
             </li>
             <li>
-              To notify our own team, at a role-based address, that a new signup
-              has come in.
+              To notify our own team, at a role-based address, that a new
+              request or sign-up has come in, including the details you
+              submitted.
             </li>
           </ul>
           <p>
-            We do not sell your email address, and we do not share it outside
+            We do not sell your details, and we do not share them outside
             MeridianCogent except with the service providers below who process it
             on our behalf.
           </p>
@@ -111,8 +119,10 @@ export default function PrivacyPage() {
         <Section id="service-providers" label="Service providers" heading="Service providers">
           <ul className="list-disc space-y-3 pl-5">
             <li>
-              <strong>Resend</strong> — stores the program list and
-              delivers our email. See resend.com for their terms and privacy
+              <strong>Resend</strong> — stores the update list (your email
+              address and, if you gave it, your name) and delivers our
+              email, including the internal notification that carries your
+              company and role. See resend.com for their terms and privacy
               information.
             </li>
             <li>
@@ -125,9 +135,9 @@ export default function PrivacyPage() {
         {/* Retention */}
         <Section id="retention" label="Retention" heading="Retention">
           <p>
-            We keep your email address on the program list until you
-            unsubscribe or ask us to remove it, or until we decide the list is
-            no longer needed.
+            We keep your details on the update list until you unsubscribe
+            or ask us to remove them, or until we decide the list is no
+            longer needed.
           </p>
         </Section>
 

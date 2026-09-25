@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
-import { earlyAccessSchema } from "@/lib/validation";
+import {
+  contactRequestSchema,
+  earlyAccessSchema,
+  type ContactRequestInput,
+} from "@/lib/validation";
 import { confirmationEmail, internalNotification } from "@/lib/emails";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
 
@@ -32,13 +36,22 @@ export async function POST(request: Request) {
   }
 
   // --- Server-side validation (authoritative) ---
-  const parsed = earlyAccessSchema.safeParse(payload);
+  // A "Talk to Us" request carries name/company/role and requires the first
+  // two; a guide download is email-only.
+  const isContactRequest =
+    (payload as { intent?: unknown } | null)?.intent === "talk";
+  const parsed = isContactRequest
+    ? contactRequestSchema.safeParse(payload)
+    : earlyAccessSchema.safeParse(payload);
   if (!parsed.success) {
     const message =
       parsed.error.issues[0]?.message ?? "Enter a valid email address.";
     return json({ error: message }, 400);
   }
   const email = parsed.data.email.toLowerCase();
+  const details = isContactRequest
+    ? (parsed.data as ContactRequestInput)
+    : undefined;
   const source =
     typeof (payload as { source?: unknown }).source === "string"
       ? (payload as { source: string }).source.slice(0, 64)
@@ -59,7 +72,7 @@ export async function POST(request: Request) {
       "[early-access] Missing RESEND_API_KEY or RESEND_SEGMENT_ID env var.",
     );
     return json(
-      { error: "Signups aren't available right now. Please try again later." },
+      { error: "This form isn't available right now. Please email us instead." },
       500,
     );
   }
@@ -69,7 +82,8 @@ export async function POST(request: Request) {
   // --- 1. Check whether this contact already exists in the Segment ---
   // Resend's create endpoint's behaviour on a duplicate email isn't
   // documented, so we check explicitly rather than rely on it. A repeat
-  // signup gets the same success response but no second confirmation email.
+  // submission gets the same success response but no second contact record
+  // and no second confirmation email.
   let isNewContact = true;
   try {
     const { data, error } = await resend.contacts.get({
@@ -81,14 +95,14 @@ export async function POST(request: Request) {
     } else if (error && error.name !== "not_found") {
       console.error("[early-access] contacts.get error:", error);
       return json(
-        { error: "We couldn't add you to the list. Please try again in a moment." },
+        { error: "We couldn't send your request. Please try again in a moment." },
         502,
       );
     }
   } catch (err) {
     console.error("[early-access] contacts.get threw:", err);
     return json(
-      { error: "We couldn't add you to the list. Please try again in a moment." },
+      { error: "We couldn't send your request. Please try again in a moment." },
       502,
     );
   }
@@ -96,9 +110,14 @@ export async function POST(request: Request) {
   if (isNewContact) {
     // --- 2. Add the contact to the Resend Segment ---
     try {
+      // Resend contacts only carry first/last name; company and role travel
+      // in the internal notification below.
+      const { firstName, lastName } = splitName(details?.name);
       const { error } = await resend.contacts.create({
         email,
         audienceId: segmentId,
+        firstName,
+        lastName,
         unsubscribed: false,
       });
       if (error) {
@@ -106,7 +125,7 @@ export async function POST(request: Request) {
         return json(
           {
             error:
-              "We couldn't add you to the list. Please try again in a moment.",
+              "We couldn't send your request. Please try again in a moment.",
           },
           502,
         );
@@ -114,7 +133,7 @@ export async function POST(request: Request) {
     } catch (err) {
       console.error("[early-access] contacts.create threw:", err);
       return json(
-        { error: "We couldn't add you to the list. Please try again in a moment." },
+        { error: "We couldn't send your request. Please try again in a moment." },
         502,
       );
     }
@@ -122,7 +141,10 @@ export async function POST(request: Request) {
     // --- 3. Branded confirmation email to the registrant (best-effort) ---
     try {
       const { subject, html, text, unsubscribeUrl: listUnsubscribe } =
-        confirmationEmail(email);
+        confirmationEmail(email, {
+          kind: details ? "contact" : "list",
+          name: details?.name,
+        });
       await resend.emails.send({
         from: fromEmail,
         to: email,
@@ -136,12 +158,23 @@ export async function POST(request: Request) {
       });
     } catch (err) {
       console.error("[early-access] confirmation email failed:", err);
-      // The signup itself succeeded; don't fail the request.
+      // The submission itself succeeded; don't fail the request.
     }
+  }
 
-    // --- 4. Plain internal notification (best-effort) ---
+  // --- 4. Plain internal notification (best-effort) ---
+  // Sent for every new contact, and for every "Talk to Us" request even from
+  // an existing contact (e.g. someone who downloaded a guide and now wants a
+  // call) — a request for a conversation must never be swallowed by the
+  // duplicate check above.
+  if (isNewContact || details) {
     try {
-      const { subject, text } = internalNotification({ email, source });
+      const { subject, text } = internalNotification({
+        email,
+        source,
+        details,
+        existingContact: !isNewContact,
+      });
       await resend.emails.send({
         from: fromEmail,
         to: internalEmail,
@@ -159,4 +192,10 @@ export async function POST(request: Request) {
 
 export async function GET() {
   return json({ error: "Method not allowed." }, 405);
+}
+
+function splitName(name?: string): { firstName?: string; lastName?: string } {
+  if (!name) return {};
+  const [first, ...rest] = name.split(/\s+/);
+  return { firstName: first, lastName: rest.join(" ") || undefined };
 }

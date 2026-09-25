@@ -9,7 +9,7 @@ const FOOTER_NAV = [
   { label: "Principles", href: "/principles" },
   { label: "Security", href: "/security" },
   { label: "Resources", href: "/resources" },
-  { label: "Join the Program", href: "/early-access" },
+  { label: "Talk to Us", href: "/early-access" },
   { label: "Privacy", href: "/privacy" },
   { label: "Terms", href: "/terms" },
 ];
@@ -32,10 +32,11 @@ export function Footer() {
         <div className="grid items-start gap-12 md:grid-cols-2 md:gap-16">
           <div>
             <h2 className="text-h2-sm text-on-dark-primary md:text-h2">
-              Get updates as we open access.
+              Talk to us.
             </h2>
             <p className="mt-heading-gap max-w-md leading-relaxed text-on-dark-secondary">
-              Currently in testing. Join the program for updates.
+              MeridianCogent is ready to demo. Tell us about your programme
+              and we&apos;ll show you how it works.
             </p>
             <div className="mt-6 max-w-md">
               <EarlyAccessForm theme="dark" source="footer" />

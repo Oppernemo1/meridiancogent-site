@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/Container";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { Section } from "@/components/Section";
@@ -6,9 +7,9 @@ import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { SITE_NAME } from "@/lib/site";
 
-const TITLE = "Join the Program";
+const TITLE = "Talk to Us";
 const DESCRIPTION =
-  "MeridianCogent is currently in testing. Join the program for occasional email updates as we get closer to launch — no specific date promised.";
+  "MeridianCogent is ready to demo. Tell us about your programme and we'll show you how it works.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -27,20 +28,20 @@ export const metadata: Metadata = {
 
 const EXPECTATIONS = [
   {
-    heading: "Updates come by email",
-    body: "If you join the list, you'll get occasional updates as the product takes shape and as access widens. That's it — no newsletter cadence, no drip sequence.",
+    heading: "We reply by email",
+    body: "Someone from the team writes back from hello@meridiancogent.com to find a time for a call.",
   },
   {
-    heading: "No launch date is promised",
-    body: "We are not going to give you a quarter and miss it. When there is something concrete to show you, you will hear from us.",
+    heading: "The call starts with your programme",
+    body: "Tell us about the deal, the perimeter and where it's hard. Then we show you how the platform handles it.",
   },
   {
-    heading: "One email address, nothing else",
-    body: "We ask for an email address and nothing else. No company, no role, no phone number.",
+    heading: "What we ask for, and why",
+    body: "Name, company and email, so whoever picks up your request knows who they're calling. Role is optional. No phone number.",
   },
   {
     heading: "Unsubscribe anytime",
-    body: "Every email has a one-click unsubscribe link. Use it and you're off the list immediately — no confirmation step, no waiting.",
+    body: "Your email also goes on our update list. Every email has a one-click unsubscribe link. Use it and you're off the list immediately.",
   },
 ];
 
@@ -55,16 +56,17 @@ export default function EarlyAccessPage() {
         <Container className="relative py-section md:py-section-lg">
           <div className="max-w-2xl">
             <h1 className="text-balance text-h1-sm md:text-h1">
-              Join the program
+              Talk to us
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent is a control environment for separation offices and
-              integration teams. It&apos;s currently in testing. The program is how
-              we stay in touch with the people we&apos;re building it for.
+              integration teams. It&apos;s ready to demo. Tell us about your
+              programme and we&apos;ll show you how it works.
             </p>
             <div className="mt-8 max-w-lg">
               <p className="text-small font-medium text-graphite">
-                Currently in testing. Join the program for updates.
+                Some of the platform is live today and some is in build.
+                We&apos;ll show you which is which.
               </p>
               <div className="mt-3">
                 <EarlyAccessForm source="early-access-page" />
@@ -92,7 +94,15 @@ export default function EarlyAccessPage() {
           </dl>
 
           <p className="text-small text-muted">
-            Questions about the program? Email{" "}
+            Running a security review? What is and isn&apos;t in place yet
+            is on the{" "}
+            <Link
+              href="/security"
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
+            >
+              security page
+            </Link>
+            . Anything else, email{" "}
             <a
               href="mailto:hello@meridiancogent.com"
               className="text-accent-dark underline underline-offset-4 hover:text-muted"
