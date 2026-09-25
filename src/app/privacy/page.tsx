@@ -43,8 +43,8 @@ export default function PrivacyPage() {
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               <em>Last updated: {LAST_UPDATED}.</em> MeridianCogent is an
-              early-stage company and this website is a pre-launch marketing
-              site. This policy is deliberately short, describes only what
+              early-stage company and this is its marketing website. This
+              policy is deliberately short, describes only what
               the site does today, and is subject to change as the product
               develops. Material changes will be reflected here with a new
               date.
@@ -160,9 +160,11 @@ export default function PrivacyPage() {
         {/* Changes */}
         <Section id="changes" label="Changes" heading="Changes">
           <p>
-            As MeridianCogent moves from development toward launch, this policy
-            will be replaced with a fuller version. Continued use of the site
-            after an update means you accept the revised policy.
+            This policy covers this website only. Personal data processed
+            within the MeridianCogent platform is governed by the agreement
+            with the customer concerned. We will update this policy as the
+            site changes. Continued use of the site after an update means
+            you accept the revised policy.
           </p>
         </Section>
       </SidebarLayout>

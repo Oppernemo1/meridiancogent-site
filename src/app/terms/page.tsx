@@ -6,7 +6,7 @@ import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Terms of Use";
 const DESCRIPTION =
-  "The basic terms that apply to visitors of the MeridianCogent pre-launch website.";
+  "The basic terms that apply to visitors of the MeridianCogent website.";
 const LAST_UPDATED = "25 September 2026";
 
 export const metadata: Metadata = {
@@ -42,12 +42,11 @@ export default function TermsPage() {
               Terms of Use
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
-              <em>Last updated: {LAST_UPDATED}.</em> This is a pre-launch
-              marketing website for MeridianCogent, an M&amp;A execution
-              platform. These terms are early-stage
-              boilerplate and are subject to change. They will be replaced
-              with full product terms before the platform becomes generally
-              available.
+              <em>Last updated: {LAST_UPDATED}.</em> This is the marketing
+              website for MeridianCogent, an M&amp;A execution platform.
+              These terms cover use of this website only and are subject to
+              change. Use of the MeridianCogent platform itself is governed
+              by a separate written agreement, not by these terms.
             </p>
           </div>
         </Container>
