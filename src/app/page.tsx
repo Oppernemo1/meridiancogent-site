@@ -173,6 +173,13 @@ export default function HomePage() {
               >
                 See the full model →
               </Link>
+              <span aria-hidden="true" className="mx-3 hidden text-muted sm:inline">·</span>
+              <Link
+                href="/platform#walkthrough"
+                className="mt-2 block w-fit text-accent-dark underline underline-offset-4 hover:text-muted sm:mt-0 sm:inline"
+              >
+                Watch a 90-second walkthrough →
+              </Link>
             </p>
           </Section>
         </RevealOnScroll>

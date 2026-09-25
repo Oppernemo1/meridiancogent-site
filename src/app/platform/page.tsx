@@ -175,6 +175,7 @@ const WHAT_IT_COVERS_GROUPS = [
 ];
 
 const SECTIONS = [
+  { id: "walkthrough", label: "Walkthrough" },
   { id: "covers", label: "What it covers" },
   { id: "chain", label: "The chain" },
   { id: "control-tower", label: "Control tower" },
@@ -230,8 +231,31 @@ export default function PlatformPage() {
       </section>
 
       <SidebarLayout sections={SECTIONS}>
+        {/* Walkthrough */}
+        <Section id="walkthrough" label="Walkthrough" heading="The platform in ninety seconds" divider={false} wide>
+          {/* Self-hosted rather than embedded: no third-party player or
+              tracking. Narrated, so it is never autoplayed or muted — the
+              viewer starts it and controls the sound. Captions are burned
+              into the video itself. The file is remuxed with the moov atom
+              at the front (faststart) so playback can begin before the
+              whole file has downloaded. */}
+          <video
+            controls
+            preload="metadata"
+            playsInline
+            width={1920}
+            height={1080}
+            poster="/video/meridiancogent-promotional-poster.jpg"
+            className="aspect-video h-auto w-full border border-hairline bg-graphite"
+          >
+            <source src="/video/meridiancogent-promotional.mp4" type="video/mp4" />
+            Your browser does not support embedded video.{" "}
+            <a href="/video/meridiancogent-promotional.mp4">Download the walkthrough</a>.
+          </video>
+        </Section>
+
         {/* What it covers */}
-        <Section id="covers" label="What it covers" heading="Everything a separation actually runs on" divider={false} wide>
+        <Section id="covers" label="What it covers" heading="Everything a separation actually runs on" wide>
           <p className="max-w-measure">
             A carve-out is not one problem. It is scope, obligations,
             contracts, costs, systems, people and dates, all moving at once
