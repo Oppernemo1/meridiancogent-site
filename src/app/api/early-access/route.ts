@@ -36,11 +36,13 @@ export async function POST(request: Request) {
   }
 
   // --- Server-side validation (authoritative) ---
-  // A "Talk to Us" request carries name/company/role and requires the first
-  // two; a guide download is email-only.
-  const isContactRequest =
-    (payload as { intent?: unknown } | null)?.intent === "talk";
-  const parsed = isContactRequest
+  // Three shapes: a guide download (email only); the short "Talk to Us"
+  // form in the homepage hero and footer (email only); and the full "Talk to
+  // Us" form on its own page, which requires name and company too.
+  const body = (payload ?? {}) as { intent?: unknown; form?: unknown };
+  const isTalk = body.intent === "talk";
+  const isFullForm = isTalk && body.form === "full";
+  const parsed = isFullForm
     ? contactRequestSchema.safeParse(payload)
     : earlyAccessSchema.safeParse(payload);
   if (!parsed.success) {
@@ -49,7 +51,7 @@ export async function POST(request: Request) {
     return json({ error: message }, 400);
   }
   const email = parsed.data.email.toLowerCase();
-  const details = isContactRequest
+  const details = isFullForm
     ? (parsed.data as ContactRequestInput)
     : undefined;
   // Where on the site the form sat (homepage-hero, footer, guide-<slug>…).
@@ -60,7 +62,7 @@ export async function POST(request: Request) {
       : "unknown";
   // What the contact asked for, stored on the Resend contact as the `source`
   // property: "talk-to-us", or the guide's "guide-<slug>".
-  const contactSource = details ? "talk-to-us" : source;
+  const contactSource = isTalk ? "talk-to-us" : source;
 
   // --- Config ---
   const apiKey = process.env.RESEND_API_KEY;
@@ -154,11 +156,13 @@ export async function POST(request: Request) {
         502,
       );
     }
-  } else if (details) {
+  } else if (isTalk) {
     // --- 2b. Existing contact asking to talk: bring the record up to date ---
-    // e.g. someone who downloaded a guide and now wants a call. A repeat
-    // guide download leaves the contact alone, so it never overwrites a
-    // "talk-to-us" source. The unsubscribed flag is never touched here.
+    // e.g. someone who downloaded a guide and now wants a call. From the
+    // short form only `source` changes; name, company and role are kept. A
+    // repeat guide download leaves the contact alone, so it never
+    // overwrites a "talk-to-us" source. The unsubscribed flag is never
+    // touched here.
     try {
       const { error } = await resend.contacts.update({
         email,
@@ -206,7 +210,7 @@ export async function POST(request: Request) {
     try {
       const { subject, html, text, unsubscribeUrl: listUnsubscribe } =
         confirmationEmail(email, {
-          kind: details ? "contact" : "list",
+          kind: isTalk ? "contact" : "list",
           name: details?.name,
         });
       const { error } = await resend.emails.send({
@@ -239,7 +243,7 @@ export async function POST(request: Request) {
   // visitor: from their side the submission worked. It is logged under a
   // fixed, searchable tag with the address to look up in Resend, where the
   // contact's properties hold the same details the email would have.
-  if (isNewContact || details) {
+  if (isNewContact || isTalk) {
     const notificationFailed = (reason: unknown) =>
       console.error(
         `[early-access] NOTIFICATION_FAILED — lead not emailed to the team; check Resend contact ${email}:`,
@@ -249,6 +253,7 @@ export async function POST(request: Request) {
       const { subject, text } = internalNotification({
         email,
         source,
+        talk: isTalk,
         details,
         existingContact: !isNewContact,
       });

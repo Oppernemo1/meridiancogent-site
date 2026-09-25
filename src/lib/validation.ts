@@ -12,13 +12,16 @@ const emailField = z
   .max(254, "That email address is too long.")
   .regex(EMAIL_REGEX, "Enter a valid email address.");
 
-/** Guide downloads: email only, deliberately low-friction. */
+/**
+ * Email only, deliberately low-friction: guide downloads, and the short
+ * "Talk to Us" form in the homepage hero and footer.
+ */
 export const earlyAccessSchema = z.object({
   email: emailField,
 });
 
 /**
- * "Talk to Us": a request for a conversation, so whoever picks up the lead
+ * The full "Talk to Us" form on the dedicated page: whoever picks up the lead
  * needs to know who they're calling. Name and company are required; role is
  * optional.
  */

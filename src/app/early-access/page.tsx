@@ -63,13 +63,22 @@ export default function EarlyAccessPage() {
               integration teams. It&apos;s ready to demo. Tell us about your
               programme and we&apos;ll show you how it works.
             </p>
-            <div className="mt-8 max-w-lg">
-              <p className="text-small font-medium text-graphite">
+            {/* Same graphite panel treatment as DataPanel, so the four
+                fields read as one contained block rather than loose inputs. */}
+            <div className="mt-8 max-w-xl rounded-lg bg-graphite p-5 md:p-6">
+              <p className="text-label font-semibold uppercase text-accent-light">
+                Request a demo
+              </p>
+              <p className="mt-2 text-small leading-relaxed text-on-dark-secondary">
                 Some of the platform is live today and some is in build.
                 We&apos;ll show you which is which.
               </p>
-              <div className="mt-3">
-                <EarlyAccessForm source="early-access-page" />
+              <div className="mt-5">
+                <EarlyAccessForm
+                  theme="dark"
+                  fields="full"
+                  source="early-access-page"
+                />
               </div>
             </div>
           </div>

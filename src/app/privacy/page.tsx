@@ -74,9 +74,10 @@ export default function PrivacyPage() {
         <Section id="what-we-collect" label="What we collect" heading="What we collect">
           <p>
             The only personal data this site collects is what you submit
-            through its forms. A guide download asks for your email address
-            only. A request to talk to us asks for your name, company and
-            email address, and optionally your role. We do not ask for a
+            through its forms. A guide download, and the short request to
+            talk to us found across the site, ask for your email address
+            only. The form on the Talk to Us page also asks for your name
+            and company, and optionally your role. We do not ask for a
             phone number or any other detail. We do not use advertising or
             cross-site tracking cookies.
           </p>

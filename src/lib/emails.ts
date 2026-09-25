@@ -258,11 +258,15 @@ MeridianCogent &mdash; execution for M&amp;A separations, carve-outs and integra
 export function internalNotification(params: {
   email: string;
   source: string;
+  talk: boolean;
   details?: { name: string; company: string; role?: string };
   existingContact?: boolean;
 }): { subject: string; text: string } {
-  const { email, source, details, existingContact } = params;
+  const { email, source, talk, details, existingContact } = params;
   const time = `Time: ${new Date().toISOString()}`;
+  const contactLine = existingContact
+    ? "Contact: already on the list (earlier request or guide download) — no confirmation email sent this time."
+    : "Contact: new — confirmation email sent.";
 
   if (details) {
     return {
@@ -276,9 +280,26 @@ export function internalNotification(params: {
         `Email: ${email}`,
         "",
         `Source: ${source}`,
-        existingContact
-          ? "Contact: already on the list (earlier request or guide download) — no confirmation email sent this time."
-          : "Contact: new — confirmation email sent.",
+        contactLine,
+        time,
+        "",
+        "Reply to this email to reach them directly.",
+      ].join("\n"),
+    };
+  }
+
+  if (talk) {
+    return {
+      subject: `Talk to Us request: ${email}`,
+      text: [
+        `${email} has asked to talk.`,
+        "",
+        "They used the short form, so there is an email address only — no",
+        "name or company. Any details from an earlier request are on their",
+        "Resend contact.",
+        "",
+        `Source: ${source}`,
+        contactLine,
         time,
         "",
         "Reply to this email to reach them directly.",

@@ -13,6 +13,7 @@ export function EarlyAccessForm({
   className = "",
   successMessage,
   download,
+  fields = "email",
 }: {
   theme?: "light" | "dark";
   source?: string;
@@ -26,15 +27,20 @@ export function EarlyAccessForm({
    * /api/early-access route, so there is one contact list and one welcome
    * email — a repeat submitter gets the same 200 and the same download, with
    * no second contact record and no second email.
-   *
-   * A download form stays email-only. Every other use of this form is a
-   * "Talk to Us" request and also asks for name, company and (optionally)
-   * role, so whoever picks up the lead knows who they're calling.
    */
   download?: { href: string; label: string };
+  /**
+   * "email" (default): a single email field — guide downloads, and the
+   * low-friction "Talk to Us" form in the homepage hero and site footer.
+   * "full": name, company, optional role and email — only on the dedicated
+   * Talk to Us page, where the visitor has already opted into a conversation.
+   * Any form without `download` is a "Talk to Us" request either way.
+   */
+  fields?: "email" | "full";
 }) {
   const id = useId();
-  const collectDetails = !download;
+  const isTalk = !download;
+  const collectDetails = fields === "full";
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [company, setCompany] = useState("");
@@ -80,13 +86,16 @@ export function EarlyAccessForm({
           collectDetails
             ? {
                 intent: "talk",
+                form: "full",
                 email: trimmed,
                 name: name.trim(),
                 company: company.trim(),
                 role: role.trim(),
                 source,
               }
-            : { email: trimmed, source },
+            : isTalk
+              ? { intent: "talk", email: trimmed, source }
+              : { email: trimmed, source },
         ),
       });
 
