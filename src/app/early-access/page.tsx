@@ -37,7 +37,7 @@ const EXPECTATIONS = [
   },
   {
     heading: "What we ask for, and why",
-    body: "Name, company and email, so whoever picks up your request knows who they're calling. Role is optional. No phone number.",
+    body: "Name, company and email, so whoever picks up your request knows who they're emailing. Role is optional. No phone number.",
   },
   {
     heading: "Unsubscribe anytime",
