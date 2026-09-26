@@ -1,0 +1,9 @@
+/* Sync stylesheet source: the site's globals plus the serif family that
+   next/font injects at runtime on the real site. */
+@import "../src/app/globals.css";
+
+@layer base {
+  :root {
+    --font-serif: "Gelasio";
+  }
+}

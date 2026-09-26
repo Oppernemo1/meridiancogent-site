@@ -1,0 +1,54 @@
+{
+  "projectId": "43dfa8ac-709d-444a-a8eb-404c6b57c5c4",
+  "shape": "package",
+  "pkg": "meridiancogent-site",
+  "globalName": "MeridianCogent",
+  "entry": ".design-sync/entry.ts",
+  "buildCmd": "node .design-sync/build-css.mjs",
+  "tsconfig": ".design-sync/tsconfig.json",
+  "cssEntry": ".design-sync/.cache/site.css",
+  "extraFonts": [
+    ".design-sync/fonts/gelasio.css"
+  ],
+  "componentSrcMap": {
+    "Container": "src/components/Container.tsx",
+    "Section": "src/components/Section.tsx",
+    "DataPanel": "src/components/DataPanel.tsx",
+    "PostCard": "src/components/PostCard.tsx",
+    "Header": "src/components/Header.tsx",
+    "Footer": "src/components/Footer.tsx",
+    "EarlyAccessForm": "src/components/EarlyAccessForm.tsx"
+  },
+  "dtsPropsFor": {
+    "Container": "  children: React.ReactNode;\n  /** Extra classes merged onto the centred max-w-content (1100px) wrapper. */\n  className?: string;",
+    "Section": "  /** Anchor id; the h2 gets `${id}-heading`. */\n  id: string;\n  /** Small-caps orange label above the heading. */\n  label: string;\n  heading?: React.ReactNode;\n  /** Optional side panel (usually a DataPanel), floated right of the prose from md up. */\n  panel?: React.ReactNode;\n  /** Hairline rule above the section. Default true. */\n  divider?: boolean;\n  /** Drop the 720px prose measure (for card grids). Default false. */\n  wide?: boolean;\n  children: React.ReactNode;",
+    "DataPanel": "  /** Small-caps panel title. */\n  label: string;\n  rows: { label: string; value: string }[];",
+    "PostCard": "  post: {\n    slug: string;\n    title: string;\n    description: string;\n    /** ISO date, rendered as e.g. \"12 March 2026\". */\n    date: string;\n    tags: string[];\n    /** e.g. \"6 min\". */\n    readingTime?: string;\n  };",
+    "Header": "  /** Takes no props: logo and nav links are fixed site chrome. */",
+    "Footer": "  /** Takes no props: contact form, links and copy are fixed site chrome. */",
+    "EarlyAccessForm": "  /** Ground the form sits on. Default \"light\". */\n  theme?: \"light\" | \"dark\";\n  /** Analytics source tag sent with the submission. */\n  source?: string;\n  /** Default \"Talk to Us\". */\n  buttonLabel?: string;\n  className?: string;\n  /** Overrides the default confirmation line. */\n  successMessage?: string;\n  /** Guide download revealed on success. */\n  download?: { href: string; label: string };\n  /** \"email\" (default): one email field + button. \"full\": name, company, optional role and work email. */\n  fields?: \"email\" | \"full\";"
+  },
+  "overrides": {
+    "Section": {
+      "cardMode": "column"
+    },
+    "EarlyAccessForm": {
+      "cardMode": "column"
+    },
+    "Container": {
+      "cardMode": "column"
+    },
+    "PostCard": {
+      "cardMode": "column"
+    },
+    "Header": {
+      "cardMode": "single",
+      "viewport": "1200x120"
+    },
+    "Footer": {
+      "cardMode": "single",
+      "viewport": "1200x480"
+    }
+  },
+  "readmeHeader": ".design-sync/conventions.md"
+}
