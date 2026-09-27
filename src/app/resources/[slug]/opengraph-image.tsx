@@ -59,13 +59,13 @@ export default function ArticleOgImage({
         </svg>
 
         <div style={{ display: "flex", alignItems: "center", gap: "18px" }}>
-          <svg width="48" height="48" viewBox="0 0 200 200">
-            <rect width="200" height="200" rx="40" fill={colors.accent} />
+          <svg width="48" height="48" viewBox="0 10 120 120">
+            <rect x="0" y="10" width="120" height="120" rx="24" fill={colors.accent} />
             <path
-              d="M40 140 L80 78 L100 118 L120 58 L160 140"
+              d="M28 96 L47 58 L60 81 L73 49 L92 96"
               fill="none"
               stroke={colors.graphite}
-              strokeWidth="14"
+              strokeWidth="8"
               strokeLinecap="round"
               strokeLinejoin="round"
             />

@@ -20,7 +20,7 @@ const PATHS: Record<string, string> = {
   // A single considered stroke bending toward resolution.
   advisory: "M6 86 C 52 86 52 30 100 30 S 150 84 194 44",
   // The mark itself, for large decorative use.
-  mark: "M40 140 L80 78 L100 118 L120 58 L160 140",
+  mark: "M46.67 143.33 L78.33 80 L100 118.33 L121.67 65 L153.33 143.33",
 };
 
 export function LineGraphMotif({

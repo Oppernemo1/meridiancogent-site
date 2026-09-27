@@ -92,8 +92,8 @@ node --env-file=.env.local scripts/setup-resend-properties.mjs
 
 ## Brand assets
 
-`public/logo-full.svg` (header lockup), `public/logo-full-ice.svg` (for dark
-backgrounds), `public/logo-mark.svg` (icon mark). The favicon is generated from
+`public/logo-full.svg` (header lockup, dark-ground treatment),
+`public/logo-mark.svg` / `.png` (icon mark). See `BRAND-NOTES.md` for the full set. The favicon is generated from
 `src/app/icon.png` (the primary mark, 512×512).
 
 ## Deploy

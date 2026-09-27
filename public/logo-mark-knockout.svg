@@ -1,9 +1,9 @@
-<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MeridianCogent mark">
+<svg width="200" height="200" viewBox="0 10 120 120" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="MeridianCogent mark">
   <!-- MeridianCogent — "Line Graph M" mark, knockout treatment (orange
        ground, graphite stroke) for use on graphite/dark grounds, e.g. the
-       email header. -->
-  <rect width="200" height="200" rx="40" fill="#E8743B"/>
-  <path d="M 40 140 L 80 78 L 100 118 L 120 58 L 160 140"
-        fill="none" stroke="#2B2F3A" stroke-width="13"
+       email header. Coordinates are the mark's own from logo-full.svg. -->
+  <rect x="0" y="10" width="120" height="120" rx="24" fill="#E8743B"/>
+  <path d="M 28 96 L 47 58 L 60 81 L 73 49 L 92 96"
+        fill="none" stroke="#2B2F3A" stroke-width="8"
         stroke-linecap="round" stroke-linejoin="round"/>
 </svg>
