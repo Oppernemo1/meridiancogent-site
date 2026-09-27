@@ -9,6 +9,10 @@ import {
   CountryLaneTimeline,
   type TimelineLane,
 } from "@/components/CountryLaneTimeline";
+import {
+  CoverageAccordion,
+  type CoverageGroup,
+} from "@/components/CoverageAccordion";
 import { TrajectorySchematic } from "@/components/TrajectorySchematic";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { shareMetadata } from "@/lib/metadata";
@@ -63,15 +67,6 @@ const CHAIN_NODES: ChainNode[] = [
   },
 ];
 
-/**
- * Separator between an item's term and its gloss in the lists below. Each
- * item is authored as "Term — gloss": the term renders as the row heading
- * and the gloss as the muted line beneath it, so the dash is a field
- * separator rather than punctuation and is dropped on render. An item with
- * no dash renders as a term on its own.
- */
-const ITEM_SEP = " — ";
-
 const TIMELINE_MILESTONES = [
   "Signing",
   "Day 1",
@@ -100,7 +95,7 @@ const TIMELINE_LANES: TimelineLane[] = [
 ];
 
 
-const WHAT_IT_COVERS_GROUPS = [
+const WHAT_IT_COVERS_GROUPS: CoverageGroup[] = [
   {
     heading: "Scope and obligations",
     items: [
@@ -260,47 +255,11 @@ export default function PlatformPage() {
             one place.
           </p>
 
-          {/* Balanced columns rather than a grid: the groups are different
-              lengths, and a grid stretches every cell in a row to the tallest
-              one — which left a near-empty cell beside the longest group and
-              an empty third cell, adding ~1200px of whitespace. Multi-column
-              flows the groups and balances the column heights instead.
-              `break-inside-avoid` keeps each group whole. */}
-          <div className="columns-1 gap-x-10 sm:columns-2 lg:columns-3">
-            {WHAT_IT_COVERS_GROUPS.map((group) => (
-              <div key={group.heading} className="mb-12 break-inside-avoid">
-                <div aria-hidden="true" className="h-px w-10 bg-accent" />
-                <h3 className="mt-3 text-h3 text-graphite">
-                  {group.heading}
-                </h3>
-                <ul className="mt-4 divide-y divide-hairline border-t border-hairline">
-                  {group.items.map((item) => {
-                    const sepIndex = item.indexOf(ITEM_SEP);
-                    const term =
-                      sepIndex === -1 ? item : item.slice(0, sepIndex);
-                    const gloss =
-                      sepIndex === -1
-                        ? null
-                        : item.slice(sepIndex + ITEM_SEP.length);
-                    return (
-                      <li key={item} className="py-2.5">
-                        <p className="text-body-sm font-semibold leading-snug text-graphite">
-                          {term}
-                        </p>
-                        {gloss && (
-                          <p className="mt-1 text-small leading-snug text-muted">
-                            {gloss}
-                          </p>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              </div>
-            ))}
-          </div>
+          <CoverageAccordion groups={WHAT_IT_COVERS_GROUPS} />
 
-          <p className="max-w-measure">
+          {/* A footnote to the list rather than a standalone statement:
+              small and muted, pulled up close under the last group. */}
+          <p className="!mt-6 max-w-measure text-small text-muted">
             Some of this is live today and some is in build. A demo shows
             you which is which.
           </p>
