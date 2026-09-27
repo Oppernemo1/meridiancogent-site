@@ -12,6 +12,7 @@ import remarkGfm from "remark-gfm";
 import { ChainDiagram } from "@/components/ChainDiagram";
 import { Container } from "@/components/Container";
 import { LineGraphMotif } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import {
   formatDate,
   getPostBySlug,
@@ -76,18 +77,14 @@ export function generateMetadata({
     title,
     description,
     alternates: { canonical: url },
-    openGraph: {
+    ...shareMetadata({
       type: "article",
       url,
       title: `${title} — ${SITE_NAME}`,
       description,
       publishedTime: date,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${title} — ${SITE_NAME}`,
-      description,
-    },
+      ownImage: true,
+    }),
   };
 }
 

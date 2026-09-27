@@ -7,6 +7,7 @@ import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import { getAllPosts } from "@/lib/posts";
 import { CONTACT_EMAIL, SITE_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -18,15 +19,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/" },
-  openGraph: {
+  ...shareMetadata({
     url: SITE_URL,
     title: TITLE,
     description: DESCRIPTION,
-  },
-  twitter: {
-    title: TITLE,
-    description: DESCRIPTION,
-  },
+  }),
 };
 
 const AT_A_GLANCE = [
