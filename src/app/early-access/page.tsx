@@ -5,6 +5,7 @@ import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Talk to Us";
@@ -15,15 +16,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/early-access" },
-  openGraph: {
+  ...shareMetadata({
     url: "/early-access",
     title: `${TITLE} — ${SITE_NAME}`,
     description: DESCRIPTION,
-  },
-  twitter: {
-    title: `${TITLE} — ${SITE_NAME}`,
-    description: DESCRIPTION,
-  },
+  }),
 };
 
 const EXPECTATIONS = [

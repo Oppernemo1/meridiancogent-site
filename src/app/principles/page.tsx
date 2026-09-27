@@ -4,6 +4,7 @@ import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import {
   CONTACT_EMAIL,
   SITE_DESCRIPTION,
@@ -19,15 +20,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/principles" },
-  openGraph: {
+  ...shareMetadata({
     url: "/principles",
     title: `${TITLE} — ${SITE_NAME}`,
     description: DESCRIPTION,
-  },
-  twitter: {
-    title: `${TITLE} — ${SITE_NAME}`,
-    description: DESCRIPTION,
-  },
+  }),
 };
 
 const SECTIONS = [

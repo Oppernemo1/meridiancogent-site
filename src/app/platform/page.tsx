@@ -11,6 +11,7 @@ import {
 } from "@/components/CountryLaneTimeline";
 import { TrajectorySchematic } from "@/components/TrajectorySchematic";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const TITLE = "Platform";
@@ -21,15 +22,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/platform" },
-  openGraph: {
+  ...shareMetadata({
     url: "/platform",
     title: `${TITLE} — ${SITE_NAME}`,
     description: DESCRIPTION,
-  },
-  twitter: {
-    title: `${TITLE} — ${SITE_NAME}`,
-    description: DESCRIPTION,
-  },
+  }),
 };
 
 const CHAIN_NODES: ChainNode[] = [

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/Container";
 import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
+import { shareMetadata } from "@/lib/metadata";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Terms of Use";
@@ -13,11 +14,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/terms" },
-  openGraph: {
+  ...shareMetadata({
     url: "/terms",
     title: `${TITLE} — ${SITE_NAME}`,
     description: DESCRIPTION,
-  },
+  }),
   robots: { index: true, follow: true },
 };
 

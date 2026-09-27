@@ -5,6 +5,8 @@ import { ResourceIndex } from "@/components/ResourceIndex";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { GUIDES, guideHref } from "@/lib/guides";
 import { getAllPosts } from "@/lib/posts";
+import { shareMetadata } from "@/lib/metadata";
+import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Resources";
 const DESCRIPTION =
@@ -14,15 +16,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/resources" },
-  openGraph: {
+  ...shareMetadata({
     url: "/resources",
-    title: `${TITLE} — MeridianCogent`,
+    title: `${TITLE} — ${SITE_NAME}`,
     description: DESCRIPTION,
-  },
-  twitter: {
-    title: `${TITLE} — MeridianCogent`,
-    description: DESCRIPTION,
-  },
+  }),
 };
 
 export default function ResourcesPage() {

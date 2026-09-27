@@ -6,6 +6,7 @@ import { SidebarLayout } from "@/components/SidebarLayout";
 import { DataPanel } from "@/components/DataPanel";
 import { AggregateSafetyDiagram } from "@/components/AggregateSafetyDiagram";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import {
   CONTACT_EMAIL,
   SITE_DESCRIPTION,
@@ -21,15 +22,11 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/security" },
-  openGraph: {
+  ...shareMetadata({
     url: "/security",
     title: `${TITLE} — ${SITE_NAME}`,
     description: DESCRIPTION,
-  },
-  twitter: {
-    title: `${TITLE} — ${SITE_NAME}`,
-    description: DESCRIPTION,
-  },
+  }),
 };
 
 const NOT_IN_PLACE = [

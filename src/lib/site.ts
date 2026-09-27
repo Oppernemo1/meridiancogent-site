@@ -7,6 +7,10 @@ export const SITE_NAME = "MeridianCogent";
 export const SITE_DESCRIPTION =
   "MeridianCogent is a control environment for separation offices and integration teams — track obligations, manage TSAs, measure Day 1 readiness, and hold the plan to the commitments made.";
 
+/** Alt text for the site-wide share image (src/app/opengraph-image.tsx). */
+export const SITE_SHARE_IMAGE_ALT =
+  "MeridianCogent — M&A execution, without the spreadsheet chaos";
+
 export const CONTACT_EMAIL = "hello@meridiancogent.com";
 
 /** The four topic tags used to filter /resources. */

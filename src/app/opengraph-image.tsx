@@ -1,9 +1,8 @@
 import { ImageResponse } from "next/og";
-import { SITE_NAME } from "@/lib/site";
+import { SITE_NAME, SITE_SHARE_IMAGE_ALT } from "@/lib/site";
 import { colors } from "@/lib/tokens";
 
-export const alt =
-  "MeridianCogent — M&A execution, without the spreadsheet chaos";
+export const alt = SITE_SHARE_IMAGE_ALT;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

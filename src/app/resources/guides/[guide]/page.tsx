@@ -6,6 +6,7 @@ import { CostMechanismBlocks } from "@/components/CostMechanismBlocks";
 import { EarlyAccessForm } from "@/components/EarlyAccessForm";
 import { LineGraphMotif } from "@/components/LineGraphMotif";
 import { GUIDES, getGuide } from "@/lib/guides";
+import { shareMetadata } from "@/lib/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const dynamicParams = false;
@@ -27,17 +28,12 @@ export function generateMetadata({
     title: guide.metaTitle,
     description: guide.metaDescription,
     alternates: { canonical: url },
-    openGraph: {
+    ...shareMetadata({
       type: "article",
       url,
       title: `${guide.metaTitle} — ${SITE_NAME}`,
       description: guide.metaDescription,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${guide.metaTitle} — ${SITE_NAME}`,
-      description: guide.metaDescription,
-    },
+    }),
   };
 }
 
