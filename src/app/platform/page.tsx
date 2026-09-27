@@ -268,26 +268,23 @@ export default function PlatformPage() {
         {/* The chain */}
         <Section id="chain" label="The chain" heading="Most tools track tasks. This one tracks consequence." wide>
           <p className="max-w-measure">
-            A separation is not a list of work. It is a chain of
-            dependencies where each link determines the next, and where
-            the cost of a missed link compounds rather than accumulates.
-          </p>
-          <p className="max-w-measure">
-            A shared system has to be untangled before a transitional
-            service can end. That service has to end before the business
-            is genuinely standalone. Whether it will end on time is
-            knowable months ahead of the date — but only if the dependency
-            between the two is modelled rather than assumed.
-          </p>
-          <p className="max-w-measure">
-            MeridianCogent models that chain explicitly:
+            A separation is a chain, not a list: a shared system has to be
+            untangled before a transitional service can end. MeridianCogent
+            models that chain, and nothing in it is a status someone updates
+            by hand.
           </p>
 
           <ChainDiagram nodes={CHAIN_NODES} />
 
           <p className="max-w-measure">
-            Every stage reads from the one before it. Nothing in this chain
-            is a status someone updates by hand.
+            The full case for this is in{" "}
+            <Link
+              href="/resources/dependency-problem"
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
+            >
+              The Dependency Problem
+            </Link>
+            .
           </p>
         </Section>
 
@@ -426,27 +423,26 @@ export default function PlatformPage() {
             >
               TSA
             </Link>{" "}
-            is not a document to be stored. It is a live cost with an end
-            date that may or may not hold.
+            is a live cost with an end date that may not hold. The platform
+            ties each service to the work blocking its exit, so you know in
+            March that the September exit will not happen.
           </p>
           <p>
-            The platform holds the service catalogue across multiple
-            currencies, models exposure and overrun including step-up
-            pricing, and — critically — connects each service to the
-            separation work that has to finish before it can end. Where
-            the modelled completion of that work falls after the
-            contractual exit date, that is surfaced as exit risk, months
-            before it becomes an invoice.
-          </p>
-          <p>
-            The point is not to record what the TSA costs.{" "}
+            The cost mechanics are in{" "}
             <Link
               href="/resources/the-real-cost-of-a-late-tsa-exit"
               className="text-accent-dark underline underline-offset-4 hover:text-muted"
             >
-              It is to know, in March, that the September exit will not
-              happen.
+              The Real Cost of a Late TSA Exit
             </Link>
+            , and the published figures in the{" "}
+            <Link
+              href="/resources/tsa-benchmarks-reference"
+              className="text-accent-dark underline underline-offset-4 hover:text-muted"
+            >
+              TSA Benchmarks Reference
+            </Link>
+            .
           </p>
         </Section>
 
