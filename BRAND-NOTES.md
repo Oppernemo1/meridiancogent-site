@@ -7,7 +7,7 @@
 | `public/logo-mark.svg` / `.png` | Icon alone, primary treatment (graphite background, orange stroke). Favicon, app icon, social avatar, JSON-LD `logo`. |
 | `public/logo-full.svg` | Mark + wordmark, no tagline. Dark-ground (knockout) treatment — used in the graphite header/footer, the only place the full lockup appears. |
 | `public/email/logo-mark.png` | Icon alone, knockout treatment (orange background, graphite stroke) — used in the email header, which is also graphite. |
-| `src/app/icon.svg` | Favicon — same as the primary mark. |
+| `src/app/icon.png` | Favicon — the primary mark as a 512×512 PNG. |
 
 ## Colors
 
