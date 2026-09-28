@@ -22,7 +22,7 @@ const config: Config = {
         // typical two-column switch (768px) before it stops competing with
         // the 720px content measure.
         sidebar: "900px",
-        // Header nav's own breakpoint — the five nav items plus the larger
+        // Header nav's own breakpoint — the six nav items plus the larger
         // logo need more room than 768px before they crowd the header, so
         // the horizontal nav (vs. hamburger) switches at 900px. Same value
         // as `sidebar` by coincidence, not coupling — kept as its own key so

@@ -87,6 +87,11 @@ export default function PrivacyPage() {
             example, which pages are visited). It is privacy-friendly and does
             not use cookies or collect personally identifiable information.
           </p>
+          <p>
+            Your country, read from the request and not stored, sets the
+            default currency for prices; if you choose a currency, that
+            choice is kept in local storage on your device.
+          </p>
         </Section>
 
         {/* How we use it */}

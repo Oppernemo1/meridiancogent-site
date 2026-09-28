@@ -33,9 +33,6 @@ const NOT_IN_PLACE = [
   "No SOC 2 report. A Type II requires an observation window and an audit; neither has begun.",
   "No ISO 27001 certification.",
   "No third-party penetration test has been commissioned.",
-  "No SSO or SCIM integration. Both require an enterprise identity provider to configure and test against, which requires a customer.",
-  "No data processing agreement executed with any customer, because there is no customer yet.",
-  "Organisation-enforced multi-factor authentication — in progress.",
 ];
 
 const CONTINUITY = [
@@ -45,7 +42,11 @@ const CONTINUITY = [
   },
   {
     term: "Backup",
-    body: "Standard managed database backups are in place. Point-in-time recovery and a tested restore procedure will be enabled ahead of the first customer engagement — this is a planned, not yet completed, control.",
+    body: "Point-in-time recovery is enabled for the production database, and the restore procedure is tested. Recovery objectives are available on request.",
+  },
+  {
+    term: "Subprocessors",
+    body: "Supabase — database and authentication, hosted in Frankfurt. Vercel — application hosting. Resend — email delivery. A data processing agreement is part of every plan; a copy is available on request from hello@meridiancogent.com.",
   },
   {
     term: "Export and exit",
@@ -176,6 +177,11 @@ export default function SecurityPage() {
             at the same layer as row-level access, not left to the
             interface to hide.
           </p>
+          <p>
+            Multi-factor authentication can be enforced by an organisation
+            for all of its members. Single sign-on (SAML) and SCIM
+            provisioning are available.
+          </p>
 
           <AggregateSafetyDiagram />
         </Section>
@@ -188,7 +194,10 @@ export default function SecurityPage() {
           </p>
           <p>
             External participants are granted access to specific
-            programs with a defined scope, and that access is logged.
+            records, not to a program&apos;s contents. Access is explicit,
+            time-bounded and revocable; removing a share or ending the
+            engagement removes access at the authorization layer, not
+            merely from the interface.
             Privileged vendor access is brokered and recorded rather than
             handed over as a standing credential. When an engagement ends,
             access ends with it — not as a policy someone is expected to
@@ -232,6 +241,11 @@ export default function SecurityPage() {
             underlying record. A change log does not reveal a value the
             viewer could not read directly.
           </p>
+          <p>
+            Customers can export their organisation&apos;s authentication,
+            administrative and program audit records for their own
+            assurance and investigation.
+          </p>
         </Section>
 
         {/* Continuity and data */}
@@ -262,7 +276,7 @@ export default function SecurityPage() {
         {/* What is not in place yet */}
         <Section id="not-in-place" label="Not in place yet" heading="What is not in place yet">
           <p>
-            MeridianCogent is in testing and pre-revenue. The following
+            The following
             do not exist or are not yet complete, and it would be
             misleading to imply otherwise:
           </p>

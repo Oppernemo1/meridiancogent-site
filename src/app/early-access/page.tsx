@@ -6,6 +6,7 @@ import { Section } from "@/components/Section";
 import { SidebarLayout } from "@/components/SidebarLayout";
 import { BackgroundLines } from "@/components/LineGraphMotif";
 import { shareMetadata } from "@/lib/metadata";
+import { PRICING_FORM_SOURCES } from "@/lib/pricing";
 import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Talk to Us";
@@ -67,14 +68,14 @@ export default function EarlyAccessPage() {
                 Request a demo
               </p>
               <p className="mt-2 text-small leading-relaxed text-on-dark-secondary">
-                Some of the platform is live today and some is in build.
-                We&apos;ll show you which is which.
+                Tell us where your program is hard. The demo starts there.
               </p>
               <div className="mt-5">
                 <EarlyAccessForm
                   theme="dark"
                   fields="full"
                   source="early-access-page"
+                  urlSources={PRICING_FORM_SOURCES}
                 />
               </div>
             </div>

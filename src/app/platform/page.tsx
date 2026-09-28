@@ -256,13 +256,6 @@ export default function PlatformPage() {
           </p>
 
           <CoverageAccordion groups={WHAT_IT_COVERS_GROUPS} />
-
-          {/* A footnote to the list rather than a standalone statement:
-              small and muted, pulled up close under the last group. */}
-          <p className="!mt-6 max-w-measure text-small text-muted">
-            Some of this is live today and some is in build. A demo shows
-            you which is which.
-          </p>
         </Section>
 
         {/* The chain */}

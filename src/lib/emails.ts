@@ -54,7 +54,7 @@ function confirmationCopy(kind: "contact" | "list", name?: string): Confirmation
         },
         {
           lead: "The call starts with your program.",
-          body: "Tell us about the deal and where it’s hard, and we’ll show you how the platform handles it — including which parts are live today and which are still in build.",
+          body: "Tell us about the deal and where it’s hard, and we’ll show you how the platform handles it.",
         },
         {
           lead: "Occasional updates by email.",

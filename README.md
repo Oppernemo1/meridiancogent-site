@@ -90,6 +90,25 @@ node --env-file=.env.local scripts/setup-resend-properties.mjs
 - Fonts are system fonts only (Georgia serif headings, Helvetica/Arial UI) —
   zero web-font requests, nothing render-blocking.
 
+## Pricing
+
+Every price on the site lives in `src/lib/pricing.ts`: the `/pricing` page,
+the homepage strip, the EUR/USD switch and the schema.org Offers on
+`/pricing` all read from it, so a price is changed in one place.
+
+**The price sheet PDFs are not generated from that file.**
+`public/pricing/meridiancogent-price-sheet-eur.pdf` and `-usd.pdf` must be
+regenerated and replaced whenever `src/lib/pricing.ts` changes (figures, tax
+wording, and "program", never "programme").
+
+Default currency: `src/middleware.ts` rewrites `/` and `/pricing` to the
+statically built USD variants (`/usd`, `/usd/pricing`) when
+`x-vercel-ip-country` is `US`; everyone else, and any request without the
+header, gets EUR. Direct requests to `/usd…` redirect to the public URL. A
+visitor's own choice is kept in `localStorage` (`mc-currency`), never a
+cookie. To test locally: `npm run build && npm start`, then
+`curl -H "x-vercel-ip-country: US" localhost:3000/pricing`.
+
 ## Brand assets
 
 `public/logo-full.svg` (header lockup, dark-ground treatment),

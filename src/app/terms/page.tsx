@@ -75,6 +75,12 @@ export default function TermsPage() {
             price. Nothing on this site is an offer to
             sell a product or a commitment to deliver one.
           </p>
+          <p>
+            Prices on this website are for information, exclude applicable
+            taxes and may change. They are not an offer capable of
+            acceptance through this website; any subscription is agreed in a
+            signed order form under the customer agreement.
+          </p>
         </Section>
 
         {/* No warranties */}

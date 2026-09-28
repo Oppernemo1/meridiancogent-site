@@ -5,9 +5,20 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Container } from "./Container";
 import { NAV_LINKS } from "@/lib/site";
+import { USD_VARIANT_PREFIX } from "@/lib/pricing";
 
 export function Header() {
-  const pathname = usePathname();
+  // The static USD variants (/usd, /usd/pricing) are served at / and
+  // /pricing via a middleware rewrite. Their HTML is prerendered with the
+  // variant path, while the browser reports the public one — strip the
+  // prefix so the active link matches on both sides of hydration.
+  const rawPathname = usePathname();
+  const pathname =
+    rawPathname === USD_VARIANT_PREFIX
+      ? "/"
+      : rawPathname.startsWith(`${USD_VARIANT_PREFIX}/`)
+        ? rawPathname.slice(USD_VARIANT_PREFIX.length)
+        : rawPathname;
   const [open, setOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
 

@@ -14,6 +14,7 @@ export function EarlyAccessForm({
   successMessage,
   download,
   fields = "email",
+  urlSources = [],
 }: {
   theme?: "light" | "dark";
   source?: string;
@@ -37,6 +38,13 @@ export function EarlyAccessForm({
    * Any form without `download` is a "Talk to Us" request either way.
    */
   fields?: "email" | "full";
+  /**
+   * `source` values this form accepts from the page's ?source= query string,
+   * overriding `source` — e.g. the /pricing "Two ways to start" buttons link
+   * to /early-access?source=pricing-pilot. Read at submit time rather than
+   * rendered, so the page stays static. Anything not listed is ignored.
+   */
+  urlSources?: readonly string[];
 }) {
   const id = useId();
   const isTalk = !download;
@@ -78,6 +86,10 @@ export function EarlyAccessForm({
     setInvalidField(null);
     setMessage("");
 
+    const urlSource = new URLSearchParams(window.location.search).get("source");
+    const submitSource =
+      urlSource && urlSources.includes(urlSource) ? urlSource : source;
+
     try {
       const res = await fetch("/api/early-access", {
         method: "POST",
@@ -91,11 +103,11 @@ export function EarlyAccessForm({
                 name: name.trim(),
                 company: company.trim(),
                 role: role.trim(),
-                source,
+                source: submitSource,
               }
             : isTalk
-              ? { intent: "talk", email: trimmed, source }
-              : { email: trimmed, source },
+              ? { intent: "talk", email: trimmed, source: submitSource }
+              : { email: trimmed, source: submitSource },
         ),
       });
 

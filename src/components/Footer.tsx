@@ -6,6 +6,7 @@ import { CONTACT_EMAIL } from "@/lib/site";
 
 const FOOTER_NAV = [
   { label: "Platform", href: "/platform" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Principles", href: "/principles" },
   { label: "Security", href: "/security" },
   { label: "Resources", href: "/resources" },
