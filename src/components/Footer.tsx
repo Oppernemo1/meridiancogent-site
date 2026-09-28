@@ -36,7 +36,7 @@ export function Footer() {
               Talk to us.
             </h2>
             <p className="mt-heading-gap max-w-md leading-relaxed text-on-dark-secondary">
-              MeridianCogent is ready to demo. Tell us about your program
+              MeridianCogent is available now. Tell us about your program
               and we&apos;ll show you how it works.
             </p>
             <div className="mt-6 max-w-md">

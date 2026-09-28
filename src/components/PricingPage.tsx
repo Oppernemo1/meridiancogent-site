@@ -299,13 +299,16 @@ export function PricingPage({ currency }: { currency: Currency }) {
             <strong className="font-semibold text-graphite">
               <Price amount={ARCHIVE_PLAN.price} />
             </strong>{" "}
-            per year
+            per year · Standard support
           </p>
 
           <p className="mt-6 max-w-measure text-small leading-relaxed text-muted">
             Every plan includes the complete platform, unlimited users and
             unlimited outside guests. Prices exclude VAT and other applicable
             taxes (such as US sales tax).
+          </p>
+          <p className="mt-2 max-w-measure text-small leading-relaxed text-muted">
+            List prices are held for 24 months for first-year customers.
           </p>
         </section>
 

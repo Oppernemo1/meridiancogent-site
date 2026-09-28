@@ -11,7 +11,7 @@ import { SITE_NAME } from "@/lib/site";
 
 const TITLE = "Talk to Us";
 const DESCRIPTION =
-  "MeridianCogent is ready to demo. Tell us about your program and we'll show you how it works.";
+  "MeridianCogent is available now. Tell us about your program and we'll show you how it works.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -58,7 +58,7 @@ export default function EarlyAccessPage() {
             </h1>
             <p className="mt-heading-gap text-body-sm leading-relaxed text-ink md:text-body">
               MeridianCogent is a control environment for separation offices and
-              integration teams. It&apos;s ready to demo. Tell us about your
+              integration teams. It&apos;s available now. Tell us about your
               program and we&apos;ll show you how it works.
             </p>
             {/* Same graphite panel treatment as DataPanel, so the four

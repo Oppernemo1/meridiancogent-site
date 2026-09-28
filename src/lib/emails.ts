@@ -77,7 +77,7 @@ function confirmationCopy(kind: "contact" | "list", name?: string): Confirmation
       },
       {
         lead: "Want to see it?",
-        body: `MeridianCogent is ready to demo. Reply to this email or talk to us at ${SITE_URL}/early-access and we’ll show you how it works.`,
+        body: `MeridianCogent is available now. Reply to this email or talk to us at ${SITE_URL}/early-access and we’ll show you how it works.`,
       },
     ],
     notYou:

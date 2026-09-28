@@ -286,11 +286,8 @@ export default function SecurityPage() {
             ))}
           </ul>
           <p>
-            These are sequencing, not position. They are on the path to a
-            first customer, and a prospective customer&apos;s requirements
-            should shape which come first. If your review requires any of
-            them before a pilot, that is a reasonable position and worth
-            telling us early.
+            These are sequencing, not position. If your review requires any
+            of them, tell us and we will set out how and when we meet it.
           </p>
         </Section>
 

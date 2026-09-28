@@ -107,7 +107,7 @@ export function HomePage({ currency }: { currency: Currency }) {
 
             <div className="mt-10 max-w-xl">
               <p className="text-small font-medium text-graphite">
-                MeridianCogent is ready to demo. Tell us about your program
+                MeridianCogent is available now. Tell us about your program
                 and we&apos;ll show you how it works.
               </p>
               <div className="mt-3">
