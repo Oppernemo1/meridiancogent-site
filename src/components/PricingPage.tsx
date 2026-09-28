@@ -102,7 +102,7 @@ const HOW_PLANS_WORK: { heading: string; body: React.ReactNode }[] = [
   },
 ];
 
-const FAQ: FaqItem[] = [
+export const FAQ: FaqItem[] = [
   {
     question: "What counts as an active program?",
     answer:
@@ -154,11 +154,11 @@ const FAQ: FaqItem[] = [
   },
 ];
 
-const linkClass =
+export const linkClass =
   "font-medium text-accent-dark underline underline-offset-4 hover:text-muted";
-const buttonDark =
+export const buttonDark =
   "inline-block bg-graphite px-5 py-3 text-body font-semibold text-on-dark-primary transition-colors hover:bg-graphite/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-const buttonLight =
+export const buttonLight =
   "inline-block bg-white px-5 py-3 text-body font-semibold text-graphite transition-colors hover:bg-on-dark-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light";
 
 function SectionHeading({
@@ -182,14 +182,9 @@ function SectionHeading({
   );
 }
 
-/**
- * The /pricing page body. Rendered by two static routes — /pricing (EUR) and
- * /usd/pricing (USD, reached only through the middleware rewrite) — so each
- * variant's HTML is complete and cacheable, with the switch taking over on
- * the client.
- */
-export function PricingPage({ currency }: { currency: Currency }) {
-  const productJsonLd = {
+/** schema.org Product with an Offer per visible price, in `currency`. */
+export function pricingJsonLd(currency: Currency) {
+  return {
     "@context": "https://schema.org",
     "@type": "Product",
     name: SITE_NAME,
@@ -198,6 +193,16 @@ export function PricingPage({ currency }: { currency: Currency }) {
     brand: { "@type": "Brand", name: SITE_NAME },
     offers: pricingOffers(currency),
   };
+}
+
+/**
+ * The /pricing page body. Rendered by two static routes — /pricing (EUR) and
+ * /usd/pricing (USD, reached only through the middleware rewrite) — so each
+ * variant's HTML is complete and cacheable, with the switch taking over on
+ * the client.
+ */
+export function PricingPage({ currency }: { currency: Currency }) {
+  const productJsonLd = pricingJsonLd(currency);
 
   return (
     <CurrencyProvider initial={currency}>
