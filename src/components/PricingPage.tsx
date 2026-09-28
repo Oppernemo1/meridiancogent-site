@@ -9,6 +9,7 @@ import {
 } from "@/components/Currency";
 import { FaqAccordion, type FaqItem } from "@/components/FaqAccordion";
 import { BackgroundLines } from "@/components/LineGraphMotif";
+import { shareMetadata } from "@/lib/metadata";
 import {
   ARCHIVE_PLAN,
   DIAGNOSTIC,
@@ -19,8 +20,8 @@ import {
   SERVICES,
   pricingOffers,
   type Currency,
+  type Money,
 } from "@/lib/pricing";
-import { shareMetadata } from "@/lib/metadata";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const PRICING_TITLE = "Pricing";
@@ -42,67 +43,7 @@ export const pricingMetadata: Metadata = {
   }),
 };
 
-const INCLUDED = [
-  {
-    heading: "See the deal",
-    body: "Control tower, executive view with Present mode, timeline, portfolio",
-  },
-  {
-    heading: "Plan and execute",
-    body: "Tasks and critical path, workstreams, playbooks, Day 1 readiness board, cutover, hypercare, diligence findings, Excel import",
-  },
-  {
-    heading: "Scope and obligations",
-    body: "Perimeter, systems and decommissioning, contract novation, obligations, conditions precedent, consents, escalations",
-  },
-  {
-    heading: "Money",
-    body: "TSA register and exit costs, delay scenarios, synergies, integration, stranded and transaction costs",
-  },
-  {
-    heading: "Evidence",
-    body: "Decision record, watermarked PDF exports with export ID and digest, archive-grade PDF/A",
-  },
-  {
-    heading: "People",
-    body: "Unlimited users, unlimited outside guests limited to their program",
-  },
-];
-
-const SECURITY_POINTS = [
-  "Need-to-know access for every program",
-  "Code names for undisclosed deals",
-  "Append-only audit trail and security alerts",
-  "Watermarked, traceable exports",
-  "Data hosted in the EU (Frankfurt)",
-];
-
-const HOW_PLANS_WORK: { heading: string; body: React.ReactNode }[] = [
-  {
-    heading: "Priced by live deals, not people.",
-    body: "Invite the whole deal team and every adviser.",
-  },
-  {
-    heading: "Completed deals don’t count towards your plan.",
-    body: "A completed program becomes a read-only archive; with no live deal, the Archive plan keeps every record readable and exportable.",
-  },
-  {
-    heading: "Growing mid-year.",
-    body: (
-      <>
-        A new program can always be started; each extra costs{" "}
-        <Price amount={EXTRA_PROGRAM} /> a year, pro-rated, until the next
-        plan is the better buy.
-      </>
-    ),
-  },
-  {
-    heading: "No lock, no delay.",
-    body: "A deal that signs tomorrow starts tomorrow.",
-  },
-];
-
-export const FAQ: FaqItem[] = [
+const FAQ: FaqItem[] = [
   {
     question: "What counts as an active program?",
     answer:
@@ -134,6 +75,11 @@ export const FAQ: FaqItem[] = [
     ),
   },
   {
+    question: "How quickly can we start?",
+    answer:
+      "A deal that signs tomorrow starts tomorrow. There is no lock-in period and no waiting list.",
+  },
+  {
     question: "What is the Deal Diagnostic?",
     answer:
       "A fixed-scope first step for teams not ready to run a live deal on the platform: one deal, loaded by your team inside your own account, reviewed with you in a 90-minute session. Your data stays in the platform, and we see it only when you grant access. The fee is credited against a pilot or plan signed within 60 days.",
@@ -154,36 +100,15 @@ export const FAQ: FaqItem[] = [
   },
 ];
 
-export const linkClass =
+const linkClass =
   "font-medium text-accent-dark underline underline-offset-4 hover:text-muted";
-export const buttonDark =
+const buttonDark =
   "inline-block bg-graphite px-5 py-3 text-body font-semibold text-on-dark-primary transition-colors hover:bg-graphite/90 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent";
-export const buttonLight =
+const buttonLight =
   "inline-block bg-white px-5 py-3 text-body font-semibold text-graphite transition-colors hover:bg-on-dark-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-light";
 
-function SectionHeading({
-  id,
-  label,
-  children,
-}: {
-  id: string;
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <>
-      <p className="text-label font-semibold uppercase text-accent-dark">
-        {label}
-      </p>
-      <h2 id={id} className="mt-2 text-h2-sm md:text-h2">
-        {children}
-      </h2>
-    </>
-  );
-}
-
 /** schema.org Product with an Offer per visible price, in `currency`. */
-export function pricingJsonLd(currency: Currency) {
+function pricingJsonLd(currency: Currency) {
   return {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -195,23 +120,67 @@ export function pricingJsonLd(currency: Currency) {
   };
 }
 
+/** Lining, tabular figures for every price, so digits sit level. */
+const NUMS = "lining-nums tabular-nums";
+
+/** Section rhythm shared with /platform and /security (see Section.tsx). */
+const SECTION = "border-t border-hairline py-section md:py-section-lg";
+
+/** Enterprise, PE portfolio licence and Archive, as rows under the cards. */
+const PLAN_ROWS: {
+  id: string;
+  name: string;
+  description: string;
+  price: Money;
+  from?: boolean;
+  support: string;
+}[] = [
+  ...LARGER_PLANS.map((plan) => ({
+    id: plan.id,
+    name: plan.name,
+    description: plan.programs,
+    price: plan.price,
+    from: plan.from,
+    support: plan.support,
+  })),
+  {
+    id: ARCHIVE_PLAN.id,
+    name: ARCHIVE_PLAN.name,
+    description:
+      "No live deal? Keep every completed program and its decision record readable and exportable",
+    price: ARCHIVE_PLAN.price,
+    support: "Standard support",
+  },
+];
+
+const ADD_ONS: { id: string; name: string; price: Money; from?: boolean; unit: string }[] = [
+  {
+    id: "extra-program",
+    name: "Additional active program",
+    price: EXTRA_PROGRAM,
+    unit: "per year, pro-rated",
+  },
+  ...SERVICES,
+];
+
 /**
- * The /pricing page body. Rendered by two static routes — /pricing (EUR) and
- * /usd/pricing (USD, reached only through the middleware rewrite) — so each
- * variant's HTML is complete and cacheable, with the switch taking over on
- * the client.
+ * The /pricing page body: prices first (plans, then add-ons and services,
+ * then the two ways to start), product content in two lines, then the FAQ.
+ * Rendered by two static routes — /pricing (EUR) and /usd/pricing (USD,
+ * reached only through the middleware rewrite) — so each variant's HTML is
+ * complete and cacheable, with the switch taking over on the client.
  */
 export function PricingPage({ currency }: { currency: Currency }) {
-  const productJsonLd = pricingJsonLd(currency);
-
   return (
     <CurrencyProvider initial={currency}>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(pricingJsonLd(currency)),
+        }}
       />
 
-      {/* Hero */}
+      {/* 1. Hero */}
       <section className="relative overflow-hidden">
         <BackgroundLines className="pointer-events-none absolute inset-0 h-full w-full" />
         <Container className="relative pt-section pb-10 md:pt-section-lg md:pb-12">
@@ -228,7 +197,7 @@ export function PricingPage({ currency }: { currency: Currency }) {
       </section>
 
       <Container>
-        {/* Plans */}
+        {/* 2. Plans */}
         <section aria-labelledby="plans-heading" className="pb-section md:pb-section-lg">
           <h2 id="plans-heading" className="sr-only">
             Plans
@@ -245,7 +214,7 @@ export function PricingPage({ currency }: { currency: Currency }) {
                   {plan.name}
                 </h3>
                 <p className="mt-1 text-small text-muted">{plan.programs}</p>
-                <p className="mt-6 font-serif text-h1-sm text-graphite">
+                <p className={`mt-6 font-serif text-h1-sm text-graphite ${NUMS}`}>
                   <Price amount={plan.price} />
                   <span className="ml-1 font-sans text-small text-muted">
                     per year
@@ -253,7 +222,11 @@ export function PricingPage({ currency }: { currency: Currency }) {
                 </p>
                 {plan.twoYear && (
                   <p className="mt-1 text-small text-muted">
-                    or <Price amount={plan.twoYear} /> for 24 months
+                    or{" "}
+                    <span className={NUMS}>
+                      <Price amount={plan.twoYear} />
+                    </span>{" "}
+                    for 24 months
                   </p>
                 )}
                 <div className="mt-auto pt-6">
@@ -265,152 +238,51 @@ export function PricingPage({ currency }: { currency: Currency }) {
             ))}
           </div>
 
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
-            {LARGER_PLANS.map((plan) => (
-              <div
-                key={plan.id}
-                className="flex flex-col gap-4 rounded-lg bg-graphite p-6 text-on-dark-primary sm:flex-row sm:items-start sm:justify-between"
+          <ul className="mt-6 border border-hairline bg-white">
+            {PLAN_ROWS.map((row) => (
+              <li
+                key={row.id}
+                className="grid gap-x-8 gap-y-1 border-t border-hairline px-6 py-5 first:border-t-0 md:grid-cols-[minmax(0,1fr)_auto_10rem] md:items-baseline"
               >
                 <div>
-                  <h3 className="font-serif text-h2-sm font-semibold text-on-dark-primary">
-                    {plan.name}
+                  <h3 className="font-serif text-h3 font-semibold text-graphite">
+                    {row.name}
                   </h3>
-                  <p className="mt-1 text-small text-on-dark-secondary">
-                    {plan.programs}
-                  </p>
-                  <p className="mt-3 text-small text-on-dark-secondary">
-                    {plan.support}
-                  </p>
+                  <p className="mt-1 text-small text-muted">{row.description}</p>
                 </div>
-                <p className="shrink-0 text-on-dark-primary sm:text-right">
-                  <span className="text-small text-on-dark-secondary">from </span>
-                  <span className="font-serif text-h2-sm">
-                    <Price amount={plan.price} />
+                <p className="mt-2 text-body-sm text-graphite md:mt-0 md:text-right md:text-body">
+                  {row.from && <span className="text-small text-muted">from </span>}
+                  <span className={`font-serif text-h3 font-semibold ${NUMS}`}>
+                    <Price amount={row.price} />
                   </span>
-                  <span className="block text-small text-on-dark-secondary">
-                    per year
-                  </span>
+                  <span className="ml-1 text-small text-muted">per year</span>
                 </p>
-              </div>
+                <p className="text-small text-ink md:text-right">{row.support}</p>
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <p className="mt-6 border-y border-hairline py-4 text-body-sm leading-relaxed text-ink">
-            <strong className="font-semibold text-graphite">
-              {ARCHIVE_PLAN.name}:
-            </strong>{" "}
-            no live deal? Keep every completed program and its decision record
-            readable and exportable ·{" "}
-            <strong className="font-semibold text-graphite">
-              <Price amount={ARCHIVE_PLAN.price} />
-            </strong>{" "}
-            per year · Standard support
-          </p>
-
-          <p className="mt-6 max-w-measure text-small leading-relaxed text-muted">
-            Every plan includes the complete platform, unlimited users and
-            unlimited outside guests. Prices exclude VAT and other applicable
-            taxes (such as US sales tax).
-          </p>
-          <p className="mt-2 max-w-measure text-small leading-relaxed text-muted">
-            List prices are held for 24 months for first-year customers.
-          </p>
-        </section>
-
-        {/* Included in every plan */}
-        <section
-          aria-labelledby="included-heading"
-          className="border-t border-hairline py-section md:py-section-lg"
-        >
-          <SectionHeading id="included-heading" label="Every plan">
-            Included in every plan
-          </SectionHeading>
-          <dl className="mt-heading-gap grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-            {INCLUDED.map((group) => (
-              <div key={group.heading}>
-                <div className="h-px w-10 bg-graphite" />
-                <dt className="mt-3 text-h3 text-graphite">{group.heading}</dt>
-                <dd className="mt-2 text-small leading-relaxed text-muted">
-                  {group.body}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        {/* Security by default */}
-        <section
-          aria-labelledby="security-heading"
-          className="border-t border-hairline py-section md:py-section-lg"
-        >
-          <div className="rounded-lg bg-graphite p-6 md:p-8">
-            <p className="text-label font-semibold uppercase text-accent-light">
-              Security
+          <div className="mt-6 max-w-measure space-y-2 text-small leading-relaxed text-muted">
+            <p>
+              Every plan includes the complete platform, unlimited users and
+              unlimited outside guests. Prices exclude VAT and other applicable
+              taxes (such as US sales tax).
             </p>
-            <h2
-              id="security-heading"
-              className="mt-2 text-h2-sm text-on-dark-primary md:text-h2"
-            >
-              Security by default
-            </h2>
-            <ul className="mt-heading-gap grid gap-x-10 gap-y-2 text-body-sm text-on-dark-primary sm:grid-cols-2 md:text-body">
-              {SECURITY_POINTS.map((point) => (
-                <li key={point} className="flex gap-3">
-                  <span aria-hidden="true" className="mt-[0.8em] h-px w-3 shrink-0 bg-accent" />
-                  {point}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-6 max-w-measure text-body-sm leading-relaxed text-on-dark-secondary md:text-body">
-              Not enterprise add-ons sold separately — how the platform works
-              by default.
-            </p>
-            <p className="mt-4 text-small">
-              <Link
-                href="/security"
-                className="font-medium text-accent-light underline underline-offset-4 hover:text-on-dark-primary"
-              >
-                Read the security page
-              </Link>
-            </p>
+            <p>List prices are held for 24 months for first-year customers.</p>
           </div>
         </section>
 
-        {/* How the plans work */}
-        <section
-          aria-labelledby="how-heading"
-          className="border-t border-hairline py-section md:py-section-lg"
-        >
-          <SectionHeading id="how-heading" label="Plans">
-            How the plans work
-          </SectionHeading>
-          <dl className="mt-heading-gap grid gap-x-10 gap-y-8 sm:grid-cols-2">
-            {HOW_PLANS_WORK.map((item) => (
-              <div key={item.heading}>
-                <div className="h-px w-10 bg-graphite" />
-                <dt className="mt-3 text-h3 text-graphite">{item.heading}</dt>
-                <dd className="mt-2 text-small leading-relaxed text-muted">
-                  {item.body}
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
-        {/* Services */}
-        <section
-          aria-labelledby="services-heading"
-          className="border-t border-hairline py-section md:py-section-lg"
-        >
-          <SectionHeading id="services-heading" label="Services">
-            Services
-          </SectionHeading>
-          <table className="mt-heading-gap w-full max-w-measure text-body-sm tabular-nums md:text-body">
-            <caption className="sr-only">Services and prices</caption>
+        {/* 3. Add-ons and services */}
+        <section aria-labelledby="addons-heading" className={SECTION}>
+          <h2 id="addons-heading" className="text-h2-sm md:text-h2">
+            Add-ons and services
+          </h2>
+          <table className="mt-heading-gap w-full max-w-measure text-body-sm md:text-body">
+            <caption className="sr-only">Add-ons, services and prices</caption>
             <thead>
               <tr className="border-b-2 border-graphite text-left">
                 <th scope="col" className="pb-2 text-label font-semibold uppercase text-muted">
-                  Service
+                  Item
                 </th>
                 <th scope="col" className="pb-2 text-right text-label font-semibold uppercase text-muted">
                   Price
@@ -418,17 +290,19 @@ export function PricingPage({ currency }: { currency: Currency }) {
               </tr>
             </thead>
             <tbody>
-              {SERVICES.map((service) => (
-                <tr key={service.id} className="border-b border-hairline">
-                  <th scope="row" className="py-3 pr-4 text-left font-normal text-ink">
-                    {service.name}
+              {ADD_ONS.map((item) => (
+                <tr key={item.id} className="border-b border-hairline">
+                  <th scope="row" className="py-3 pr-4 text-left align-baseline font-normal text-ink">
+                    {item.name}
                   </th>
-                  <td className="py-3 text-right text-ink">
-                    {service.from && "from "}
-                    <span className="font-semibold text-graphite">
-                      <Price amount={service.price} />
+                  <td className="py-3 text-right align-baseline text-ink">
+                    {item.from && "from "}
+                    <span className={`font-semibold text-graphite ${NUMS}`}>
+                      <Price amount={item.price} />
                     </span>{" "}
-                    <span className="whitespace-nowrap text-muted">{service.unit}</span>
+                    <span className="block text-small text-muted sm:inline">
+                      {item.unit}
+                    </span>
                   </td>
                 </tr>
               ))}
@@ -440,14 +314,11 @@ export function PricingPage({ currency }: { currency: Currency }) {
           </p>
         </section>
 
-        {/* Two ways to start */}
-        <section
-          aria-labelledby="start-heading"
-          className="border-t border-hairline py-section md:py-section-lg"
-        >
-          <SectionHeading id="start-heading" label="Getting started">
+        {/* 4. Two ways to start — dark means "recommended", nothing else. */}
+        <section aria-labelledby="start-heading" className={SECTION}>
+          <h2 id="start-heading" className="text-h2-sm md:text-h2">
             Two ways to start
-          </SectionHeading>
+          </h2>
           <div className="mt-heading-gap grid gap-6 md:grid-cols-2">
             <div className="flex flex-col rounded-lg bg-graphite p-6 md:p-8">
               <p className="text-label font-semibold uppercase text-accent-light">
@@ -456,7 +327,7 @@ export function PricingPage({ currency }: { currency: Currency }) {
               <h3 className="mt-2 font-serif text-h2-sm font-semibold text-on-dark-primary">
                 {PILOT.name}
               </h3>
-              <p className="mt-2 font-serif text-h1-sm text-on-dark-primary">
+              <p className={`mt-2 font-serif text-h1-sm text-on-dark-primary ${NUMS}`}>
                 <Price amount={PILOT.price} />
               </p>
               <p className="mt-4 text-body-sm leading-relaxed text-on-dark-secondary md:text-body">
@@ -478,7 +349,7 @@ export function PricingPage({ currency }: { currency: Currency }) {
               <h3 className="mt-2 font-serif text-h2-sm font-semibold text-graphite">
                 {DIAGNOSTIC.name}
               </h3>
-              <p className="mt-2 font-serif text-h1-sm text-graphite">
+              <p className={`mt-2 font-serif text-h1-sm text-graphite ${NUMS}`}>
                 <Price amount={DIAGNOSTIC.price} />
               </p>
               <p className="mt-4 text-body-sm leading-relaxed text-ink md:text-body">
@@ -496,20 +367,40 @@ export function PricingPage({ currency }: { currency: Currency }) {
           </div>
         </section>
 
-        {/* FAQ */}
-        <section
-          aria-labelledby="faq-heading"
-          className="border-t border-hairline py-section md:py-section-lg"
-        >
-          <SectionHeading id="faq-heading" label="Questions">
+        {/* 5. What's included */}
+        <section aria-labelledby="included-heading" className={SECTION}>
+          <h2 id="included-heading" className="text-h2-sm md:text-h2">
+            What&apos;s included
+          </h2>
+          <div className="mt-heading-gap max-w-measure space-y-paragraph-gap text-body-sm leading-relaxed text-ink md:text-body">
+            <p>
+              Every plan includes the complete platform.{" "}
+              <Link href="/platform" className={linkClass}>
+                See what it covers
+              </Link>
+            </p>
+            <p>
+              Security by default: need-to-know access, code names for
+              undisclosed deals, an append-only audit trail, watermarked
+              exports and EU hosting (Frankfurt).{" "}
+              <Link href="/security" className={linkClass}>
+                Read the security page
+              </Link>
+            </p>
+          </div>
+        </section>
+
+        {/* 6. FAQ */}
+        <section aria-labelledby="faq-heading" className={SECTION}>
+          <h2 id="faq-heading" className="text-h2-sm md:text-h2">
             Frequently asked questions
-          </SectionHeading>
+          </h2>
           <div className="mt-heading-gap">
             <FaqAccordion items={FAQ} />
           </div>
         </section>
 
-        {/* Closing */}
+        {/* 7. Closing */}
         <section
           aria-label="Price sheet and contact"
           className="flex flex-col gap-6 border-t border-hairline pt-section sm:flex-row sm:items-center sm:justify-between md:pt-section-lg"
