@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { SITE_NAME, SITE_SHARE_IMAGE_ALT } from "@/lib/site";
+import {
+  SITE_NAME,
+  SITE_SHARE_IMAGE_ALT,
+  SITE_SHARE_IMAGE_PATH,
+} from "@/lib/site";
 
 /**
  * Open Graph / Twitter metadata for a page that sets its own share title and
@@ -37,7 +41,7 @@ export function shareMetadata({
     url,
     title,
     description,
-    ...(ownImage ? {} : { images: [{ url: "/opengraph-image", ...image }] }),
+    ...(ownImage ? {} : { images: [{ url: SITE_SHARE_IMAGE_PATH, ...image }] }),
   };
   return {
     openGraph:

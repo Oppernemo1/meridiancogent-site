@@ -7,6 +7,12 @@ export const SITE_NAME = "MeridianCogent";
 export const SITE_DESCRIPTION =
   "MeridianCogent is a control environment for separation offices and integration teams — track obligations, manage TSAs, measure Day 1 readiness, and hold the plan to the commitments made.";
 
+/**
+ * Path of the site-wide share image (src/app/opengraph-image.tsx). Used for
+ * og:image and for the /pricing Product "image", so both stay the same URL.
+ */
+export const SITE_SHARE_IMAGE_PATH = "/opengraph-image";
+
 /** Alt text for the site-wide share image (src/app/opengraph-image.tsx). */
 export const SITE_SHARE_IMAGE_ALT =
   "MeridianCogent — M&A execution, without the spreadsheet chaos";

@@ -163,10 +163,14 @@ export const PRICE_SHEET_HREF: Record<Currency, string> = {
 
 /**
  * schema.org Offers for the prices shown on /pricing, in the currency the
- * served variant renders. "From" prices are a minimum (minPrice), not a
- * list price. All prices exclude VAT.
+ * served variant renders. Each Offer's `price` is the visible figure as a
+ * plain number string; for "from" prices that is the starting price, and the
+ * price specification carries it as minPrice. All prices exclude VAT.
+ *
+ * No return policy, shipping details, rating or reviews: they don't apply to
+ * a software subscription.
  */
-export function pricingOffers(currency: Currency) {
+export function pricingOffers(currency: Currency, url: string) {
   const spec = (
     amount: number,
     opts: { from?: boolean; months?: number; unitText?: string } = {},
@@ -194,9 +198,11 @@ export function pricingOffers(currency: Currency) {
   ) => ({
     "@type": "Offer",
     name,
-    ...(opts.from ? {} : { price: amount }),
+    price: String(amount),
     priceCurrency: currency,
     priceSpecification: spec(amount, opts),
+    availability: "https://schema.org/InStock",
+    url,
   });
 
   return [

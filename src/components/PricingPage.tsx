@@ -22,7 +22,7 @@ import {
   type Currency,
   type Money,
 } from "@/lib/pricing";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { SITE_NAME, SITE_SHARE_IMAGE_PATH, SITE_URL } from "@/lib/site";
 
 export const PRICING_TITLE = "Pricing";
 export const PRICING_SUBLINE =
@@ -109,14 +109,16 @@ const buttonLight =
 
 /** schema.org Product with an Offer per visible price, in `currency`. */
 function pricingJsonLd(currency: Currency) {
+  const url = `${SITE_URL}/pricing`;
   return {
     "@context": "https://schema.org",
     "@type": "Product",
     name: SITE_NAME,
-    url: `${SITE_URL}/pricing`,
+    url,
+    image: `${SITE_URL}${SITE_SHARE_IMAGE_PATH}`,
     description: PRICING_SUBLINE,
     brand: { "@type": "Brand", name: SITE_NAME },
-    offers: pricingOffers(currency),
+    offers: pricingOffers(currency, url),
   };
 }
 
