@@ -4,7 +4,15 @@
 // https://developers.cloudflare.com/turnstile/troubleshooting/testing/
 import { existsSync } from "node:fs";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import {
+  afterEach,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+  type MockInstance,
+} from "vitest";
 import { GUIDES } from "@/lib/guides";
 
 const TURNSTILE_PASS_SECRET = "1x0000000000000000000000000000000AA";
@@ -72,8 +80,8 @@ function resendCalls() {
   );
 }
 
-let warn: ReturnType<typeof vi.spyOn>;
-let fetchSpy: ReturnType<typeof vi.spyOn>;
+let warn: MockInstance<typeof console.warn>;
+let fetchSpy: MockInstance<typeof fetch>;
 
 beforeEach(() => {
   vi.stubEnv("RESEND_API_KEY", "re_test_key");
