@@ -1,9 +1,9 @@
 "use client";
 
-import { useId, useState, type FormEvent } from "react";
+import { useEffect, useId, useRef, useState, type FormEvent } from "react";
 import { isValidEmail } from "@/lib/validation";
 
-type Status = "idle" | "submitting" | "success" | "error";
+type Status = "idle" | "verifying" | "submitting" | "success" | "error";
 type Field = "email" | "name" | "company" | "role";
 
 export function EarlyAccessForm({
@@ -56,8 +56,75 @@ export function EarlyAccessForm({
   const [status, setStatus] = useState<Status>("idle");
   const [message, setMessage] = useState("");
   const [invalidField, setInvalidField] = useState<Field | null>(null);
+  // Honeypot: hidden from people, so anything in it came from a bot.
+  const [website, setWebsite] = useState("");
+  const [challengeVisible, setChallengeVisible] = useState(false);
 
   const dark = theme === "dark";
+  const busy = status === "verifying" || status === "submitting";
+
+  // When the form appeared; the server rejects submissions under ~3 seconds.
+  const mountedAt = useRef(0);
+  const turnstileBox = useRef<HTMLDivElement>(null);
+  const widgetId = useRef<string | null>(null);
+  const token = useRef<string | null>(null);
+  const tokenWaiters = useRef<((t: string | null) => void)[]>([]);
+
+  useEffect(() => {
+    mountedAt.current = Date.now();
+    return () => {
+      if (widgetId.current) window.turnstile?.remove(widgetId.current);
+      widgetId.current = null;
+    };
+  }, []);
+
+  function settleToken(value: string | null) {
+    token.current = value;
+    const waiters = tokenWaiters.current;
+    tokenWaiters.current = [];
+    waiters.forEach((resolve) => resolve(value));
+  }
+
+  // The Turnstile script loads on first interaction with the form, not on
+  // every page view. It usually passes without the visitor seeing anything;
+  // only if Cloudflare wants a check does the widget appear.
+  async function ensureWidget() {
+    if (widgetId.current || !TURNSTILE_SITE_KEY || !turnstileBox.current) return;
+    await loadTurnstile();
+    if (widgetId.current || !turnstileBox.current || !window.turnstile) return;
+    widgetId.current = window.turnstile.render(turnstileBox.current, {
+      sitekey: TURNSTILE_SITE_KEY,
+      theme: dark ? "dark" : "light",
+      size: "flexible",
+      appearance: "interaction-only",
+      callback: (t: string) => settleToken(t),
+      "expired-callback": () => (token.current = null),
+      "error-callback": () => settleToken(null),
+      "before-interactive-callback": () => setChallengeVisible(true),
+      "after-interactive-callback": () => setChallengeVisible(false),
+    });
+  }
+
+  async function getToken(): Promise<string | null> {
+    if (token.current) return token.current;
+    try {
+      await ensureWidget();
+    } catch {
+      return null;
+    }
+    if (token.current) return token.current;
+    return new Promise((resolve) => {
+      tokenWaiters.current.push(resolve);
+      // Long enough for a visitor to complete an interactive check.
+      setTimeout(() => resolve(token.current), 60_000);
+    });
+  }
+
+  // Tokens are single-use: after any submission, get a fresh one.
+  function resetToken() {
+    token.current = null;
+    if (widgetId.current) window.turnstile?.reset(widgetId.current);
+  }
 
   function fail(field: Field | null, text: string) {
     setStatus("error");
@@ -82,9 +149,25 @@ export function EarlyAccessForm({
       return;
     }
 
-    setStatus("submitting");
+    setStatus("verifying");
     setInvalidField(null);
     setMessage("");
+
+    const turnstileToken = await getToken();
+    if (!turnstileToken) {
+      fail(
+        null,
+        "We couldn't confirm you're not a bot. Reload the page and try again.",
+      );
+      resetToken();
+      return;
+    }
+    setStatus("submitting");
+    const botChecks = {
+      turnstileToken,
+      website,
+      elapsedMs: Date.now() - mountedAt.current,
+    };
 
     const urlSource = new URLSearchParams(window.location.search).get("source");
     const submitSource =
@@ -104,12 +187,14 @@ export function EarlyAccessForm({
                 company: company.trim(),
                 role: role.trim(),
                 source: submitSource,
+                ...botChecks,
               }
             : isTalk
-              ? { intent: "talk", email: trimmed, source: submitSource }
-              : { email: trimmed, source: submitSource },
+              ? { intent: "talk", email: trimmed, source: submitSource, ...botChecks }
+              : { email: trimmed, source: submitSource, ...botChecks },
         ),
       });
+      resetToken();
 
       const data = (await res.json().catch(() => ({}))) as {
         error?: string;
@@ -133,6 +218,7 @@ export function EarlyAccessForm({
       setCompany("");
       setRole("");
     } catch {
+      resetToken();
       fail(
         null,
         "We couldn't reach the server. Check your connection and try again.",
@@ -160,6 +246,7 @@ export function EarlyAccessForm({
   return (
     <form
       onSubmit={handleSubmit}
+      onFocusCapture={() => void ensureWidget().catch(() => {})}
       noValidate
       className={`w-full ${className}`}
       aria-describedby={`${id}-status`}
@@ -177,7 +264,7 @@ export function EarlyAccessForm({
               setName(v);
               clearError();
             }}
-            disabled={status === "submitting"}
+            disabled={busy}
             invalid={invalidField === "name"}
             className={`${inputBase} ${inputTheme}`}
             labelClassName={labelTheme}
@@ -193,7 +280,7 @@ export function EarlyAccessForm({
               setCompany(v);
               clearError();
             }}
-            disabled={status === "submitting"}
+            disabled={busy}
             invalid={invalidField === "company"}
             className={`${inputBase} ${inputTheme}`}
             labelClassName={labelTheme}
@@ -209,7 +296,7 @@ export function EarlyAccessForm({
               setRole(v);
               clearError();
             }}
-            disabled={status === "submitting"}
+            disabled={busy}
             invalid={false}
             className={`${inputBase} ${inputTheme}`}
             labelClassName={labelTheme}
@@ -228,7 +315,7 @@ export function EarlyAccessForm({
               setEmail(v);
               clearError();
             }}
-            disabled={status === "submitting"}
+            disabled={busy}
             invalid={invalidField === "email"}
             className={`${inputBase} ${inputTheme}`}
             labelClassName={labelTheme}
@@ -236,10 +323,10 @@ export function EarlyAccessForm({
           <div className="sm:col-span-2">
             <button
               type="submit"
-              disabled={status === "submitting"}
+              disabled={busy}
               className={`px-5 py-3 text-body font-semibold transition-colors disabled:opacity-60 ${buttonTheme}`}
             >
-              {status === "submitting" ? "Sending…" : buttonLabel}
+              {status === "verifying" ? "Verifying…" : status === "submitting" ? "Sending…" : buttonLabel}
             </button>
           </div>
         </div>
@@ -261,19 +348,36 @@ export function EarlyAccessForm({
               setEmail(e.target.value);
               clearError();
             }}
-            disabled={status === "submitting"}
+            disabled={busy}
             aria-invalid={status === "error"}
             className={`${inputBase} ${inputTheme} sm:flex-1`}
           />
           <button
             type="submit"
-            disabled={status === "submitting"}
+            disabled={busy}
             className={`shrink-0 px-5 py-3 text-body font-semibold transition-colors disabled:opacity-60 ${buttonTheme}`}
           >
-            {status === "submitting" ? "Sending…" : buttonLabel}
+            {status === "verifying" ? "Verifying…" : status === "submitting" ? "Sending…" : buttonLabel}
           </button>
         </div>
       )}
+
+      {/* Honeypot. Off-screen rather than display:none, which some bots skip;
+          hidden from screen readers and the tab order. */}
+      <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <label htmlFor={`${id}-website`}>Website</label>
+        <input
+          id={`${id}-website`}
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
+      <div ref={turnstileBox} className={challengeVisible ? "mt-3" : ""} />
 
       <p
         id={`${id}-status`}
@@ -350,4 +454,41 @@ function TextField({
       />
     </div>
   );
+}
+
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+const TURNSTILE_SRC =
+  "https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit";
+
+type TurnstileApi = {
+  render: (el: HTMLElement, options: Record<string, unknown>) => string;
+  reset: (id: string) => void;
+  remove: (id: string) => void;
+};
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
+}
+
+// One script for every form on the page.
+let turnstileScript: Promise<void> | null = null;
+
+function loadTurnstile(): Promise<void> {
+  if (window.turnstile) return Promise.resolve();
+  if (!turnstileScript) {
+    turnstileScript = new Promise<void>((resolve, reject) => {
+      const script = document.createElement("script");
+      script.src = TURNSTILE_SRC;
+      script.async = true;
+      script.onload = () => resolve();
+      script.onerror = () => {
+        turnstileScript = null;
+        reject(new Error("Turnstile failed to load"));
+      };
+      document.head.appendChild(script);
+    });
+  }
+  return turnstileScript;
 }

@@ -7,6 +7,7 @@ import {
 } from "@/lib/validation";
 import { confirmationEmail, internalNotification } from "@/lib/emails";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
+import { logRejection, silentRejectReason, verifyTurnstile } from "@/lib/spam";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -21,6 +22,7 @@ function json(body: Record<string, unknown>, status: number) {
 export async function POST(request: Request) {
   // --- Rate limit (per IP, before anything else costs a Resend call) ---
   if (isRateLimited(`early-access:${getClientIp(request)}`)) {
+    logRejection("rate_limited");
     return json(
       { error: "Too many requests. Please try again later." },
       429,
@@ -33,6 +35,19 @@ export async function POST(request: Request) {
     payload = await request.json();
   } catch {
     return json({ error: "Invalid request." }, 400);
+  }
+
+  // --- Silent bot checks: honeypot field, and too fast after page load ---
+  // The bot gets the same success response a person would, and nothing is
+  // created or sent.
+  const silentReason = silentRejectReason(
+    payload && typeof payload === "object"
+      ? (payload as Record<string, unknown>)
+      : {},
+  );
+  if (silentReason) {
+    logRejection(silentReason);
+    return json({ ok: true }, 200);
   }
 
   // --- Server-side validation (authoritative) ---
@@ -63,6 +78,34 @@ export async function POST(request: Request) {
   // What the contact asked for, stored on the Resend contact as the `source`
   // property: "talk-to-us", or the guide's "guide-<slug>".
   const contactSource = isTalk ? "talk-to-us" : source;
+
+  // --- Cloudflare Turnstile (before any contact or email) ---
+  // Fails closed: no secret configured, Cloudflare unreachable or a bad token
+  // all stop the request here.
+  const turnstileSecret = process.env.TURNSTILE_SECRET_KEY;
+  if (!turnstileSecret) {
+    console.error("[early-access] Missing TURNSTILE_SECRET_KEY env var.");
+    return json(
+      { error: "This form isn't available right now. Please email us instead." },
+      500,
+    );
+  }
+  const turnstile = await verifyTurnstile(
+    (payload as { turnstileToken?: unknown }).turnstileToken,
+    turnstileSecret,
+  );
+  if (!turnstile.ok) {
+    logRejection(turnstile.reason, turnstile.codes);
+    return json(
+      {
+        error:
+          turnstile.reason === "turnstile_unavailable"
+            ? "We couldn't verify your request just now. Please try again in a moment."
+            : "We couldn't verify your request. Please try again.",
+      },
+      turnstile.reason === "turnstile_unavailable" ? 503 : 403,
+    );
+  }
 
   // --- Config ---
   const apiKey = process.env.RESEND_API_KEY;
