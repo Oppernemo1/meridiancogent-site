@@ -136,6 +136,12 @@ export default function PrivacyPage() {
               <strong>Vercel</strong> — hosts this website and provides the
               privacy-friendly analytics described above.
             </li>
+            <li>
+              <strong>Cloudflare</strong> — spam protection on our forms
+              (Turnstile), which checks that a submission comes from a real
+              browser and keeps a small entry in your browser&apos;s local
+              storage to do this.
+            </li>
           </ul>
         </Section>
 

@@ -59,6 +59,8 @@ export function EarlyAccessForm({
   // Honeypot: hidden from people, so anything in it came from a bot.
   const [website, setWebsite] = useState("");
   const [challengeVisible, setChallengeVisible] = useState(false);
+  // Read at submit time, where the state above would be stale.
+  const challengeShown = useRef(false);
 
   const dark = theme === "dark";
   const busy = status === "verifying" || status === "submitting";
@@ -100,8 +102,14 @@ export function EarlyAccessForm({
       callback: (t: string) => settleToken(t),
       "expired-callback": () => (token.current = null),
       "error-callback": () => settleToken(null),
-      "before-interactive-callback": () => setChallengeVisible(true),
-      "after-interactive-callback": () => setChallengeVisible(false),
+      "before-interactive-callback": () => {
+        challengeShown.current = true;
+        setChallengeVisible(true);
+      },
+      "after-interactive-callback": () => {
+        challengeShown.current = false;
+        setChallengeVisible(false);
+      },
     });
   }
 
@@ -155,11 +163,18 @@ export function EarlyAccessForm({
 
     const turnstileToken = await getToken();
     if (!turnstileToken) {
-      fail(
-        null,
-        "We couldn't confirm you're not a bot. Reload the page and try again.",
-      );
-      resetToken();
+      if (challengeShown.current) {
+        // The checkbox is showing but wasn't ticked in time. Leave it on
+        // screen (no reset: no token was used) so it can be ticked now.
+        fail(null, "Tick the box above and try again.");
+      } else {
+        // Turnstile didn't load or errored; there's nothing to tick.
+        fail(
+          null,
+          "We couldn't confirm you're not a bot. Reload the page and try again.",
+        );
+        resetToken();
+      }
       return;
     }
     setStatus("submitting");
